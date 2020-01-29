@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/mapActivityLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+    <RelativeLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/mapLayout"
+        android:layout_gravity="left|right|top">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:id="@+id/editorFragmentLayout">
+
+            <fragment
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:name="rvo.mobilegateway.main_activity.EditorFragment"
+                android:id="@+id/editorFragmentId"/>
+        </LinearLayout>
+
+        <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+                  xmlns:tools="http://schemas.android.com/tools"
+                  android:layout_width="fill_parent"
+                  android:layout_weight="1.5"
+                  android:layout_height="fill_parent"
+                  android:id="@+id/map"
+                  tools:context=".MobileGatewayMapActivity"
+                  android:name="com.google.android.gms.maps.SupportMapFragment"/>
+        <View
+            android:id="@+id/drawer_view"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/drawLinesButtonId"
+            android:layout_alignParentLeft="false"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="50dp"
+            android:layout_marginRight="6dp"/>
+
+    </RelativeLayout>
+
+
+    <!--
+    <ImageButton
+    android:id="@+id/drawMap_buttonID"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:contentDescription="@string/drawMapDescription"
+    android:src="@mipmap/draw"
+    android:maxHeight="64dp"
+    android:maxWidth="64dp"/>
+    -->
+    <!--
+    <ImageButton
+        android:id="@+id/save_bookmark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:src="@mipmap/bookmark"
+        android:maxHeight="64dp"
+        android:maxWidth="64dp"/>
+       -->
+
+
+</LinearLayout>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools" tools:context=".MobileGatewayMapActivity">
+
+    <item android:id="@+id/action_settings"
+          android:title="@string/action_settings"
+          android:orderInCategory="100"
+        />
+    <item android:id="@+id/action_finder"
+          android:title="@string/action_finder"
+          android:orderInCategory="100"  />
+    <!--
+    <item android:id="@+id/action_bookmarks"
+          android:title="@string/action_bookmarks"
+          android:orderInCategory="100"  />
+          -->
+    <!--
+    <item android:id="@+id/action_design_browser"
+          android:title="@string/action_design_browser"
+          android:orderInCategory="100"  />
+    <item android:id="@+id/tasks_list"
+          android:title="@string/tasks_list"
+          android:orderInCategory="100"  />
+    <item android:id="@+id/action_close_design_browser"
+          android:title="@string/action_close_design_browser"
+          android:orderInCategory="100"  />
+-->
+    <item android:id="@+id/action_import_xml_data"
+        android:title="@string/action_import_xml_data"
+        android:orderInCategory="100"  />
+
+
+
+
+</menu>

@@ -1,0 +1,95 @@
+<resources>
+
+    <string name="app_name">MobileGateway</string>
+
+    <string name="title_activity_mobile_gateway_womap">Mobile Gateway</string>
+
+
+    <string name="title_activity_login">Mobile Gateway</string>
+
+    <string name="connectivity_activity_titile">Connectivity...</string>
+
+    <string name="title_floating_activity">Activity</string>
+
+    <string name="title_master_detail_activity">Master Activity</string>
+
+    <string name="MapString">Map</string>
+
+    <string name="constructionStatus_textView">Construction Status</string>
+
+    <string name="type">Type</string>
+
+    <string name="emptyString"></string>
+
+    <string name="uubTitle">Underground Utility Box</string>
+
+    <string name="detailsButton">Details</string>
+
+    <string name="action_settings">Setari</string>
+
+    <string name="action_finder">Finder</string>
+
+    <string name="action_bookmarks">Bookmarks</string>
+
+    <string name="action_design_browser">Design browser</string>
+
+    <string name="tasks_list">Tasks list</string>
+
+    <string name="action_close_design_browser">Close design</string>
+    <string name="action_import_xml_data">Import XML</string>
+    <string name="drawMapDescription">Draw objects on map</string>
+
+    <string name="settingsActivityTitle">Settings</string>
+
+    <string name="findActivityTitle">Find objects...</string>
+
+    <string name="importXMLDataTitle">Importing XML Data...</string>
+
+    <string name="bookmarksActivityTitle">Bookmarks</string>
+
+    <string name="designsActivityTitle">Design browser</string>
+
+    <string name="tasksActivityTitle">Tasks list</string>
+
+    <string name="server_ip">Server URL</string>
+
+    <string name="default_ip">192.168.100.2</string>
+
+    <string name="server_port">Server port</string>
+
+    <string name="default_port">8080</string>
+
+    <string name="saveButtonSettings">Save</string>
+
+    <string name="cancelButton">Cancel</string>
+
+    <string name="usernameText">Username</string>
+
+    <string-array name="main_array">
+        <item> Address </item>
+        <item> Underground Utility Box </item>
+        <item> Hub </item>
+        <item> Building </item>
+        <item> Terminal Enclosure </item>
+        <item> Pole </item>
+    </string-array>
+
+    <string-array name="second_array">
+        <item> Name </item>
+    </string-array>
+
+    <string-array name="address_array">
+        <item> Street </item>
+    </string-array>
+
+    <string-array name="insert_objects_array">
+        <item> Underground Utility Box </item>
+        <item> Pole </item>
+        <item> Hub </item>
+        <item> Building </item>
+        <item> Terminal Enclosure </item>
+        <item> Access Point </item>
+    </string-array>
+    <string name="passwordText">Password</string>
+
+</resources>
