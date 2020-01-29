@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/activeFirmsId"
+        android:title="@string/active_firms_title" />
+    <item
+        android:id="@+id/yourBookingsId"
+        android:title="@string/your_bookings" />
+    <item
+        android:id="@+id/firmDetailsId"
+        android:title="@string/firm_details" />
+    <item
+        android:id="@+id/editFirmMenuId"
+        android:title="@string/editFirm_string" />
+    <item
+        android:id="@+id/editScheduleFirmMenuId"
+        android:title="@string/edit_firm_schedule_string" />
+    <item
+        android:id="@+id/activateOrDeactivateFirmMenuId"
+        android:title="@string/activate_firm_string" />
+
+    <item
+        android:id="@+id/privacyPolicyMenuId"
+        android:title="@string/privacyPolicy_string" />
+    <item
+        android:id="@+id/signOutMenuId"
+        android:title="@string/signOut_string" />
+
+</menu>

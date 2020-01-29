@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Lipe</string>
+    <string name="facebook_login">Lipe</string>
+    <string name="settings_activity">Settings</string>
+    <string name="chat_activity">Chat</string>
+    <string name="facebook_app_id">1898957893654438</string>
+    <string name="fb_login_protocol_scheme">fb1898957893654438</string>
+    <string name="action_settings">BLA</string>
+</resources>

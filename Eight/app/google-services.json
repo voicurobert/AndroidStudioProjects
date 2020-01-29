@@ -1,0 +1,86 @@
+{
+  "project_info": {
+    "project_number": "211045854366",
+    "firebase_url": "https://book-8e5c3.firebaseio.com",
+    "project_id": "book-8e5c3",
+    "storage_bucket": "book-8e5c3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:211045854366:android:91e7b4c3f19ee489",
+        "android_client_info": {
+          "package_name": "rvo.com.book"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "211045854366-vkcg2eq0u4l7okn98ga9m7ureciofoss.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "rvo.com.book",
+            "certificate_hash": "95707ef0a89183a46b588e4b4011c97a3e1a48a1"
+          }
+        },
+        {
+          "client_id": "211045854366-6fu36msjmr267f1nie7q69gc3tfogfto.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "rvo.com.book",
+            "certificate_hash": "a941a4311b1b2d2910259edfaa7ea4d654a6a34b"
+          }
+        },
+        {
+          "client_id": "211045854366-vs3dubaqomooc3kack3l988rc20dmklq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "rvo.com.book",
+            "certificate_hash": "2ca3a4ef119ad8fafba795b79b685f755944378a"
+          }
+        },
+        {
+          "client_id": "211045854366-h1e04obg9j0hc2i498sk98t61vilihv5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "rvo.com.book",
+            "certificate_hash": "fe2af5b35d9c1bbdeab4bffdf016bb4c1fd0553b"
+          }
+        },
+        {
+          "client_id": "211045854366-31itpng9a4orpivctpekb9r6e943e3rl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCOiThHpieSrev2_N2GDR8FlvRZLJxAfGE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "211045854366-31itpng9a4orpivctpekb9r6e943e3rl.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "211045854366-beq49j52cbo1u29e2tq6plnjbdlosira.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "rvo.Eight"
+              }
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

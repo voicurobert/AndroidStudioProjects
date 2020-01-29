@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1"
+    android:background="#fffffdff">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Is this your starting location?"
+        android:id="@+id/startingLocationTextView"
+        android:textColor="#ff000000"
+        android:layout_gravity="center"/>
+    <fragment
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/locationInfoFragmentLayout"
+        tools:layout="@layout/location_info_activity"
+        android:layout_gravity="center"
+        android:name="android.app.ListFragment"/>
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Is this the final destination of your holiday?"
+        android:id="@+id/finalDestinationCheckBox"
+        android:checked="false"
+        android:layout_gravity="center"
+        android:textColor="#ff000000"/>
+
+
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/setLocationButton"
+        android:layout_gravity="center"
+        />
+
+</LinearLayout>

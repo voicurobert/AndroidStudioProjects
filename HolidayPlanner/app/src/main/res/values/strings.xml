@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Holiday Planner</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="map_activity_name">Your holiday routes</string>
+    <string name="google_maps_key">AIzaSyDGJAi28nlDdiwUiSHp6qybDEl2KvSXrqc</string>
+    <string name="route_location_activity_name">Route Location</string>
+    <string name="floating_location_activity_name">Location Details</string>
+    <string name="search_activity_name">Search your current location...</string>
+    <string name="searchable_app_name">Search</string>
+    <string name="search_hint"> Enter a city name or locality </string>
+    <string name="direction_routes_activity"> Select a route... </string>
+</resources>
