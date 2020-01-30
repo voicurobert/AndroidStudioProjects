@@ -194,7 +194,7 @@ public class FirestoreManager {
         category.setId(id);
         categoriesCollection.document(id).set(category);
         objectInserted.objectModified();
-        
+
     }
 
     public void updateCategory(String id, String name, IObjectModified objectInserted) {
