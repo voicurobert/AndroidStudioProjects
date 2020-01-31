@@ -133,7 +133,7 @@ public class CustomerLoginOrSignInActivity extends FragmentActivity {
     public void logInCustomerIfAuthenticated() {
         String email = getEmailFromSharedPrefs();
         String password = getPasswordFromSharedPrefs();
-        if (email == null & password == null) {
+        if (email == null && password == null) {
             return;
         }
         FirebaseAuth firebaseAuth = FirebaseAuthManager.getInstance().getFirebaseAuth();
@@ -154,20 +154,20 @@ public class CustomerLoginOrSignInActivity extends FragmentActivity {
                     EightSharedPreferences.getInstance().saveString(EightSharedPreferences.CUSTOMER_PASSWORD_KEY, password, activity);
                 }
                 Eight.dataModel.setCustomer((Customer) object);
-                if (progressBar.getVisibility() == View.VISIBLE) {
-                    progressBar.setVisibility(View.GONE);
-                }
+                progressBar.setVisibility(View.GONE);
                 activateEightMainAppActivity();
             }
         });
     }
 
     private void activateEightMainAppActivity() {
-        if (Eight.dataModel.getCustomer() != null) {
-            Eight.firestoreManager.updateCustomerWithFirebaseToken(FirebaseProperties.getInstance().getCurrentToken());
+        Customer customer = Eight.dataModel.getCustomer();
+        if ( customer != null) {
+            customer.setFirebaseToken(FirebaseProperties.getInstance().getCurrentToken());
+            Eight.firestoreManager.updateCustomerFirebaseToken(customer);
         }
         progressBar.setVisibility(View.VISIBLE);
-        final Intent intent = new Intent(getApplicationContext(), EightMainAppActivity.class);
+        Intent intent = new Intent(getApplicationContext(), EightMainAppActivity.class);
         Eight.dataModel.initialiseActiveFirms(() -> {
             progressBar.setVisibility(View.GONE);
             startActivity(intent);

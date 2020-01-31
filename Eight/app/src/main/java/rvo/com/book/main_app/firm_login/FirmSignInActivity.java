@@ -2,8 +2,10 @@ package rvo.com.book.main_app.firm_login;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.FragmentActivity;
@@ -29,6 +31,7 @@ public class FirmSignInActivity extends FragmentActivity {
     private EditText firmNameEditText = null;
     private EditText phoneNumberEditText = null;
     private FirmSignInActivity activity;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -44,8 +47,10 @@ public class FirmSignInActivity extends FragmentActivity {
         phoneNumberEditText = findViewById(R.id.phoneNumberEditTextId);
         handleOnFocusLostForEditText(phoneNumberEditText, "phoneNumber");
         Button nextButton = findViewById(R.id.nextFirmButtonId);
+        progressBar = findViewById(R.id.firmSignInProgressBarId);
         activity = this;
         nextButton.setOnClickListener(v -> {
+            progressBar.setVisibility(View.VISIBLE);
             if (canSignInButtonBePressed()) {
                 String email = Validator.getEmailFromEditText(emailEditText);
                 FirebaseAuthManager.getInstance().getFirebaseAuth().signInAnonymously().addOnCompleteListener(task -> {
@@ -56,6 +61,7 @@ public class FirmSignInActivity extends FragmentActivity {
                             } else {
                                 insertFirmOwner(() -> {
                                     activateSetFirmAddressActivity();
+                                    progressBar.setVisibility(View.GONE);
                                     finishAndRemoveTask();
                                 });
                             }

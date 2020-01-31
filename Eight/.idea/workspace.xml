@@ -11,9 +11,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f976190d-e30a-4638-b494-74d6103cb403" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/resourceHashesCache.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/classAnalysis.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/javaCompile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/taskHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/app/app.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/alerts/EightAlertDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/alerts/EightAlertDialog.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/eight_db/FirestoreManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/eight_db/FirestoreManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/eight_db/IObjectRetrieved.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/eight_db/IObjectRetrieved.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/main_app/CategoriesFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/main_app/CategoriesFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/main_app/customer_login/CustomerLoginOrSignInActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/main_app/customer_login/CustomerLoginOrSignInActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/main_app/customer_login/CustomerSignInActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/main_app/customer_login/CustomerSignInActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/main_app/firm_login/FirmLocationMapActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/main_app/firm_login/FirmLocationMapActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/main_app/firm_login/FirmSignInActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/main_app/firm_login/FirmSignInActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/reset_password/ForgotPassword.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/reset_password/ForgotPassword.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -35,63 +54,57 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/rvo/com/book/main_app/FirmDetailsFragment.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="416">
-              <caret line="37" column="1" selection-start-line="37" selection-start-column="1" selection-end-line="37" selection-end-column="1" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/rvo/com/book/alerts/EightAlertDialog.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="256">
-              <caret line="18" selection-start-line="18" selection-end-line="18" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/rvo/com/book/main_app/customer_login/CustomerLoginOrSignInActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1904">
-              <caret line="145" column="48" selection-start-line="145" selection-start-column="48" selection-end-line="145" selection-end-column="48" />
+            <state relative-caret-position="271">
+              <caret line="168" column="48" selection-start-line="168" selection-start-column="48" selection-end-line="168" selection-end-column="48" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/rvo/com/book/eight_db/FirestoreManager.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="277">
+              <caret line="59" column="21" selection-start-line="59" selection-start-column="21" selection-end-line="59" selection-end-column="21" />
               <folding>
-                <element signature="e#9068#9069#0" expanded="true" />
-                <element signature="e#9101#9102#0" expanded="true" />
+                <element signature="e#1986#1987#0" expanded="true" />
+                <element signature="e#2017#2018#0" expanded="true" />
+                <element signature="e#24317#24318#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/rvo/com/book/main_app/firm_login/FirmSignInActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="465">
+              <caret line="63" column="71" selection-start-line="63" selection-start-column="71" selection-end-line="63" selection-end-column="71" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/rvo/com/book/eight_db/FirestoreManager.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="192">
-              <caret line="24" column="53" lean-forward="true" selection-start-line="24" selection-start-column="53" selection-end-line="24" selection-end-column="53" />
-              <folding>
-                <element signature="e#1986#1987#0" expanded="true" />
-                <element signature="e#2017#2018#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/firm_signin_activity.xml">
+          <provider selected="true" editor-type-id="android-designer2" />
+          <provider editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/rvo/com/book/main_app/CategoriesFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="816">
-              <caret line="75" column="46" selection-start-line="75" selection-start-column="46" selection-end-line="75" selection-end-column="46" />
+            <state relative-caret-position="463">
+              <caret line="119" column="20" selection-start-line="119" selection-start-column="20" selection-end-line="119" selection-end-column="20" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/rvo/com/book/main_app/FirmDetailsMasterActivity.java">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/rvo/com/book/main_app/customer_login/CustomerSignInActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="400">
-              <caret line="33" selection-start-line="33" selection-end-line="33" />
+            <state relative-caret-position="339">
+              <caret line="123" column="72" selection-start-line="123" selection-start-column="72" selection-end-line="123" selection-end-column="72" />
             </state>
           </provider>
         </entry>
@@ -115,8 +128,6 @@
         <option value="$PROJECT_DIR$/build.gradle" />
         <option value="$PROJECT_DIR$/app/src/main/java/rvo/com/book/common/EightDate.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/rvo/com/book/firebase/FirebaseAuthManager.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/rvo/com/book/eight_db/IObjectRetrieved.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/rvo/com/book/main_app/firm_login/FirmSignInActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/rvo/com/book/alerts/AddAlertDialog.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/rvo/com/book/billing/BillingActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/rvo/com/book/billing/InAppBilling.java" />
@@ -133,13 +144,9 @@
         <option value="$PROJECT_DIR$/app/src/main/java/rvo/com/book/firebase/retrofit/RetrofitClient.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/rvo/com/book/firebase/FirebaseMessaging.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/rvo/com/book/firebase/NotificationManager.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/rvo/com/book/main_app/customer_login/CustomerLoginOrSignInActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/rvo/com/book/main_app/customer_login/CustomerSignInActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/rvo/com/book/main_app/firm_login/FirmLocationMapActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/rvo/com/book/main_app/firm_login/FirmLoginOrSignInActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/rvo/com/book/main_app/CategoriesAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/rvo/com/book/main_app/BookingAdapter.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/rvo/com/book/main_app/CategoriesFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/rvo/com/book/main_app/EightMainAppActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/rvo/com/book/main_app/EmployeeAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/rvo/com/book/main_app/FirmsAdapter.java" />
@@ -151,7 +158,6 @@
         <option value="$PROJECT_DIR$/app/src/main/java/rvo/com/book/main_app/ScheduleFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/rvo/com/book/main_app/SetScheduleActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/rvo/com/book/main_app/YourBookingsFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/rvo/com/book/reset_password/ForgotPassword.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/rvo/com/book/reset_password/ResetPasswordActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/rvo/com/book/EightFirstActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/rvo/com/book/NotifyFirmWorker.java" />
@@ -160,7 +166,16 @@
         <option value="$PROJECT_DIR$/app/src/main/java/rvo/com/book/main_app/MapViewFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/rvo/com/book/main_app/EmployeesFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/rvo/com/book/main_app/FirmDetailsFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/rvo/com/book/alerts/EightAlertDialog.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/rvo/com/book/eight_db/IObjectRetrieved.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/rvo/com/book/main_app/firm_login/FirmLocationMapActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/rvo/com/book/main_app/customer_login/CustomerSignInActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/rvo/com/book/main_app/customer_login/CustomerLoginOrSignInActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/rvo/com/book/reset_password/ForgotPassword.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/rvo/com/book/main_app/CategoriesFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/rvo/com/book/eight_db/FirestoreManager.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/rvo/com/book/main_app/firm_login/FirmSignInActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/firm_signin_activity.xml" />
       </list>
     </option>
   </component>
@@ -175,18 +190,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="AndroidView">
-        <subPane>
-          <expand>
-            <path>
-              <item name="Eight" type="1abcf292:AndroidViewProjectNode" />
-              <item name="Gradle Scripts" type="ae0cef3a:AndroidBuildScriptsGroupNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -199,6 +202,44 @@
         </subPane>
       </pane>
       <pane id="Scope" />
+      <pane id="AndroidView">
+        <subPane>
+          <expand>
+            <path>
+              <item name="Eight" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+            </path>
+            <path>
+              <item name="Eight" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+            </path>
+            <path>
+              <item name="Eight" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="book" type="cbb59c9e:AndroidPsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Eight" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="book" type="cbb59c9e:AndroidPsiDirectoryNode" />
+              <item name="main_app" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Eight" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="book" type="cbb59c9e:AndroidPsiDirectoryNode" />
+              <item name="main_app" type="462c0819:PsiDirectoryNode" />
+              <item name="firm_login" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -320,17 +361,25 @@
       <option name="project" value="LOCAL" />
       <updated>1580319768278</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="commit from another repo">
+      <created>1580400611357</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1580400611357</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1792" height="1097" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
-      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.20571429" />
+      <window_info content_ui="combo" id="Project" order="1" sideWeight="0.4986945" visible="true" weight="0.20571429" />
       <window_info id="Structure" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
-      <window_info id="Build Variants" order="4" side_tool="true" />
+      <window_info id="Build Variants" order="4" sideWeight="0.50130546" side_tool="true" weight="0.20571429" />
       <window_info id="Image Layers" order="5" />
       <window_info id="Designer" order="6" />
       <window_info id="Resources Explorer" order="7" weight="0.32951146" />
@@ -341,11 +390,11 @@
       <window_info anchor="bottom" id="Terminal" order="3" />
       <window_info anchor="bottom" id="Event Log" order="4" side_tool="true" />
       <window_info anchor="bottom" id="Build" order="5" visible="true" weight="0.23781094" />
-      <window_info anchor="bottom" id="Android Profiler" order="6" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Android Profiler" order="6" />
       <window_info anchor="bottom" id="Find" order="7" visible="true" weight="0.32935324" />
       <window_info anchor="bottom" id="Messages" order="8" />
       <window_info anchor="bottom" id="Run" order="9" />
-      <window_info anchor="bottom" id="Debug" order="10" />
+      <window_info anchor="bottom" id="Debug" order="10" weight="0.32935324" />
       <window_info anchor="right" id="Device File Explorer" order="0" side_tool="true" />
       <window_info anchor="right" id="Capture Analysis" order="1" />
       <window_info anchor="right" id="Gradle" order="2" />
@@ -362,17 +411,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="commit from another repo" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/rvo/com/book/eight_db/DataModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2945">
-          <caret line="198" column="82" selection-start-line="198" selection-start-column="82" selection-end-line="198" selection-end-column="82" />
-          <folding>
-            <element signature="e#1110#1111#0" expanded="true" />
-            <element signature="e#1141#1142#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/rvo/com/book/eight_db/Employee.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-689">
@@ -384,13 +422,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-481">
           <caret line="51" column="98" selection-start-line="51" selection-start-column="98" selection-end-line="51" selection-end-column="98" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/rvo/com/book/eight_db/IObjectRetrieved.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="32">
-          <caret line="2" column="20" selection-start-line="2" selection-start-column="20" selection-end-line="2" selection-end-column="20" />
         </state>
       </provider>
     </entry>
@@ -499,20 +530,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/rvo/com/book/main_app/customer_login/CustomerSignInActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="63">
-          <caret line="113" column="115" selection-start-line="113" selection-start-column="115" selection-end-line="113" selection-end-column="115" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/rvo/com/book/main_app/firm_login/FirmSignInActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-577">
-          <caret line="98" column="54" lean-forward="true" selection-start-line="98" selection-start-column="54" selection-end-line="98" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/rvo/com/book/main_app/CategoriesAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1024">
@@ -576,13 +593,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/rvo/com/book/reset_password/ForgotPassword.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="530">
-          <caret line="56" column="36" selection-start-line="56" selection-start-column="36" selection-end-line="56" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/rvo/com/book/PrivacyPolicyActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="64">
@@ -613,13 +623,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
           <caret line="17" column="40" lean-forward="true" selection-start-line="17" selection-start-column="40" selection-end-line="17" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/rvo/com/book/main_app/firm_login/FirmLoginOrSignInActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="373">
-          <caret line="184" column="65" lean-forward="true" selection-start-line="184" selection-start-column="65" selection-end-line="184" selection-end-column="65" />
         </state>
       </provider>
     </entry>
@@ -674,20 +677,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/rvo/com/book/EightFirstActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="256">
-          <caret line="39" column="64" lean-forward="true" selection-start-line="39" selection-start-column="64" selection-end-line="39" selection-end-column="64" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/rvo/com/book/main_app/firm_login/FirmLocationMapActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1712">
-          <caret line="138" column="105" selection-start-line="138" selection-start-column="105" selection-end-line="138" selection-end-column="105" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/rvo/com/book/main_app/EmployeesFragment.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="16">
@@ -702,31 +691,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/rvo/com/book/alerts/EightAlertDialog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="256">
-          <caret line="18" selection-start-line="18" selection-end-line="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/rvo/com/book/main_app/customer_login/CustomerLoginOrSignInActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1904">
-          <caret line="145" column="48" selection-start-line="145" selection-start-column="48" selection-end-line="145" selection-end-column="48" />
-          <folding>
-            <element signature="e#9068#9069#0" expanded="true" />
-            <element signature="e#9101#9102#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/rvo/com/book/main_app/CategoriesFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="816">
-          <caret line="75" column="46" selection-start-line="75" selection-start-column="46" selection-end-line="75" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/rvo/com/book/main_app/FirmDetailsMasterActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="400">
@@ -734,16 +698,91 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/rvo/com/book/alerts/EightAlertDialog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="400">
+          <caret line="27" column="5" selection-start-line="27" selection-start-column="5" selection-end-line="27" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/rvo/com/book/EightFirstActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2048">
+          <caret line="151" column="39" selection-start-line="151" selection-start-column="39" selection-end-line="151" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/rvo/com/book/main_app/firm_login/FirmLoginOrSignInActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2352">
+          <caret line="180" column="31" selection-start-line="180" selection-start-column="31" selection-end-line="180" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/rvo/com/book/eight_db/IObjectRetrieved.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="64">
+          <caret line="4" column="26" selection-start-line="4" selection-start-column="26" selection-end-line="4" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/rvo/com/book/main_app/firm_login/FirmLocationMapActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="271">
+          <caret line="72" column="54" selection-start-line="72" selection-start-column="54" selection-end-line="72" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/rvo/com/book/main_app/customer_login/CustomerSignInActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="339">
+          <caret line="123" column="72" selection-start-line="123" selection-start-column="72" selection-end-line="123" selection-end-column="72" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/rvo/com/book/main_app/customer_login/CustomerLoginOrSignInActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="271">
+          <caret line="168" column="48" selection-start-line="168" selection-start-column="48" selection-end-line="168" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/rvo/com/book/reset_password/ForgotPassword.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="43" column="51" lean-forward="true" selection-start-line="43" selection-start-column="51" selection-end-line="43" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/rvo/com/book/main_app/CategoriesFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="463">
+          <caret line="119" column="20" selection-start-line="119" selection-start-column="20" selection-end-line="119" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/rvo/com/book/eight_db/FirestoreManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="24" column="53" lean-forward="true" selection-start-line="24" selection-start-column="53" selection-end-line="24" selection-end-column="53" />
+        <state relative-caret-position="277">
+          <caret line="59" column="21" selection-start-line="59" selection-start-column="21" selection-end-line="59" selection-end-column="21" />
           <folding>
             <element signature="e#1986#1987#0" expanded="true" />
             <element signature="e#2017#2018#0" expanded="true" />
+            <element signature="e#24317#24318#0" expanded="true" />
           </folding>
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/rvo/com/book/main_app/firm_login/FirmSignInActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="465">
+          <caret line="63" column="71" selection-start-line="63" selection-start-column="71" selection-end-line="63" selection-end-column="71" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/firm_signin_activity.xml">
+      <provider selected="true" editor-type-id="android-designer2" />
+      <provider editor-type-id="text-editor" />
     </entry>
   </component>
 </project>

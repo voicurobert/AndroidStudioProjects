@@ -67,10 +67,10 @@ public class FirmLocationMapActivity extends FragmentActivity implements OnMapRe
                 nextOrUpdateButton.setOnClickListener(v -> {
                     if (!address.equals("")) {
                         Firm firm = Eight.dataModel.getFirm();
-                        Eight.firestoreManager.writeFirmAddress(firm.getId(), address);
-                        Eight.firestoreManager.setFirmLocation(firm.getId(), addressLocation.latitude, addressLocation.longitude);
-                        firm.setPoint(new GeoPoint(addressLocation.latitude, addressLocation.longitude));
                         firm.setAddress(address);
+                        Eight.firestoreManager.updateFirmAddress(firm);
+                        firm.setPoint(new GeoPoint(addressLocation.latitude, addressLocation.longitude));
+                        Eight.firestoreManager.setFirmLocation(firm);
                         finish();
                     }
                 });

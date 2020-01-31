@@ -11,6 +11,7 @@ import rvo.com.book.R;
 import rvo.com.book.alerts.EightAlertDialog;
 import rvo.com.book.common.Eight;
 import rvo.com.book.common.Validator;
+import rvo.com.book.eight_db.Customer;
 import rvo.com.book.firebase.FirebaseAuthManager;
 import rvo.com.book.firebase.FirebaseProperties;
 
@@ -73,17 +74,17 @@ public class CustomerSignInActivity extends FragmentActivity {
     }
 
     private void registerCustomerButtonClicked() {
-        final String name = Validator.getNameFromEditText(nameEditText);
+        String name = Validator.getNameFromEditText(nameEditText);
         if (name == null) {
             EightAlertDialog.showAlertWithMessage("Name is not set!", this);
             return;
         }
-        final String password = Validator.getPasswordFromEditText(passwordEditText);
+        String password = Validator.getPasswordFromEditText(passwordEditText);
         if (password == null) {
             EightAlertDialog.showAlertWithMessage("Password is not set!", this);
             return;
         }
-        final String retypedPassword = Validator.getPasswordFromEditText(retypePasswordEditText);
+        String retypedPassword = Validator.getPasswordFromEditText(retypePasswordEditText);
         if (retypedPassword == null) {
             EightAlertDialog.showAlertWithMessage("Password is not set!", this);
             return;
@@ -92,12 +93,12 @@ public class CustomerSignInActivity extends FragmentActivity {
             EightAlertDialog.showAlertWithMessage("Passwords does not match!", this);
             return;
         }
-        final String email = Validator.getEmailFromEditText(emailEditText);
+        String email = Validator.getEmailFromEditText(emailEditText);
         if (email == null || email.equals("")) {
             EightAlertDialog.showAlertWithMessage("Email is not set!", this);
             return;
         }
-        final String phoneNumber = Validator.getPhoneNumberFromEditText(phoneNumberEditText);
+        String phoneNumber = Validator.getPhoneNumberFromEditText(phoneNumberEditText);
         if (phoneNumber == null) {
             EightAlertDialog.showAlertWithMessage("Phone number is not set!", this);
             return;
@@ -113,7 +114,14 @@ public class CustomerSignInActivity extends FragmentActivity {
                     if (object != null) {
                         EightAlertDialog.showAlertWithMessage("Email already exists! Please enter another email!", activity);
                     } else {
-                        Eight.firestoreManager.writeCustomer(email, name, password, phoneNumber, FirebaseProperties.getInstance().getCurrentToken());
+                        EightAlertDialog.showSuccessWithMessage("Account successfully created!", activity);
+                        Customer customer = new Customer();
+                        customer.setEmail(email);
+                        customer.setName(name);
+                        customer.setPassword(password);
+                        customer.setPhoneNumber(phoneNumber);
+                        customer.setFirebaseToken(FirebaseProperties.getInstance().getCurrentToken());
+                        Eight.firestoreManager.insertCustomer(customer);
                         finish();
                     }
                 });

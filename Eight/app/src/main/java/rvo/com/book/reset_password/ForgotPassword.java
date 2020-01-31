@@ -40,7 +40,9 @@ public class ForgotPassword {
             Eight.firestoreManager.customerWithEmail(email, object -> {
                 if (object != null) {
                     // email exists, update password
-                    Eight.firestoreManager.updateCustomerPassword((Customer) object, password);
+                    Customer customer = (Customer)object;
+                    customer.setPassword(password);
+                    Eight.firestoreManager.updateCustomerPassword(customer);
                     downloadFinished.finished();
                 } else {
                     // show message that email does not exist

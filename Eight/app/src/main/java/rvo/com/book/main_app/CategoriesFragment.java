@@ -73,6 +73,7 @@ public class CategoriesFragment extends Fragment {
             Category category = new Category();
             category.setName(categoryName);
             progressBar.setVisibility(View.VISIBLE);
+
             Eight.firestoreManager.insertCategory(category, DataModel.getInstance().getFirm(), () -> {
                 addAlertDialog.close();
                 DataModel.getInstance().addCategory(category);
@@ -101,8 +102,8 @@ public class CategoriesFragment extends Fragment {
         editButton.setOnClickListener(view -> {
             String categoryName = categoryNameEditText.getText().toString();
             makeProgressBarVisible();
-            Eight.firestoreManager.updateCategory(category.getId(), categoryName, () -> {
-                category.setName(categoryName);
+            category.setName(categoryName);
+            Eight.firestoreManager.updateCategoryName(category, () -> {
                 addAlertDialog.close();
                 makeProgressBarGone();
             });

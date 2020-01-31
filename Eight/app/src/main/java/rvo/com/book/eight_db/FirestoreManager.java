@@ -51,37 +51,36 @@ public class FirestoreManager {
     }
 
     public void firmOwnerFromEmail(String email, IObjectRetrieved objectRetrieved) {
-        firmsCollection.whereEqualTo("email", email).get().addOnCompleteListener(task -> {
-            if (task.isSuccessful()) {
-                QuerySnapshot queryDocumentSnapshots = task.getResult();
-                if (queryDocumentSnapshots != null) {
-                    Firm firm = null;
-                    for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
-                        firm = document.toObject(Firm.class);
-                    }
-                    objectRetrieved.onObjectRead(firm);
-                }
-            }
-            objectRetrieved.onObjectRead(null);
-        }).addOnFailureListener(Throwable::printStackTrace);
-    }
-
-    public void firmOwnerFromEmailAndPassword(String email, String password, IObjectRetrieved objectRetrieved) {
         firmsCollection.whereEqualTo(Firm.EMAIL, email).get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 QuerySnapshot queryDocumentSnapshots = task.getResult();
                 if (queryDocumentSnapshots != null && !queryDocumentSnapshots.isEmpty()) {
-                    Firm firm;
                     for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
-                        Firm currentFirm = document.toObject(Firm.class);
-                        if (currentFirm.getPassword().equals(password)) {
-                            firm = currentFirm;
-                            Eight.dataModel.setFirm(firm);
-                        }
+                        objectRetrieved.onObjectRetrieved(document.toObject(Firm.class));
                     }
+                } else {
+                    objectRetrieved.onObjectRetrieved(null);
                 }
+            } else {
+                objectRetrieved.onObjectRetrieved(null);
             }
-            objectRetrieved.onObjectRead(null);
+        }).addOnFailureListener(Throwable::printStackTrace);
+    }
+
+    public void firmOwnerFromEmailAndPassword(String email, String password, IObjectRetrieved objectRetrieved) {
+        firmsCollection.whereEqualTo(Firm.EMAIL, email).whereEqualTo(Firm.PASSWORD, password).get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                QuerySnapshot queryDocumentSnapshots = task.getResult();
+                if (queryDocumentSnapshots != null && !queryDocumentSnapshots.isEmpty()) {
+                    for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
+                        objectRetrieved.onObjectRetrieved(document.toObject(Firm.class));
+                    }
+                } else {
+                    objectRetrieved.onObjectRetrieved(null);
+                }
+            } else {
+                objectRetrieved.onObjectRetrieved(null);
+            }
         }).addOnFailureListener(Throwable::printStackTrace);
 
     }
@@ -92,8 +91,8 @@ public class FirestoreManager {
         firmsCollection.document(id).set(firm);
     }
 
-    public void writeFirmAddress(String id, String address) {
-        firmsCollection.document(id).update(Firm.ADDRESS, address);
+    public void updateFirmAddress(Firm firm) {
+        firmsCollection.document(firm.getId()).update(Firm.ADDRESS, firm.getAddress());
     }
 
     public void setFirmFirebaseToken(String firebaseToken) {
@@ -109,10 +108,14 @@ public class FirestoreManager {
                     for (QueryDocumentSnapshot documentSnapshot : qs) {
                         firms.add(documentSnapshot.toObject(Firm.class));
                     }
-                    objectRetrieved.onObjectRead(firms);
+                    objectRetrieved.onObjectRetrieved(firms);
+                } else {
+                    objectRetrieved.onObjectRetrieved(Collections.emptyList());
                 }
+            } else {
+                objectRetrieved.onObjectRetrieved(Collections.emptyList());
             }
-            objectRetrieved.onObjectRead(Collections.emptyList());
+
         }).addOnFailureListener(Throwable::printStackTrace);
     }
 
@@ -128,37 +131,29 @@ public class FirestoreManager {
         firmsCollection.document(firm.getId()).update(Firm.NAME, firmName, Firm.PHONE_NUMBER, phoneNumber);
     }
 
-    public void setFirmLocation(String firmId, Double latitude, Double longitude) {
-        firmsCollection.document(firmId).update(Firm.POINT, new GeoPoint(latitude, longitude));
+    public void setFirmLocation(Firm firm) {
+        firmsCollection.document(firm.getId()).update(Firm.POINT, firm.getPoint());
     }
 
-    public void writeCustomer(String customerEmail, String customerName, String customerPassword, String customerPhoneNumber, String customerToken) {
-        Customer customer = new Customer();
-        customer.setEmail(customerEmail);
-        customer.setName(customerName);
-        customer.setPassword(customerPassword);
-        customer.setPhoneNumber(customerPhoneNumber);
-        customer.setFirebaseToken(customerToken);
+    public void insertCustomer(Customer customer) {
         String id = customersCollection.document().getId();
         customer.setId(id);
         customersCollection.document(id).set(customer);
     }
 
     public void customerWithEmailAndPassword(String email, String password, IObjectRetrieved objectRetrieved) {
-        customersCollection.whereEqualTo(Customer.EMAIL, email).get().addOnCompleteListener(task -> {
+        customersCollection.whereEqualTo(Customer.EMAIL, email).whereEqualTo(Customer.PASSWORD, password).get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 QuerySnapshot queryDocumentSnapshots = task.getResult();
                 if (queryDocumentSnapshots != null && !queryDocumentSnapshots.isEmpty()) {
-                    Customer customer;
                     for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
-                        customer = documentSnapshot.toObject(Customer.class);
-                        if (customer.getPassword().equals(password)) {
-                            objectRetrieved.onObjectRead(customer);
-                        }
+                        objectRetrieved.onObjectRetrieved(documentSnapshot.toObject(Customer.class));
                     }
+                } else {
+                    objectRetrieved.onObjectRetrieved(null);
                 }
             } else {
-                objectRetrieved.onObjectRead(null);
+                objectRetrieved.onObjectRetrieved(null);
             }
         }).addOnFailureListener(Throwable::printStackTrace);
     }
@@ -170,21 +165,23 @@ public class FirestoreManager {
                 if (queryDocumentSnapshots != null && !queryDocumentSnapshots.isEmpty()) {
                     for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
                         Customer customer = documentSnapshot.toObject(Customer.class);
-                        objectRetrieved.onObjectRead(customer);
+                        objectRetrieved.onObjectRetrieved(customer);
                     }
+                } else {
+                    objectRetrieved.onObjectRetrieved(null);
                 }
             } else {
-                objectRetrieved.onObjectRead(null);
+                objectRetrieved.onObjectRetrieved(null);
             }
         }).addOnFailureListener(Throwable::printStackTrace);
     }
 
-    public void updateCustomerWithFirebaseToken(String firebaseToken) {
-        customersCollection.document(Eight.dataModel.getCustomer().getId()).update(Customer.FIREBASE_TOKEN, firebaseToken);
+    public void updateCustomerFirebaseToken(Customer customer) {
+        customersCollection.document(customer.getId()).update(Customer.FIREBASE_TOKEN, customer.getFirebaseToken());
     }
 
-    public void updateCustomerPassword(Customer customer, String password) {
-        customersCollection.document(customer.getId()).update(Customer.PASSWORD, password);
+    public void updateCustomerPassword(Customer customer) {
+        customersCollection.document(customer.getId()).update(Customer.PASSWORD, customer.getPassword());
     }
 
     public void insertCategory(Category category, Firm firm, IObjectModified objectInserted) {
@@ -197,8 +194,8 @@ public class FirestoreManager {
 
     }
 
-    public void updateCategory(String id, String name, IObjectModified objectInserted) {
-        categoriesCollection.document(id).update(Category.NAME, name).addOnSuccessListener(aVoid -> objectInserted.objectModified());
+    public void updateCategoryName(Category category, IObjectModified objectInserted) {
+        categoriesCollection.document(category.getId()).update(Category.NAME, category.getName()).addOnSuccessListener(aVoid -> objectInserted.objectModified());
     }
 
     public void deleteCategory(Category category, IObjectModified objectInserted) {
@@ -209,12 +206,19 @@ public class FirestoreManager {
         categoriesCollection.whereEqualTo(Category.FIRM_ID, firm.getId()).get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 ArrayList<Category> categories = new ArrayList<>();
-                for (QueryDocumentSnapshot documentSnapshot : task.getResult()) {
-                    Category category = documentSnapshot.toObject(Category.class);
-                    category.setFirm(Eight.dataModel.getFirm());
-                    categories.add(category);
+                QuerySnapshot querySnapshot = task.getResult();
+                if ( querySnapshot != null && !querySnapshot.isEmpty() ){
+                    for (QueryDocumentSnapshot documentSnapshot : querySnapshot) {
+                        Category category = documentSnapshot.toObject(Category.class);
+                        category.setFirm(Eight.dataModel.getFirm());
+                        categories.add(category);
+                    }
+                    objectRetrieved.onObjectRetrieved(categories);
+                } else {
+                    objectRetrieved.onObjectRetrieved(Collections.emptyList());
                 }
-                objectRetrieved.onObjectRead(categories);
+            } else {
+                objectRetrieved.onObjectRetrieved(Collections.emptyList());
             }
         });
     }
@@ -246,7 +250,7 @@ public class FirestoreManager {
                     product.setFirm(Eight.dataModel.getFirm());
                     products.add(product);
                 }
-                objectRetrieved.onObjectRead(products);
+                objectRetrieved.onObjectRetrieved(products);
             }
         });
     }
@@ -281,7 +285,7 @@ public class FirestoreManager {
                     Employee employee = documentSnapshot.toObject(Employee.class);
                     employees.add(employee);
                 }
-                objectRetrieved.onObjectRead(employees);
+                objectRetrieved.onObjectRetrieved(employees);
             }
         });
     }
@@ -334,7 +338,7 @@ public class FirestoreManager {
         schedule.setId(id);
         Eight.dataModel.getFirm().setSchedule(schedule);
         schedulesCollection.document(id).set(schedule);
-        objectRetrieved.onObjectRead(schedule);
+        objectRetrieved.onObjectRetrieved(schedule);
     }
 
     public void updateSchedule(Schedule schedule, String monday, String tuesday, String wednesday,
@@ -426,7 +430,7 @@ public class FirestoreManager {
                         bookings.add(booking);
                     }
                 }
-                objectRetrieved.onObjectRead(bookings);
+                objectRetrieved.onObjectRetrieved(bookings);
             }
         });
     }
@@ -444,7 +448,7 @@ public class FirestoreManager {
                         bookings.add(booking);
                     }
                 }
-                objectRetrieved.onObjectRead(bookings);
+                objectRetrieved.onObjectRetrieved(bookings);
             }
         });
     }
@@ -465,7 +469,7 @@ public class FirestoreManager {
                         bookings.add(booking);
                     }
                 }
-                objectRetrieved.onObjectRead(bookings);
+                objectRetrieved.onObjectRetrieved(bookings);
             }
         });
     }
@@ -484,7 +488,7 @@ public class FirestoreManager {
                         bookings.add(booking);
                     }
                 }
-                objectRetrieved.onObjectRead(bookings);
+                objectRetrieved.onObjectRetrieved(bookings);
             }
         });
     }
@@ -497,7 +501,7 @@ public class FirestoreManager {
         firestore.collection(databasePath).whereEqualTo("id", id).get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 for (QueryDocumentSnapshot documentSnapshot : task.getResult()) {
-                    objectRetrieved.onObjectRead(documentSnapshot.toObject(objectClass));
+                    objectRetrieved.onObjectRetrieved(documentSnapshot.toObject(objectClass));
                 }
             }
         });
