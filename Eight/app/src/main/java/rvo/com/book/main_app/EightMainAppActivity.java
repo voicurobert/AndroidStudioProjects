@@ -22,6 +22,8 @@ import rvo.com.book.PrivacyPolicyActivity;
 import rvo.com.book.R;
 import rvo.com.book.alerts.AddAlertDialog;
 import rvo.com.book.alerts.EightAlertDialog;
+import rvo.com.book.billing.BillingActivity;
+import rvo.com.book.billing.InAppBilling;
 import rvo.com.book.common.Eight;
 import rvo.com.book.common.EightSharedPreferences;
 import rvo.com.book.eight_db.FirestoreManager;
@@ -182,17 +184,21 @@ public class EightMainAppActivity extends FragmentActivity {
     }
 
     private void activateOrDeactivateFirmMenuClicked() {
+        Button b = findViewById(R.id.activateOrDeactivateFirmMenuId);
         if (Eight.dataModel.getFirm().firmIsActive()) {
             // deactivate firm
             activateOrDeactivateFirmButtonDialogClicked(0);
+            b.setText(getString(R.string.deactivate_firm_string));
         } else {
             // activate firm
             activateOrDeactivateFirmButtonDialogClicked(1);
+
+            b.setText(getString(R.string.deactivate_firm_string));
         }
     }
 
     private void activateOrDeactivateFirmButtonDialogClicked(Integer status) {
-        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(getParent());
+        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(this);
         String title;
         if (status.equals(0)) {
             title = getResources().getString(R.string.deactivate_firm);
@@ -271,5 +277,24 @@ public class EightMainAppActivity extends FragmentActivity {
     @Override
     public void onBackPressed() {
         finish();
+    }
+
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+        if (EightSharedPreferences.getInstance().isCustomerMode()) {
+            return;
+        }
+        if (InAppBilling.getInstance().getBillingClient().isReady()) {
+            InAppBilling.getInstance().isSubscribed(subscribed -> {
+                if (!subscribed) {
+                    Intent intent = new Intent(this, BillingActivity.class);
+                    startActivity(intent);
+
+                    finish();
+                }
+            });
+        }
+
     }
 }

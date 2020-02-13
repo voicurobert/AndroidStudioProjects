@@ -1,6 +1,7 @@
 package rvo.com.book.billing;
 
 import android.app.Activity;
+import android.content.Context;
 
 import androidx.annotation.Nullable;
 
@@ -26,9 +27,9 @@ public class InAppBilling implements PurchasesUpdatedListener, BillingClientStat
     private static final String MONTHLY_SUBSCRIPTION = "8_subscription.";
     private BillingClient billingClient;
     private Activity activity;
-    private static InAppBilling instance;
     private IBillingResponse billingResponse;
     private static SkuDetailsParams skuDetailsParams;
+    private  static InAppBilling instance = new InAppBilling();
 
     static {
         List<String> skuList = new ArrayList<>();
@@ -37,7 +38,15 @@ public class InAppBilling implements PurchasesUpdatedListener, BillingClientStat
     }
 
 
-    private InAppBilling(Activity activity) {
+    private InAppBilling() {
+
+    }
+
+    public static InAppBilling getInstance() {
+        return instance;
+    }
+
+    public void start(Activity activity){
         this.activity = activity;
         billingClient = BillingClient.newBuilder(activity).enablePendingPurchases().setListener(this).build();
         billingClient.startConnection(this);
@@ -47,29 +56,20 @@ public class InAppBilling implements PurchasesUpdatedListener, BillingClientStat
         this.billingResponse = billingResponse;
     }
 
-    public static InAppBilling getInstance() {
-        return instance;
-    }
-
-    public static void setActivity(Activity activity) {
-        instance.activity = activity;
-    }
-
-    public static void initInstance(Activity activity) {
-        instance = new InAppBilling(activity);
-    }
 
     public void isSubscribed(IBillingResponse billingResponse) {
+        if (!billingClient.isReady()){
+            billingClient.startConnection(this);
+        }
         billingClient.queryPurchaseHistoryAsync(BillingClient.SkuType.SUBS, (billingResult, purchaseHistoryRecordList) -> {
             List<Purchase> purchases = billingClient.queryPurchases(BillingClient.SkuType.SUBS).getPurchasesList();
             if (purchases != null && !purchases.isEmpty()) {
                 for (Purchase purchase : purchases) {
-                    if (purchase.getPurchaseState() ==
-                        Purchase.PurchaseState.UNSPECIFIED_STATE) {
+                    if (purchase.getPurchaseState() == Purchase.PurchaseState.UNSPECIFIED_STATE) {
                         billingResponse.subscribed(false);
-                        return;
+                    } else {
+                        billingResponse.subscribed(true);
                     }
-                    billingResponse.subscribed(true);
                 }
             } else {
                 billingResponse.subscribed(false);
@@ -77,7 +77,7 @@ public class InAppBilling implements PurchasesUpdatedListener, BillingClientStat
         });
     }
 
-    protected BillingClient getBillingClient() {
+    public BillingClient getBillingClient() {
         return billingClient;
     }
 
@@ -87,13 +87,10 @@ public class InAppBilling implements PurchasesUpdatedListener, BillingClientStat
         billingClient.querySkuDetailsAsync(skuDetailsParams, (billingResult, skuDetailsList) -> {
             if (billingResult.getResponseCode() ==
                 BillingClient.BillingResponseCode.SERVICE_DISCONNECTED) {
-                EightAlertDialog.showAlertWithMessage(
-                        "Are you connected to google play? Please check that you are logged in.",
-                        activity);
+                EightAlertDialog.showAlertWithMessage("Are you connected to google play? Please check that you are logged in.", activity);
             }
             if (skuDetailsList != null && !skuDetailsList.isEmpty()) {
-                BillingFlowParams flowParams = BillingFlowParams.newBuilder().setSkuDetails(
-                        skuDetailsList.get(0)).build();
+                BillingFlowParams flowParams = BillingFlowParams.newBuilder().setSkuDetails(skuDetailsList.get(0)).build();
                 billingClient.launchBillingFlow(activity, flowParams);
             }
         });
@@ -132,6 +129,7 @@ public class InAppBilling implements PurchasesUpdatedListener, BillingClientStat
 
     @Override
     public void onBillingServiceDisconnected() {
+        Log.log("Service disconnected!!!");
         remakeConnection();
     }
 

@@ -57,7 +57,6 @@ public class YourBookingsFragment extends Fragment {
             titleTextView.setText(R.string.owner_customer_title);
             setCustomerBookings();
         }
-
         return myView;
     }
 
@@ -86,23 +85,6 @@ public class YourBookingsFragment extends Fragment {
                 goneProgressBar();
             });
         }
-
-    }
-
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        if (EightSharedPreferences.getInstance().isCustomerMode()) {
-            return;
-        }
-        InAppBilling.getInstance().isSubscribed(subscribed -> {
-            if (!subscribed) {
-                Intent intent = new Intent(this.getContext(), BillingActivity.class);
-                startActivity(intent);
-                getActivity().finish();
-            }
-        });
 
     }
 

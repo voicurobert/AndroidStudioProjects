@@ -31,6 +31,7 @@ public class EightFirstActivity extends FragmentActivity {
 
     private EightFirstActivity activity;
     private ProgressBar progressBar;
+    private InAppBilling inAppBilling;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -38,7 +39,8 @@ public class EightFirstActivity extends FragmentActivity {
         setContentView(R.layout.eight_first_activity);
         activity = this;
         progressBar = findViewById(R.id.bookWelcomeProgressBar);
-        InAppBilling.initInstance(activity);
+        inAppBilling = InAppBilling.getInstance();
+        inAppBilling.start(this);
         FirebaseDatabase.getInstance();
         FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(instanceIdResult -> FirebaseProperties.getInstance().setCurrentToken(instanceIdResult.getToken()));
         Eight.isGooglePlayServicesAvailable(this);
@@ -98,8 +100,7 @@ public class EightFirstActivity extends FragmentActivity {
     }
 
     private void activateBillingOrFirmSignInOrLoginApp() {
-        InAppBilling billing = InAppBilling.getInstance();
-        billing.isSubscribed(subscribed -> {
+        inAppBilling.isSubscribed(subscribed -> {
             if (!subscribed) {
                 Intent intent = new Intent(activity.getApplicationContext(), BillingActivity.class);
                 startActivity(intent);
@@ -111,7 +112,7 @@ public class EightFirstActivity extends FragmentActivity {
     }
 
     private void activateBillingOrFirmMainApp() {
-        InAppBilling.getInstance().isSubscribed(subscribed -> {
+        inAppBilling.isSubscribed(subscribed -> {
             if (!subscribed) {
                 activateBillingActivity();
             } else {

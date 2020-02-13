@@ -15,18 +15,14 @@ import rvo.com.book.main_app.firm_login.FirmLoginOrSignInActivity;
 
 public class BillingActivity extends AppCompatActivity implements IBillingResponse {
 
-    private InAppBilling billing;
+    private InAppBilling billing = InAppBilling.getInstance();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.billing_activity_layout);
         Button subscribeButton = findViewById(R.id.subscribeButtonId);
-        InAppBilling.setActivity(this);
-        billing = InAppBilling.getInstance();
-
         subscribeButton.setOnClickListener(v -> initiateSubscribe());
-
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setTitle("Subscribe");
@@ -39,17 +35,16 @@ public class BillingActivity extends AppCompatActivity implements IBillingRespon
         billing.subscribe();
     }
 
-    @Override
-    protected void onDestroy() {
-        if (billing.getBillingClient() != null) {
-            billing.getBillingClient().endConnection();
-        }
-        super.onDestroy();
-    }
-
     protected void activateFirmModeActivity() {
         Intent intent = new Intent(getApplicationContext(), FirmLoginOrSignInActivity.class);
         startActivity(intent);
+        finish();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        //billing.isSubscribed(subscribed -> activateFirmModeActivity());
     }
 
     @Override

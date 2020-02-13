@@ -128,29 +128,4 @@ public class CustomerSignInActivity extends FragmentActivity {
             }
         });
     }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-
-    }
-
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-
-    }
 }

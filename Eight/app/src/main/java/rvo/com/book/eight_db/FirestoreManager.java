@@ -215,10 +215,10 @@ public class FirestoreManager {
                     }
                     objectRetrieved.onObjectRetrieved(categories);
                 } else {
-                    objectRetrieved.onObjectRetrieved(Collections.emptyList());
+                    objectRetrieved.onObjectRetrieved(categories);
                 }
             } else {
-                objectRetrieved.onObjectRetrieved(Collections.emptyList());
+                objectRetrieved.onObjectRetrieved(new ArrayList<>());
             }
         });
     }

@@ -42,7 +42,6 @@ public class EmployeesFragment extends Fragment {
     private boolean drawLayout = false;
 
     public EmployeesFragment() {
-
     }
 
     public void setSelectedCategories(List<Category> selectedCategories) {
@@ -196,14 +195,15 @@ public class EmployeesFragment extends Fragment {
         if (EightSharedPreferences.getInstance().isCustomerMode()) {
             return;
         }
-        InAppBilling.getInstance().isSubscribed(subscribed -> {
-            if (!subscribed) {
-                Intent intent = new Intent(this.getContext(), BillingActivity.class);
-                startActivity(intent);
-                getActivity().finish();
-            }
-        });
-
+        if (InAppBilling.getInstance().getBillingClient().isReady()) {
+            InAppBilling.getInstance().isSubscribed(subscribed -> {
+                if (!subscribed) {
+                    Intent intent = new Intent(this.getContext(), BillingActivity.class);
+                    startActivity(intent);
+                    getActivity().finish();
+                }
+            });
+        }
     }
 
     @Override
