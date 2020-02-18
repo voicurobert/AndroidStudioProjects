@@ -132,10 +132,12 @@ public class InAppBilling implements PurchasesUpdatedListener, BillingClientStat
     }
 
     protected void remakeConnection() {
-        if (billingClient.isReady()){
+        if (!billingClient.isReady()){
             billingClient.endConnection();
+            billingClient = BillingClient.newBuilder(activity).enablePendingPurchases().setListener(this).build();
+            billingClient.startConnection(this);
         }
-        billingClient.startConnection(this);
+
     }
 
     @Override

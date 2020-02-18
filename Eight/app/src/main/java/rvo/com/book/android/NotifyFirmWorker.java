@@ -13,11 +13,15 @@ import java.util.ArrayList;
 import rvo.com.book.common.Eight;
 import rvo.com.book.datamodel.entities.Booking;
 import rvo.com.book.datamodel.entities.Firm;
+import rvo.com.book.datamodel.repositories.FirmRepository;
 
 public class NotifyFirmWorker extends Worker {
 
+    private FirmRepository firmRepository;
+
     public NotifyFirmWorker(@NotNull Context context, @NotNull WorkerParameters workerParameters) {
         super(context, workerParameters);
+        firmRepository = new FirmRepository();
     }
 
     @NonNull
@@ -34,7 +38,7 @@ public class NotifyFirmWorker extends Worker {
         }
         Firm firm = Eight.dataModel.getFirm();
         if (firm == null) {
-            Eight.firestoreManager.firmOwnerFromEmail(sharedPreferences.getString(EightSharedPreferences.FIRM_EMAIL_KEY), object -> processBookingsForFirm((Firm) object));
+            firmRepository.objectFromEmail(sharedPreferences.getString(EightSharedPreferences.FIRM_EMAIL_KEY), object -> processBookingsForFirm((Firm) object));
         } else {
             return processBookingsForFirm(firm);
         }

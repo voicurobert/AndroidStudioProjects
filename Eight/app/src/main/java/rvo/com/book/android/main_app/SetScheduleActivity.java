@@ -18,6 +18,7 @@ import rvo.com.book.datamodel.entities.Employee;
 import rvo.com.book.datamodel.entities.Firm;
 import rvo.com.book.datamodel.entities.Schedule;
 import rvo.com.book.android.main_app.firm_login.FirmLoginOrSignInActivity;
+import rvo.com.book.datamodel.repositories.FirmRepository;
 
 public class SetScheduleActivity extends FragmentActivity {
 
@@ -229,10 +230,11 @@ public class SetScheduleActivity extends FragmentActivity {
                                              sundayWh, object -> {
                     Schedule schedule = (Schedule) object;
                     if (context.equals("firm")) {
+                        FirmRepository firmRepository = new FirmRepository();
                         Firm firm = Eight.dataModel.getFirm();
                         firm.setScheduleId(schedule.getId());
                         firm.setSchedule(schedule);
-                        Eight.firestoreManager.insertFirm(firm);
+                        firmRepository.insertRecord(firm);
                     } else {
                         employee.setSchedule(schedule);
                         Eight.firestoreManager.updateEmployeeWithScheduleId(employee.getId(), schedule.getId());

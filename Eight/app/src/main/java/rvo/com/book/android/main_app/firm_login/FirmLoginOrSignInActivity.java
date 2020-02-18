@@ -20,15 +20,15 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.iid.FirebaseInstanceId;
 
 import rvo.com.book.R;
-import rvo.com.book.android.main_app.alerts.EightAlertDialog;
-import rvo.com.book.common.Eight;
 import rvo.com.book.android.EightSharedPreferences;
+import rvo.com.book.android.main_app.EightMainAppActivity;
+import rvo.com.book.android.main_app.alerts.EightAlertDialog;
+import rvo.com.book.android.main_app.reset_password.ForgotPassword;
+import rvo.com.book.android.notification.FirebaseProperties;
+import rvo.com.book.common.Eight;
 import rvo.com.book.common.Validator;
 import rvo.com.book.datamodel.entities.Firm;
-import rvo.com.book.android.notification.FirebaseProperties;
-import rvo.com.book.android.main_app.EightMainAppActivity;
-import rvo.com.book.android.main_app.reset_password.ForgotPassword;
-import rvo.com.book.datamodel.repositories.FirestoreManager;
+import rvo.com.book.datamodel.repositories.FirmRepository;
 
 
 /**
@@ -180,13 +180,14 @@ public class FirmLoginOrSignInActivity extends FragmentActivity {
     }
 
     private void checkForEmailAndPasswordAndSetFirm(String email, String password) {
-        FirestoreManager.getInstance().firmOwnerFromEmail(email, response -> {
-            if(response == null) {
+        FirmRepository firmRepository = new FirmRepository();
+        firmRepository.objectFromEmail(email, response -> {
+            if (response == null) {
                 EightAlertDialog.showAlertWithMessage("Email incorrect!", activity);
                 progressBar.setVisibility(View.GONE);
                 emailEditText.requestFocus();
             } else {
-                Eight.firestoreManager.firmOwnerFromEmailAndPassword(email, password, object -> {
+                firmRepository.objectFromEmailAndPassword(email, password, object -> {
                     if (object != null) {
                         if (stayLoggedIn) {
                             // save to shared prefs

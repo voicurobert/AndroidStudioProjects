@@ -94,12 +94,6 @@ public class FirestoreManager {
 
     }
 
-    public void insertFirm(Firm firm) {
-        String id = firmsCollection.document().getId();
-        firm.setId(id);
-        firmsCollection.document(id).set(firm);
-    }
-
     public void updateFirmAddress(Firm firm) {
         firmsCollection.document(firm.getId()).update(Firm.ADDRESS, firm.getAddress());
     }

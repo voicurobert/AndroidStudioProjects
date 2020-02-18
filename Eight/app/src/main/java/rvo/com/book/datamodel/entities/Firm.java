@@ -9,10 +9,8 @@ import java.io.Serializable;
 
 
 @IgnoreExtraProperties
-public class Firm implements Serializable {
+public class Firm extends FirebaseRecord implements Serializable {
 
-    @Exclude
-    public static final String ID = "id";
     @Exclude
     public static final String EMAIL = "email";
     @Exclude
@@ -33,7 +31,6 @@ public class Firm implements Serializable {
     public static final String SCHEDULE_ID = "scheduleId";
 
     private String email;
-    private String id;
     private String name;
     private String password;
     private String address;
@@ -47,16 +44,6 @@ public class Firm implements Serializable {
 
     public Firm() {
 
-    }
-
-    public Firm(String id, String firmName, String email, String firmAddress, String phoneNumber, Schedule schedule, Integer active) {
-        this.id = id;
-        this.name = firmName;
-        this.address = firmAddress;
-        this.email = email;
-        this.phoneNumber = phoneNumber;
-        this.schedule = schedule;
-        this.active = active;
     }
 
     @Exclude
@@ -75,10 +62,6 @@ public class Firm implements Serializable {
 
     public void setScheduleId(String scheduleId) {
         this.scheduleId = scheduleId;
-    }
-
-    public String getId() {
-        return id;
     }
 
     public String getEmail() {
@@ -107,10 +90,6 @@ public class Firm implements Serializable {
 
     public void setAddress(String firmAddress) {
         this.address = firmAddress;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getAddress() {
