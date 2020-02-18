@@ -562,6 +562,7 @@
             android:layout_marginTop="18dp"
             android:background="@color/dark_green"
             android:fontFamily="@font/open_sans_semibold"
+            android:foreground="?attr/selectableItemBackground"
             android:text="@string/apply_firm_schedule"
             android:textAlignment="center"
             android:textAllCaps="false"

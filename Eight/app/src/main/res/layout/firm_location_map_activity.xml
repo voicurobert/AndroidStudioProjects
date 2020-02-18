@@ -64,6 +64,7 @@
         android:layout_marginBottom="8dp"
         android:background="@color/dark_green"
         android:fontFamily="@font/open_sans_semibold"
+        android:foreground="?attr/selectableItemBackground"
         android:text="@string/firm_next_button"
         android:textAlignment="center"
         android:textAllCaps="false"

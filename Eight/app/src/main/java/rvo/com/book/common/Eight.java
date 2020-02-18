@@ -17,9 +17,9 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
-import rvo.com.book.eight_db.Booking;
-import rvo.com.book.eight_db.DataModel;
-import rvo.com.book.eight_db.FirestoreManager;
+import rvo.com.book.datamodel.entities.Booking;
+import rvo.com.book.datamodel.entities.DataModel;
+import rvo.com.book.datamodel.repositories.FirestoreManager;
 
 
 public class Eight {

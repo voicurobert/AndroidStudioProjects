@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/titanium"
-    tools:context=".main_app.ActiveFirmsFragment">
+    tools:context=".android.main_app.ActiveFirmsFragment">
 
     <ListView
         android:id="@+id/firmsListViewId"
@@ -54,6 +54,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:background="@mipmap/map_view"
+        android:contentDescription="@string/active_firms_as_map"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

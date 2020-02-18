@@ -20,15 +20,35 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".EightFirstActivity">
+        <activity android:name=".android.first_activity.EightFirstActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".main_app.EightMainAppActivity">
+        <activity android:name=".android.main_app.EightMainAppActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".android.main_app.FirmDetailsMasterActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".android.main_app.firm_login.FirmLocationMapActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".android.main_app.MapViewFragment">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
@@ -36,79 +56,56 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".main_app.FirmDetailsMasterActivity">
+        <activity android:name=".android.main_app.billing.BillingActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".main_app.firm_login.FirmLocationMapActivity">
+        <activity android:name=".android.main_app.customer_login.CustomerLoginOrSignInActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".main_app.MapViewFragment">
+        <activity android:name=".android.main_app.customer_login.CustomerSignInActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".billing.BillingActivity">
+        <activity android:name=".android.main_app.firm_login.FirmLoginOrSignInActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".main_app.customer_login.CustomerLoginOrSignInActivity">
+        <activity android:name=".android.main_app.firm_login.FirmSignInActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".main_app.customer_login.CustomerSignInActivity">
+        <activity android:name=".android.main_app.SetScheduleActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".main_app.firm_login.FirmLoginOrSignInActivity">
+        <activity android:name=".android.main_app.PendingBookingsActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".main_app.firm_login.FirmSignInActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".main_app.SetScheduleActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".main_app.PendingBookingsActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".reset_password.ResetPasswordActivity">
+        <activity android:name=".android.main_app.reset_password.ResetPasswordActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
@@ -116,7 +113,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".PrivacyPolicyActivity"
+            android:name=".android.main_app.PrivacyPolicyActivity"
             android:label="@string/title_activity_privacy_policy" />
 
         <meta-data
@@ -127,7 +124,7 @@
             android:resource="@array/preloaded_fonts" />
 
         <service
-            android:name=".firebase.FirebaseService"
+            android:name=".android.notification.FirebaseService"
             android:exported="true">
             <intent-filter>
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
@@ -135,7 +132,7 @@
         </service>
 
         <service
-            android:name=".firebase.FirebaseMessaging"
+            android:name=".android.notification.FirebaseMessaging"
             android:exported="true"
             android:stopWithTask="false">
             <intent-filter>

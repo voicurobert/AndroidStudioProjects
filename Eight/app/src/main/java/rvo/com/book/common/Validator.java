@@ -8,7 +8,7 @@ import android.widget.Spinner;
 
 import androidx.fragment.app.Fragment;
 
-import rvo.com.book.alerts.EightAlertDialog;
+import rvo.com.book.android.main_app.alerts.EightAlertDialog;
 
 public class Validator {
 

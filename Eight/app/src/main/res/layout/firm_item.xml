@@ -12,6 +12,9 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground"
         app:cardBackgroundColor="@color/dark_green"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,6 +23,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:baselineAligned="false"
             android:gravity="center"
             android:orientation="horizontal"
             android:paddingTop="10dp"
@@ -38,7 +42,6 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/open_sans_semibold"
                     android:gravity="center"
-                    android:text="TextView"
                     android:textColor="@color/white"
                     android:textSize="14sp"
                     android:textStyle="bold" />
@@ -49,7 +52,6 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/open_sans_semibold"
                     android:gravity="center"
-                    android:text="TextView"
                     android:textColor="@color/white"
                     android:textSize="14sp"
                     android:textStyle="bold" />
@@ -60,6 +62,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:clickable="true"
+                    android:focusable="true"
                     android:foregroundGravity="center"
                     app:srcCompat="@android:drawable/sym_action_call" />
             </LinearLayout>
@@ -78,7 +81,6 @@
                     android:fontFamily="@font/open_sans_semibold"
                     android:gravity="center"
                     android:singleLine="false"
-                    android:text="TextView"
                     android:textColor="@color/white"
                     android:textSize="14sp"
                     android:textStyle="bold" />

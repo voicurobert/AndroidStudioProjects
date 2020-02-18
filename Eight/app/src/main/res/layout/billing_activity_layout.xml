@@ -15,6 +15,7 @@
         android:layout_marginBottom="32dp"
         android:background="@color/dark_green"
         android:fontFamily="@font/open_sans_semibold"
+        android:foreground="?attr/selectableItemBackground"
         android:text="@string/subscribe_button"
         android:textAlignment="center"
         android:textAllCaps="false"

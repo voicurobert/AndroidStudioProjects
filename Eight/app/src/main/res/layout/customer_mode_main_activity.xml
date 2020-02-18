@@ -10,7 +10,7 @@
 
     <fragment
         android:id="@+id/activeFirmsFragment"
-        android:name="rvo.com.book.main_app.ActiveFirmsFragment"
+        android:name="rvo.com.book.android.main_app.ActiveFirmsFragment"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
