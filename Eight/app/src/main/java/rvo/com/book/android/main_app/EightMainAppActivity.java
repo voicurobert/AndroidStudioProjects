@@ -33,13 +33,13 @@ import rvo.com.book.android.main_app.firm_login.FirmLocationMapActivity;
 public class EightMainAppActivity extends FragmentActivity {
 
     private DrawerLayout drawerLayout;
-    private ImageButton drawNavigationButton;
+    private NavigationView navigationView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_app_activity);
-        NavigationView navigationView = findViewById(R.id.navigationViewId);
+        navigationView = findViewById(R.id.navigationViewId);
         loadOrUnloadMenuItems(navigationView.getMenu());
 
         navigationView.setNavigationItemSelectedListener(item -> {
@@ -57,7 +57,7 @@ public class EightMainAppActivity extends FragmentActivity {
                     closeDrawer();
                     break;
                 case R.id.activateOrDeactivateFirmMenuId:
-                    activateOrDeactivateFirmMenuClicked();
+                    activateOrDeactivateFirmMenuClicked(item);
                     closeDrawer();
                     break;
                 case R.id.signOutMenuId:
@@ -80,7 +80,7 @@ public class EightMainAppActivity extends FragmentActivity {
             return true;
         });
         drawerLayout = findViewById(R.id.drawerLayoutId);
-        drawNavigationButton = findViewById(R.id.openNavigationButtonId);
+        ImageButton drawNavigationButton = findViewById(R.id.openNavigationButtonId);
         drawNavigationButton.setOnClickListener(v -> drawerLayout.openDrawer(GravityCompat.START));
         activateDefaultFragment();
     }
@@ -182,17 +182,16 @@ public class EightMainAppActivity extends FragmentActivity {
         }
     }
 
-    private void activateOrDeactivateFirmMenuClicked() {
-        Button b = findViewById(R.id.activateOrDeactivateFirmMenuId);
+    private void activateOrDeactivateFirmMenuClicked(MenuItem item) {
+        navigationView.getMenu().findItem(R.id.activateOrDeactivateFirmMenuId);
         if (Eight.dataModel.getFirm().firmIsActive()) {
             // deactivate firm
             activateOrDeactivateFirmButtonDialogClicked(0);
-            b.setText(getString(R.string.deactivate_firm_string));
+            item.setTitle(getString(R.string.deactivate_firm_string));
         } else {
             // activate firm
             activateOrDeactivateFirmButtonDialogClicked(1);
-
-            b.setText(getString(R.string.deactivate_firm_string));
+            item.setTitle(getString(R.string.deactivate_firm_string));
         }
     }
 
@@ -289,11 +288,9 @@ public class EightMainAppActivity extends FragmentActivity {
                 if (!subscribed) {
                     Intent intent = new Intent(this, BillingActivity.class);
                     startActivity(intent);
-
                     finish();
                 }
             });
         }
-
     }
 }
