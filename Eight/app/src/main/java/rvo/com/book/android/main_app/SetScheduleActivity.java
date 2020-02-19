@@ -230,11 +230,10 @@ public class SetScheduleActivity extends FragmentActivity {
                                              sundayWh, object -> {
                     Schedule schedule = (Schedule) object;
                     if (context.equals("firm")) {
-                        FirmRepository firmRepository = new FirmRepository();
                         Firm firm = Eight.dataModel.getFirm();
                         firm.setScheduleId(schedule.getId());
                         firm.setSchedule(schedule);
-                        firmRepository.insertRecord(firm);
+                        FirmRepository.getInstance().insertRecord(firm);
                     } else {
                         employee.setSchedule(schedule);
                         Eight.firestoreManager.updateEmployeeWithScheduleId(employee.getId(), schedule.getId());

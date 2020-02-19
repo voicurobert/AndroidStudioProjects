@@ -108,7 +108,7 @@ public class BookingAdapter implements ListAdapter {
             if (booking != null) {
                 switch (booking.getStatus()) {
                     case 1:
-                        statusTextView.setText(R.string.active);
+                        statusTextView.setText(R.string.status);
                         statusTextView.setTextColor(activity.getResources().getColor(R.color.lime_green));
                         break;
                     case 2:

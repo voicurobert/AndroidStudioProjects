@@ -26,6 +26,8 @@ import rvo.com.book.datamodel.entities.Firm;
 import rvo.com.book.android.notification.FirebaseProperties;
 import rvo.com.book.android.main_app.customer_login.CustomerLoginOrSignInActivity;
 import rvo.com.book.android.main_app.firm_login.FirmLoginOrSignInActivity;
+import rvo.com.book.datamodel.repositories.CustomerRepository;
+import rvo.com.book.datamodel.repositories.FirmRepository;
 
 
 public class EightFirstActivity extends FragmentActivity {
@@ -151,7 +153,7 @@ public class EightFirstActivity extends FragmentActivity {
         if (firmEmail != null && firmPassword != null) {
             if (isUserAuthenticated()) {
                 progressBar.setVisibility(View.VISIBLE);
-                Eight.firestoreManager.firmOwnerFromEmailAndPassword(firmEmail, firmPassword, object -> {
+                FirmRepository.getInstance().objectFromEmailAndPassword(firmEmail, firmPassword, object -> {
                     Firm firm = (Firm) object;
                     Eight.dataModel.setFirm(firm);
                     activateBillingOrFirmMainApp();
@@ -160,15 +162,11 @@ public class EightFirstActivity extends FragmentActivity {
             } else {
                 FirebaseAuth.getInstance().signInWithEmailAndPassword(firmEmail, firmPassword).addOnCompleteListener(activity, task -> {
                     if (task.isComplete()) {
-                        Eight.firestoreManager.firmOwnerFromEmailAndPassword(firmEmail, firmPassword, object -> {
+                        FirmRepository.getInstance().objectFromEmailAndPassword(firmEmail, firmPassword, object -> {
                             Firm firm = (Firm) object;
-                            Eight.dataModel
-                                    .setFirm(
-                                            firm);
+                            Eight.dataModel.setFirm(firm);
                             activateBillingOrFirmMainApp();
-                            progressBar
-                                    .setVisibility(
-                                            View.GONE);
+                            progressBar.setVisibility(View.GONE);
                         });
                     }
                 });
@@ -182,7 +180,7 @@ public class EightFirstActivity extends FragmentActivity {
         if (email != null && password != null) {
             progressBar.setVisibility(View.VISIBLE);
             if (isUserAuthenticated()) {
-                Eight.firestoreManager.customerWithEmailAndPassword(email, password, object -> {
+                CustomerRepository.getInstance().objectFromEmailAndPassword(email, password, object -> {
                     Customer customer = (Customer) object;
                     Eight.dataModel.setCustomer(customer);
                     activateEightMainApp();
@@ -192,7 +190,7 @@ public class EightFirstActivity extends FragmentActivity {
             } else {
                 FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password).addOnCompleteListener(activity, task -> {
                     if (task.isComplete()) {
-                        Eight.firestoreManager.customerWithEmailAndPassword(email, password, object -> {
+                        CustomerRepository.getInstance().objectFromEmailAndPassword(email, password, object -> {
                             Customer customer = (Customer) object;
                             Eight.dataModel.setCustomer(customer);
                             //activateCustomerModeMainActivity();

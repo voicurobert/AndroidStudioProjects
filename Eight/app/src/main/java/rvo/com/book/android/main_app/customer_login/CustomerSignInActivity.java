@@ -15,6 +15,7 @@ import rvo.com.book.common.Eight;
 import rvo.com.book.common.Validator;
 import rvo.com.book.datamodel.entities.Customer;
 import rvo.com.book.android.notification.FirebaseProperties;
+import rvo.com.book.datamodel.repositories.CustomerRepository;
 
 
 public class CustomerSignInActivity extends FragmentActivity {
@@ -111,7 +112,7 @@ public class CustomerSignInActivity extends FragmentActivity {
         }
         FirebaseAuth.getInstance().signInAnonymously().addOnCompleteListener(activity, task -> {
             if (task.isComplete()) {
-                Eight.firestoreManager.customerWithEmail(email, object -> {
+               CustomerRepository.getInstance().objectFromEmail(email, object -> {
                     if (object != null) {
                         EightAlertDialog.showAlertWithMessage("Email already exists! Please enter another email!", activity);
                     } else {
@@ -122,7 +123,7 @@ public class CustomerSignInActivity extends FragmentActivity {
                         customer.setPassword(password);
                         customer.setPhoneNumber(phoneNumber);
                         customer.setFirebaseToken(FirebaseProperties.getInstance().getCurrentToken());
-                        Eight.firestoreManager.insertCustomer(customer);
+                        CustomerRepository.getInstance().insertRecord(customer);
                         finish();
                     }
                 });

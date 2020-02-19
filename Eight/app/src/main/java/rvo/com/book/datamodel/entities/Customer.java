@@ -6,10 +6,8 @@ import com.google.firebase.firestore.Exclude;
 import java.io.Serializable;
 
 @IgnoreExtraProperties
-public class Customer implements Serializable {
+public class Customer extends FirebaseRecord {
 
-    @Exclude
-    public static final String ID = "id";
     @Exclude
     public static final String NAME = "name";
     @Exclude
@@ -21,7 +19,6 @@ public class Customer implements Serializable {
     @Exclude
     public static final String FIREBASE_TOKEN = "firebaseToken";
 
-    private String id;
     private String name;
     private String password;
     private String email;
@@ -34,10 +31,6 @@ public class Customer implements Serializable {
 
     public String getName() {
         return name;
-    }
-
-    public String getId() {
-        return id;
     }
 
     public String getPassword() {
@@ -58,10 +51,6 @@ public class Customer implements Serializable {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getPhoneNumber() {

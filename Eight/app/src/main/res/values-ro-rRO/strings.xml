@@ -12,7 +12,7 @@
     <string name="privacyPolicy_string">Politica de confidențialitate</string>
     <string name="delete">Șterge</string>
     <string name="subscribe_button">Subscribe</string>
-    <string name="active">Activă</string>
+    <string name="status">Activă</string>
     <string name="cancel">Anulată</string>
     <string name="starts">De la</string>
     <string name="ends">Până la</string>
@@ -25,7 +25,7 @@
     <string name="profile_string">Profil</string>
     <string name="hint_price">Preţ</string>
     <string name="product_duration">Durată</string>
-    <string name="active_firms_title">Firme active</string>
+    <string name="active_firms_title">Firme status</string>
     <string name="set_employee_schedule_title">Programul angajatului</string>
     <string name="owner_firm_title">Rezervările de astazi</string>
     <string name="owner_customer_title">Rezervările tale</string>

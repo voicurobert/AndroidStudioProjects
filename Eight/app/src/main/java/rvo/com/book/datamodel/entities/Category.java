@@ -10,7 +10,7 @@ import com.google.firebase.firestore.Exclude;
 import java.io.Serializable;
 
 @IgnoreExtraProperties
-public class Category extends DataSetObservable implements Serializable {
+public class Category extends FirebaseRecord {
 
     @Exclude
     public static final String NAME = "name";

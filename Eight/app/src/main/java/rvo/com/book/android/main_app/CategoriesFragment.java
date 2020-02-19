@@ -25,6 +25,7 @@ import rvo.com.book.common.Eight;
 import rvo.com.book.android.EightSharedPreferences;
 import rvo.com.book.datamodel.entities.Category;
 import rvo.com.book.datamodel.entities.DataModel;
+import rvo.com.book.datamodel.repositories.CategoryRepository;
 
 public class CategoriesFragment extends Fragment {
 
@@ -72,19 +73,18 @@ public class CategoriesFragment extends Fragment {
             }
             Category category = new Category();
             category.setName(categoryName);
+            category.setFirm(DataModel.getInstance().getFirm());
+            category.setFirmId(DataModel.getInstance().getFirm().getId());
             progressBar.setVisibility(View.VISIBLE);
-
-            Eight.firestoreManager.insertCategory(category, DataModel.getInstance().getFirm(), () -> {
+            CategoryRepository.getInstance().insertRecord(category).addOnCompleteListener(command -> {
                 addAlertDialog.close();
                 DataModel.getInstance().addCategory(category);
                 progressBar.setVisibility(View.GONE);
                 adapter.setCategories();
             });
         });
-
         addAlertDialog.show();
         closeButton.setOnClickListener(view -> addAlertDialog.close());
-
     }
 
     protected void editCategoryButtonClicked(Category category) {
@@ -103,7 +103,7 @@ public class CategoriesFragment extends Fragment {
             String categoryName = categoryNameEditText.getText().toString();
             makeProgressBarVisible();
             category.setName(categoryName);
-            Eight.firestoreManager.updateCategoryName(category, () -> {
+            CategoryRepository.getInstance().updateRecord(category, Category.NAME, category.getName()).addOnCompleteListener(command -> {
                 addAlertDialog.close();
                 makeProgressBarGone();
             });
@@ -112,7 +112,7 @@ public class CategoriesFragment extends Fragment {
         deleteButton.setOnClickListener(view -> {
             if (!Eight.dataModel.categoryHasProducts(category)) {
                 makeProgressBarVisible();
-                Eight.firestoreManager.deleteCategory(category, () -> {
+                CategoryRepository.getInstance().deleteRecord(category).addOnCompleteListener(command -> {
                     Eight.dataModel.removeCategory(category.getId());
                     adapter.setCategories();
                     makeProgressBarGone();

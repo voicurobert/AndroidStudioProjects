@@ -12,13 +12,10 @@ import rvo.com.book.common.EightDate;
 import rvo.com.book.android.EightSharedPreferences;
 
 @IgnoreExtraProperties
-public class Booking implements Serializable {
+public class Booking extends FirebaseRecord {
 
     @Exclude
     public static final String DATE = "date";
-
-    @Exclude
-    public static final String ID = "id";
 
     @Exclude
     public static final String STATUS = "status";
@@ -54,7 +51,6 @@ public class Booking implements Serializable {
     public static final Integer FINISHED = 2;
 
     private String date;
-    private String id;
     private String customerId;
     @Exclude
     private Customer customer;
@@ -76,15 +72,6 @@ public class Booking implements Serializable {
 
     }
 
-    public Booking(String date, String id, String firmOwnerId, String customerId, String employeeId, String productId, Integer status) {
-        this.date = date;
-        this.id = id;
-        this.customerId = customerId;
-        this.employeeId = employeeId;
-        this.productId = productId;
-        this.firmId = firmOwnerId;
-        this.status = status;
-    }
 
     public String getEmployeeName() {
         return employeeName;
@@ -188,15 +175,6 @@ public class Booking implements Serializable {
 
     public void setDate(String date) {
         this.date = date;
-    }
-
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public Integer getStatus() {

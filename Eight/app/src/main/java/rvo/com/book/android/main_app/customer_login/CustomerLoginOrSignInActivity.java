@@ -26,6 +26,7 @@ import rvo.com.book.datamodel.entities.Customer;
 import rvo.com.book.android.notification.FirebaseProperties;
 import rvo.com.book.android.main_app.EightMainAppActivity;
 import rvo.com.book.android.main_app.reset_password.ForgotPassword;
+import rvo.com.book.datamodel.repositories.CustomerRepository;
 import rvo.com.book.datamodel.repositories.FirestoreManager;
 
 public class CustomerLoginOrSignInActivity extends FragmentActivity {
@@ -142,13 +143,13 @@ public class CustomerLoginOrSignInActivity extends FragmentActivity {
     }
 
     private void checkForEmailAndPasswordAndSetCustomer(String email, String password) {
-        FirestoreManager.getInstance().customerWithEmail(email, response1 -> {
+        CustomerRepository.getInstance().objectFromEmail(email, response1 -> {
             if (response1 == null) {
                 EightAlertDialog.showAlertWithMessage("Email incorrect!", activity);
                 emailEditText.requestFocus();
                 progressBar.setVisibility(View.GONE);
             }else{
-                Eight.firestoreManager.customerWithEmailAndPassword(email, password, object -> {
+                CustomerRepository.getInstance().objectFromEmailAndPassword(email, password, object -> {
                     if (object == null) {
                         EightAlertDialog.showAlertWithMessage("Password incorrect!", activity);
                         passwordEditText.requestFocus();
@@ -172,9 +173,9 @@ public class CustomerLoginOrSignInActivity extends FragmentActivity {
 
     private void activateEightMainAppActivity() {
         Customer customer = Eight.dataModel.getCustomer();
-        if ( customer != null) {
+        if (customer != null) {
             customer.setFirebaseToken(FirebaseProperties.getInstance().getCurrentToken());
-            Eight.firestoreManager.updateCustomerFirebaseToken(customer);
+            CustomerRepository.getInstance().updateRecord(customer, Customer.FIREBASE_TOKEN, customer.getFirebaseToken());
         }
         progressBar.setVisibility(View.VISIBLE);
         Intent intent = new Intent(getApplicationContext(), EightMainAppActivity.class);

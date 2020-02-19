@@ -3,19 +3,14 @@ package rvo.com.book.datamodel.entities;
 
 import com.google.firebase.database.IgnoreExtraProperties;
 import com.google.firebase.firestore.Exclude;
-
-import java.io.Serializable;
-
 import rvo.com.book.android.EightSharedPreferences;
 
 
 @IgnoreExtraProperties
-public class Product implements Serializable {
+public class Product extends FirebaseRecord {
 
     @Exclude
     public static final String NAME = "name";
-    @Exclude
-    public static final String ID = "id";
     @Exclude
     public static final String DURATION = "duration";
     @Exclude
@@ -32,7 +27,6 @@ public class Product implements Serializable {
     private Category category;
     @Exclude
     private Firm firm;
-    private String id;
     private String firmCategoryId;
     private String firmId;
 
@@ -40,19 +34,8 @@ public class Product implements Serializable {
 
     }
 
-    public Product(String productName, Integer price, String duration, Category category) {
-        this.name = productName;
-        this.duration = duration;
-        this.price = price;
-        this.category = category;
-    }
-
     public String getName() {
         return name;
-    }
-
-    public String getId() {
-        return id;
     }
 
     public Integer getPrice() {
@@ -104,19 +87,13 @@ public class Product implements Serializable {
         return duration;
     }
 
-
     public void setName(String name) {
         this.name = name;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public void setPrice(Integer price) {
         this.price = price;
     }
-
 
     public void setDuration(String duration) {
         this.duration = duration;

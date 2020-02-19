@@ -11,6 +11,8 @@ import rvo.com.book.common.Eight;
 import rvo.com.book.datamodel.entities.Customer;
 import rvo.com.book.datamodel.entities.Firm;
 import rvo.com.book.datamodel.interfaces.IDownloadFinished;
+import rvo.com.book.datamodel.repositories.CustomerRepository;
+import rvo.com.book.datamodel.repositories.FirmRepository;
 
 public class ForgotPassword {
 
@@ -38,23 +40,22 @@ public class ForgotPassword {
 
     protected static void updatePasswordIfConnected(Activity activity, String password, String context, String email, IDownloadFinished downloadFinished) {
         if (context.equals(CUSTOMER)) {
-            Eight.firestoreManager.customerWithEmail(email, object -> {
+            CustomerRepository.getInstance().objectFromEmail(email, object -> {
                 if (object != null) {
-                    // email exists, update password
                     Customer customer = (Customer)object;
                     customer.setPassword(password);
-                    Eight.firestoreManager.updateCustomerPassword(customer);
+                    CustomerRepository.getInstance().updateRecord(customer, Customer.PASSWORD, customer.getPassword());
                     downloadFinished.finished();
                 } else {
-                    // show message that email does not exist
                     EightAlertDialog.showAlertWithMessage(activity.getString(R.string.email_not_exists), activity);
                 }
             });
         } else {
-            Eight.firestoreManager.firmOwnerFromEmail(email, object -> {
+            FirmRepository.getInstance().objectFromEmail(email, object -> {
                 if (object != null) {
-                    // email exists, update password
-                    Eight.firestoreManager.updateFirmPassword((Firm) object, password);
+                    Firm firm = (Firm)object;
+                    firm.setPassword(password);
+                    FirmRepository.getInstance().updateRecord(firm, Firm.PASSWORD, firm.getPassword());
                     downloadFinished.finished();
                 } else {
                     EightAlertDialog.showAlertWithMessage(activity.getString(R.string.email_not_exists), activity);

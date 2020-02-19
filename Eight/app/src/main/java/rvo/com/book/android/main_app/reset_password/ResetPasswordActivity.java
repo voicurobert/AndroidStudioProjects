@@ -11,8 +11,9 @@ import androidx.fragment.app.FragmentActivity;
 
 import rvo.com.book.R;
 import rvo.com.book.android.main_app.alerts.EightAlertDialog;
-import rvo.com.book.common.Eight;
 import rvo.com.book.common.Validator;
+import rvo.com.book.datamodel.repositories.CustomerRepository;
+import rvo.com.book.datamodel.repositories.FirmRepository;
 
 public class ResetPasswordActivity extends FragmentActivity {
 
@@ -26,8 +27,7 @@ public class ResetPasswordActivity extends FragmentActivity {
     private ProgressBar progressBar;
 
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.reset_password_activity);
 
@@ -57,44 +57,44 @@ public class ResetPasswordActivity extends FragmentActivity {
         });
     }
 
-    public void handleFocusForEditText(EditText editText, final String key) {
+    public void handleFocusForEditText(EditText editText, String key) {
         editText.setOnFocusChangeListener((v, hasFocus) -> {
-            if (!hasFocus) {
-                switch (key) {
-                    case "email":
-                        final String email = Validator.getEmailFromEditText(emailEditText);
-                        if (email == null) {
-                            EightAlertDialog.showAlertWithMessage(getString(R.string.email_not_set), activity);
-                        } else if (email.equals("")) {
-                            EightAlertDialog.showAlertWithMessage(getString(R.string.email_empty), activity);
+            if (hasFocus) {
+                return;
+            }
+            switch (key) {
+                case "email":
+                    String email = Validator.getEmailFromEditText(emailEditText);
+                    if (email == null) {
+                        EightAlertDialog.showAlertWithMessage(getString(R.string.email_not_set), activity);
+                    } else if (email.equals("")) {
+                        EightAlertDialog.showAlertWithMessage(getString(R.string.email_empty), activity);
+                    } else {
+                        showProgress();
+                        if (context.equals("customer")) {
+                            CustomerRepository.getInstance().objectFromEmail(email, object -> {
+                                if (object == null) {
+                                    EightAlertDialog.showAlertWithMessage(getString(R.string.email_not_exists), activity);
+                                }
+                                goneProgress();
+                            });
                         } else {
-                            if (context.equals("customer")) {
-                                showProgress();
-                                Eight.firestoreManager.customerWithEmail(email, object -> {
-                                    if (object == null) {
-                                        EightAlertDialog.showAlertWithMessage(getString(R.string.email_not_exists), activity);
-                                    }
-                                    goneProgress();
-                                });
-                            } else {
-                                showProgress();
-                                Eight.firestoreManager.firmOwnerFromEmail(email, object -> {
-                                    if (object == null) {
-                                        EightAlertDialog.showAlertWithMessage(getString(R.string.email_not_exists), activity);
-                                    }
-                                    goneProgress();
-                                });
-                            }
+                            FirmRepository.getInstance().objectFromEmail(email, object -> {
+                                if (object == null) {
+                                    EightAlertDialog.showAlertWithMessage(getString(R.string.email_not_exists), activity);
+                                }
+                                goneProgress();
+                            });
                         }
-                        break;
-                    case "retypePassword":
-                        String p1 = Validator.getPasswordFromEditText(passwordEditText);
-                        String p2 = Validator.getPasswordFromEditText(retypePasswordEditText);
-                        if (p1 != null && p2 != null && !p2.equals(p1)) {
-                            EightAlertDialog.showAlertWithMessage(getString(R.string.passwords_not_match), activity);
-                        }
-                        break;
-                }
+                    }
+                    break;
+                case "retypePassword":
+                    String p1 = Validator.getPasswordFromEditText(passwordEditText);
+                    String p2 = Validator.getPasswordFromEditText(retypePasswordEditText);
+                    if (p1 != null && p2 != null && !p2.equals(p1)) {
+                        EightAlertDialog.showAlertWithMessage(getString(R.string.passwords_not_match), activity);
+                    }
+                    break;
             }
         });
     }

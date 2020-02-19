@@ -25,6 +25,7 @@ import rvo.com.book.android.EightSharedPreferences;
 import rvo.com.book.common.Validator;
 import rvo.com.book.datamodel.entities.Category;
 import rvo.com.book.datamodel.entities.Product;
+import rvo.com.book.datamodel.repositories.ProductRepository;
 
 public class ProductsFragment extends Fragment {
 
@@ -101,7 +102,7 @@ public class ProductsFragment extends Fragment {
             product.setCategory(category);
             product.setFirmId(Eight.dataModel.getFirm().getId());
             product.setFirm(Eight.dataModel.getFirm());
-            Eight.firestoreManager.insertProduct(product, () -> {
+            ProductRepository.getInstance().insertRecord(product).addOnCompleteListener(command -> {
                 Eight.dataModel.addProduct(product);
                 productsAdapter.setProductsForCategory(category);
                 addAlertDialog.close();
@@ -149,23 +150,28 @@ public class ProductsFragment extends Fragment {
             }
             Integer priceInteger = Integer.valueOf(price);
             String duration = Validator.createDurationStringFromHoursAndMinutesSpinner(hoursSpinner, minutesSpinner);
-            if (duration != null && duration.equals(" ")) {
+            if (duration.equals(" ")) {
                 EightAlertDialog.showAlertWithMessage("Set duration ...", getActivity());
             }
             String selectedCategory = (String) categoriesSpinner.getSelectedItem();
             Category category = Eight.dataModel.getCategoryFromCategoryName(selectedCategory);
-            //final int position = Eight.dataModel.getCategories().indexOf( category );
-
-            Eight.firestoreManager.updateProduct(product, productName, priceInteger, duration, category.getId(), () -> {
+            product.setName(productName);
+            product.setPrice(priceInteger);
+            product.setDuration(duration);
+            product.setFirmCategoryId(category.getId());
+            ProductRepository.getInstance().updateRecord(product,
+                                                         Product.NAME, product.getName(),
+                                                         Product.PRICE, product.getPrice(),
+                                                         Product.DURATION, product.getDuration(),
+                                                         Product.FIRM_CATEGORY_ID, product.getFirmCategoryId() ).addOnCompleteListener(command -> {
                 productsAdapter.setProductsForCategory(category);
                 addAlertDialog.close();
             });
-
         });
         addAlertDialog.show();
         deleteButton.setOnClickListener(view -> {
             Category category = Eight.dataModel.getCategoryFromCategoryId(product.getCategory().getId());
-            Eight.firestoreManager.deleteProduct(product, () -> {
+            ProductRepository.getInstance().deleteRecord(product).addOnCompleteListener(command -> {
                 Eight.dataModel.removeProduct(product.getId());
                 productsAdapter.setProductsForCategory(category);
                 addAlertDialog.close();

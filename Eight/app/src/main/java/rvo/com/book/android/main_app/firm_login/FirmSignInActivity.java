@@ -18,6 +18,7 @@ import rvo.com.book.common.Eight;
 import rvo.com.book.common.Validator;
 import rvo.com.book.datamodel.entities.Firm;
 import rvo.com.book.datamodel.interfaces.IObjectModified;
+import rvo.com.book.datamodel.repositories.FirmRepository;
 
 
 /**
@@ -56,7 +57,7 @@ public class FirmSignInActivity extends FragmentActivity {
                 String email = Validator.getEmailFromEditText(emailEditText);
                 FirebaseAuth.getInstance().signInAnonymously().addOnCompleteListener(task -> {
                     if (task.isComplete()) {
-                        Eight.firestoreManager.firmOwnerFromEmail(email, object -> {
+                        FirmRepository.getInstance().objectFromEmail(email, object -> {
                             if (object != null) {
                                 EightAlertDialog.showAlertWithMessage("Email exists, please set another email!", activity);
                             } else {
@@ -81,7 +82,7 @@ public class FirmSignInActivity extends FragmentActivity {
                 firm.setEmail(Validator.getEmailFromEditText(emailEditText));
                 firm.setPassword(Validator.getPasswordFromEditText(passwordEditText));
                 firm.setPhoneNumber(Validator.getPhoneNumberFromEditText(phoneNumberEditText));
-                firm.setActive(0);
+                firm.setStatus(0);
                 Eight.dataModel.setFirm(firm);
                 objectModified.objectModified();
             }

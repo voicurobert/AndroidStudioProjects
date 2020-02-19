@@ -29,6 +29,7 @@ import rvo.com.book.datamodel.repositories.FirestoreManager;
 import rvo.com.book.datamodel.entities.Firm;
 import rvo.com.book.datamodel.entities.Schedule;
 import rvo.com.book.android.main_app.firm_login.FirmLocationMapActivity;
+import rvo.com.book.datamodel.repositories.FirmRepository;
 
 public class EightMainAppActivity extends FragmentActivity {
 
@@ -153,9 +154,11 @@ public class EightMainAppActivity extends FragmentActivity {
             if (phoneNumber.equals(" ")) {
                 EightAlertDialog.showAlertWithMessage("Firm phone number not set!", getParent());
             }
-            Eight.firestoreManager.updateFirm(Eight.dataModel.getFirm(), firmName, phoneNumber);
+            Firm firm = Eight.dataModel.getFirm();
+            firm.setName(firmName);
+            firm.setPhoneNumber(phoneNumber);
+            FirmRepository.getInstance().updateRecord(firm, Firm.NAME, firm.getName(),Firm.PHONE_NUMBER, firm.getPhoneNumber());
             addAlertDialog.close();
-
         });
         Button closeButton = alertView.findViewById(R.id.editFirmCloseButtonId_edit_firm_layout);
         addAlertDialog.show();
@@ -205,8 +208,9 @@ public class EightMainAppActivity extends FragmentActivity {
         }
         builder.setTitle(title);
         builder.setPositiveButton(getString(R.string.yes), (dialog1, which) -> {
-            Eight.firestoreManager.setActiveStatusForFirm(Eight.dataModel.getFirm().getId(), status);
-            Eight.dataModel.getFirm().setActive(status);
+            Firm firm = Eight.dataModel.getFirm();
+            firm.setStatus(status);
+            FirmRepository.getInstance().updateRecord(Eight.dataModel.getFirm(), Firm.STATUS, firm.getStatus());
         });
         builder.setNegativeButton(getString(R.string.no), (dialog, which) -> dialog.cancel());
         android.app.AlertDialog dialog = builder.create();

@@ -16,10 +16,8 @@ import rvo.com.book.common.Eight;
 import rvo.com.book.common.EightDate;
 
 @IgnoreExtraProperties
-public class Employee implements Serializable {
+public class Employee extends FirebaseRecord {
 
-    @Exclude
-    public static final String ID = "id";
     @Exclude
     public static final String NAME = "name";
     @Exclude
@@ -29,7 +27,6 @@ public class Employee implements Serializable {
     @Exclude
     public static final String SCHEDULE_ID = "scheduleId";
 
-    private String id;
     private String name;
     private List<String> categories;
     private String firmId;
@@ -53,14 +50,6 @@ public class Employee implements Serializable {
 
     public List<String> getCategories() {
         return categories;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public void setFirmId(String firmId) {

@@ -180,14 +180,13 @@ public class FirmLoginOrSignInActivity extends FragmentActivity {
     }
 
     private void checkForEmailAndPasswordAndSetFirm(String email, String password) {
-        FirmRepository firmRepository = new FirmRepository();
-        firmRepository.objectFromEmail(email, response -> {
+        FirmRepository.getInstance().objectFromEmail(email, response -> {
             if (response == null) {
                 EightAlertDialog.showAlertWithMessage("Email incorrect!", activity);
                 progressBar.setVisibility(View.GONE);
                 emailEditText.requestFocus();
             } else {
-                firmRepository.objectFromEmailAndPassword(email, password, object -> {
+                FirmRepository.getInstance().objectFromEmailAndPassword(email, password, object -> {
                     if (object != null) {
                         if (stayLoggedIn) {
                             // save to shared prefs
@@ -196,8 +195,8 @@ public class FirmLoginOrSignInActivity extends FragmentActivity {
                         }
                         Firm firm = (Firm) object;
                         Eight.dataModel.setFirm(firm);
-                        Eight.firestoreManager.setFirmFirebaseToken(FirebaseProperties.getInstance().getCurrentToken());
-                        //activateBookForCompaniesActivity();
+                        firm.setFirebaseToken(FirebaseProperties.getInstance().getCurrentToken());
+                        FirmRepository.getInstance().updateRecord(firm, Firm.FIREBASE_TOKEN, firm.getFirebaseToken());
                         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
                         firebaseAuth.signOut();
                         firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(activity, task -> activateEightMainAppActivity());

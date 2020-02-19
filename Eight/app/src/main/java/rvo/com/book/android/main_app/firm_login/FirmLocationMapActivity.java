@@ -32,6 +32,7 @@ import rvo.com.book.R;
 import rvo.com.book.common.Eight;
 import rvo.com.book.datamodel.entities.Firm;
 import rvo.com.book.android.main_app.SetScheduleActivity;
+import rvo.com.book.datamodel.repositories.FirmRepository;
 
 public class FirmLocationMapActivity extends FragmentActivity implements OnMapReadyCallback,
                                                                          GoogleMap.OnMyLocationButtonClickListener,
@@ -46,7 +47,6 @@ public class FirmLocationMapActivity extends FragmentActivity implements OnMapRe
     private LatLng addressLocation;
     private String context;
 
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,7 +55,6 @@ public class FirmLocationMapActivity extends FragmentActivity implements OnMapRe
         if (mapFragment != null) {
             mapFragment.getMapAsync(this);
         }
-
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
         selectedAddressTextView = findViewById(R.id.selectedAddressTextView);
         Button nextOrUpdateButton = findViewById(R.id.firmLocationNextButtonId);
@@ -68,9 +67,8 @@ public class FirmLocationMapActivity extends FragmentActivity implements OnMapRe
                     if (!address.equals("")) {
                         Firm firm = Eight.dataModel.getFirm();
                         firm.setAddress(address);
-                        Eight.firestoreManager.updateFirmAddress(firm);
                         firm.setPoint(new GeoPoint(addressLocation.latitude, addressLocation.longitude));
-                        Eight.firestoreManager.setFirmLocation(firm);
+                        FirmRepository.getInstance().updateRecord(firm, Firm.POINT, firm.getPoint(), Firm.ADDRESS, firm.getAddress());
                         finish();
                     }
                 });

@@ -1,22 +1,20 @@
 package rvo.com.book.datamodel.repositories;
 
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import javax.annotation.Nullable;
+
 import rvo.com.book.datamodel.entities.FirebaseRecord;
-import rvo.com.book.datamodel.entities.Firm;
 import rvo.com.book.datamodel.interfaces.IObjectRetrieved;
 
 public abstract class FirebaseRepository {
 
     private CollectionReference collectionReference;
-    private Class objectClass = Object.class;
-
-    public FirebaseRepository(){
-
-    }
+    private Class objectClass = Class.class;
 
     protected CollectionReference getCollectionReference() {
         return collectionReference;
@@ -34,9 +32,17 @@ public abstract class FirebaseRepository {
         return getCollectionReference().document().getId();
     }
 
-    public void insertRecord(FirebaseRecord firebaseRecord){
+    public Task<Void> insertRecord(FirebaseRecord firebaseRecord){
         firebaseRecord.setId(newRecordId());
-        getCollectionReference().document(firebaseRecord.getId()).set(firebaseRecord);
+        return getCollectionReference().document(firebaseRecord.getId()).set(firebaseRecord);
+    }
+
+    public Task<Void> updateRecord(FirebaseRecord record, String key, Object value, @Nullable Object... keysAndValues){
+        return collectionReference.document(record.getId()).update(key, value, keysAndValues);
+    }
+
+    public Task<Void> deleteRecord(FirebaseRecord firebaseRecord){
+        return getCollectionReference().document(firebaseRecord.getId()).delete();
     }
 
     public void objectFromEmail(String email, IObjectRetrieved objectRetrieved) {

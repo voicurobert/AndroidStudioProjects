@@ -24,7 +24,7 @@ public class Firm extends FirebaseRecord implements Serializable {
     @Exclude
     public static final String FIREBASE_TOKEN = "firebaseToken";
     @Exclude
-    public static final String ACTIVE = "active";
+    public static final String STATUS = "status";
     @Exclude
     public static final String POINT = "point";
     @Exclude
@@ -39,7 +39,7 @@ public class Firm extends FirebaseRecord implements Serializable {
     @Exclude
     private Schedule schedule;
     private String firebaseToken;
-    private Integer active;
+    private Integer status;
     private GeoPoint point;
 
     public Firm() {
@@ -113,17 +113,17 @@ public class Firm extends FirebaseRecord implements Serializable {
         this.firebaseToken = firebaseToken;
     }
 
-    public Integer getActive() {
-        return active;
+    public Integer getStatus() {
+        return status;
     }
 
-    public void setActive(Integer active) {
-        this.active = active;
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 
     @Exclude
     public boolean firmIsActive() {
-        return active.equals(1);
+        return status.equals(1);
     }
 
     public GeoPoint getPoint() {

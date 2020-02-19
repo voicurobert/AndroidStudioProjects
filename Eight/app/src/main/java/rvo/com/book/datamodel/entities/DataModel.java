@@ -10,6 +10,7 @@ import rvo.com.book.common.Eight;
 import rvo.com.book.common.EightDate;
 import rvo.com.book.datamodel.interfaces.IDownloadFinished;
 import rvo.com.book.datamodel.repositories.FirestoreManager;
+import rvo.com.book.datamodel.repositories.FirmRepository;
 
 
 public class DataModel extends DataSetObserver {
@@ -95,7 +96,7 @@ public class DataModel extends DataSetObserver {
 
     public void initialiseActiveFirms(IDownloadFinished downloadFinished) {
         activeFirms.clear();
-        Eight.firestoreManager.getActiveFirms(object -> {
+        FirmRepository.getInstance().getActiveFirms(object -> {
             if (object != null & object instanceof List) {
                 activeFirms.addAll((List<Firm>) object);
                 downloadFinished.finished();

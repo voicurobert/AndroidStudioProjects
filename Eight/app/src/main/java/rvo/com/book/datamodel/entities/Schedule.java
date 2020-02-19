@@ -1,21 +1,16 @@
 package rvo.com.book.datamodel.entities;
 
-//import com.google.firebase.database.Exclude;
 
 import com.google.firebase.database.IgnoreExtraProperties;
 import com.google.firebase.firestore.Exclude;
-
-import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
 @IgnoreExtraProperties
-public class Schedule implements Serializable {
+public class Schedule extends FirebaseRecord {
 
-    @Exclude
-    public static final String ID = "id";
     @Exclude
     public static final String MONDAY = "monday";
     @Exclude
@@ -46,7 +41,6 @@ public class Schedule implements Serializable {
     @Exclude
     public static final String SUNDAY_WORKING_HOURS = "sundayWorkingHours";
 
-    private String id;
     private String monday;
     private String tuesday;
     private String wednesday;
@@ -64,14 +58,6 @@ public class Schedule implements Serializable {
 
     public Schedule() {
 
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public void setFridayWorkingHours(String fridayWorkingHours) {

@@ -21,7 +21,6 @@ public class NotifyFirmWorker extends Worker {
 
     public NotifyFirmWorker(@NotNull Context context, @NotNull WorkerParameters workerParameters) {
         super(context, workerParameters);
-        firmRepository = new FirmRepository();
     }
 
     @NonNull

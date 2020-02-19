@@ -47,7 +47,7 @@
     -->
     <string name="subscribe_button">Subscribe</string>
     -->
-    <string name="active">Active</string>
+    <string name="status">Active</string>
     <string name="cancel">Cancel</string>
     <string name="starts">Starts</string>
     <string name="ends">Ends</string>
