@@ -13,13 +13,16 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import rvo.com.book.R;
-import rvo.com.book.common.Eight;
 import rvo.com.book.android.EightSharedPreferences;
 import rvo.com.book.datamodel.entities.Booking;
 import rvo.com.book.datamodel.entities.Customer;
+import rvo.com.book.datamodel.entities.DataModel;
+import rvo.com.book.datamodel.entities.FirebaseRecord;
 import rvo.com.book.datamodel.entities.Firm;
+import rvo.com.book.datamodel.repositories.BookingRepository;
 
 
 /**
@@ -34,9 +37,9 @@ public class YourBookingsFragment extends Fragment {
 
     public YourBookingsFragment() {
         if (EightSharedPreferences.getInstance().isFirmMode()) {
-            owner = Eight.dataModel.getFirm();
+            owner = DataModel.getInstance().getFirm();
         } else {
-            owner = Eight.dataModel.getCustomer();
+            owner = DataModel.getInstance().getCustomer();
         }
         this.fragment = this;
     }
@@ -60,13 +63,16 @@ public class YourBookingsFragment extends Fragment {
     private void setTodaysBookings() {
         if (EightSharedPreferences.getInstance().isFirmMode()) {
             showProgressBar();
-            Eight.firestoreManager.getPendingBookingsForFirmOwnerId(((Firm) owner), object -> {
-                        ArrayList<Booking> bookings = Eight.bookingsFromObject(object);
-                        PendingBookingAdapter adapter = new PendingBookingAdapter(getContext(), bookings, () -> setTodaysBookings());
-                        goneProgressBar();
-                        bookingsListView.setAdapter(adapter);
-                        bookingsListView.invalidateViews();
-                    });
+            BookingRepository.getInstance().getPendingBookingsForFirmOwnerId((Firm)owner, objects -> {
+                List<Booking> bookings = new ArrayList<>();
+                for (FirebaseRecord record : objects){
+                    bookings.add((Booking) record);
+                }
+                PendingBookingAdapter adapter = new PendingBookingAdapter(getContext(), bookings, () -> setTodaysBookings());
+                goneProgressBar();
+                bookingsListView.setAdapter(adapter);
+                bookingsListView.invalidateViews();
+            });
         }
     }
 
@@ -74,8 +80,11 @@ public class YourBookingsFragment extends Fragment {
         Customer customer = (Customer) owner;
         if (customer != null) {
             showProgressBar();
-            Eight.firestoreManager.getAllBookingsFromCustomerId(customer, object -> {
-                ArrayList<Booking> bookings = Eight.bookingsFromObject(object);
+            BookingRepository.getInstance().getAllBookingsFromCustomerId(customer, objects -> {
+                List<Booking> bookings = new ArrayList<>();
+                for (FirebaseRecord record : objects) {
+                    bookings.add((Booking)record);
+                }
                 PendingBookingAdapter adapter = new PendingBookingAdapter(fragment.getContext(), bookings, () -> setCustomerBookings());
                 bookingsListView.setAdapter(adapter);
                 bookingsListView.invalidate();

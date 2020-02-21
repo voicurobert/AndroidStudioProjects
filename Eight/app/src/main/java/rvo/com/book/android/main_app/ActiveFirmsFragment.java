@@ -22,7 +22,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 
 import rvo.com.book.R;
-import rvo.com.book.common.Eight;
+import rvo.com.book.datamodel.entities.DataModel;
 import rvo.com.book.datamodel.entities.Firm;
 
 public class ActiveFirmsFragment extends Fragment {
@@ -34,10 +34,10 @@ public class ActiveFirmsFragment extends Fragment {
         View myView = inflater.inflate(R.layout.active_firms_activity, container, false);
         ListView firmsListView = myView.findViewById(R.id.firmsListViewId);
         progressBar = myView.findViewById(R.id.firmsListProgressBarId);
-        FirmsAdapter firmsAdapter = new FirmsAdapter(this, Eight.dataModel.getActiveFirms());
+        FirmsAdapter firmsAdapter = new FirmsAdapter(this, DataModel.getInstance().getActiveFirms());
         firmsListView.setAdapter(firmsAdapter);
         ImageButton mapViewButton = myView.findViewById(R.id.mapViewButtonId);
-        mapViewButton.setOnClickListener(v -> Eight.dataModel.initialiseActiveFirms(() -> {
+        mapViewButton.setOnClickListener(v -> DataModel.getInstance().initialiseActiveFirms(() -> {
             FragmentActivity activity = getActivity();
             if (activity != null) {
                 activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragmentLayoutId, new MapViewFragment()).addToBackStack(getClass().getSimpleName()).commit();
@@ -92,7 +92,7 @@ public class ActiveFirmsFragment extends Fragment {
             permissionGranted = grantResults[0] == PackageManager.PERMISSION_GRANTED;
         }
         if (permissionGranted) {
-            doActualCall(Eight.dataModel.getFirm());
+            doActualCall(DataModel.getInstance().getFirm());
         } else {
             Toast.makeText(this.getContext(), getString(R.string.no_permission_to_call), Toast.LENGTH_SHORT).show();
         }

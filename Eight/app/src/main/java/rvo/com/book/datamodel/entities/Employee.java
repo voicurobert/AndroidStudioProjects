@@ -4,7 +4,6 @@ package rvo.com.book.datamodel.entities;
 import com.google.firebase.database.IgnoreExtraProperties;
 import com.google.firebase.firestore.Exclude;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -12,8 +11,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import rvo.com.book.common.Eight;
 import rvo.com.book.common.EightDate;
+import rvo.com.book.common.Tools;
 
 @IgnoreExtraProperties
 public class Employee extends FirebaseRecord {
@@ -220,7 +219,7 @@ public class Employee extends FirebaseRecord {
         Integer proposedBookingEndMinutes = Integer.valueOf(proposedBookingEndTime.split(":")[1]);
 
         // EXISTING BOOKING
-        Product existingProduct = Eight.dataModel.getProductFromId(existingBooking.getProduct().getId());
+        Product existingProduct = DataModel.getInstance().getProductFromId(existingBooking.getProduct().getId());
         //Product existingProduct = null;
         String existingBookingTime = existingBooking.getEightDate().timeAsString();
         Integer existingBookingHour = Integer.valueOf(existingBookingTime.split(":")[0]);
@@ -285,7 +284,7 @@ public class Employee extends FirebaseRecord {
                 mDiff = mDiff + 60;
                 hDiff = hDiff - 1;
             }
-            Integer diff = Eight.calculateDurationAsMinutes("" + hDiff + "-" + mDiff);
+            Integer diff = Tools.calculateDurationAsMinutes("" + hDiff + "-" + mDiff);
             if (existingProductDuration > diff) {
                 return "There is another booking at " +
                        existingBooking.getEightDate().timeAsString() + ". Your booking ends at " +

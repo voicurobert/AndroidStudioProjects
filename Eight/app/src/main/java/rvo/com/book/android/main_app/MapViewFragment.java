@@ -37,7 +37,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import rvo.com.book.R;
-import rvo.com.book.common.Eight;
+import rvo.com.book.datamodel.entities.DataModel;
 import rvo.com.book.datamodel.entities.Firm;
 
 public class MapViewFragment extends Fragment implements OnMapReadyCallback,
@@ -148,14 +148,14 @@ public class MapViewFragment extends Fragment implements OnMapReadyCallback,
     }
 
     public void drawActiveFirms() {
-        List<Firm> activeFirms = Eight.dataModel.getActiveFirms();
+        List<Firm> activeFirms = DataModel.getInstance().getActiveFirms();
         for (Firm firm : activeFirms) {
             GeoPoint point = firm.getPoint();
             if (point != null) {
                 LatLng latLng = new LatLng(point.getLatitude(), point.getLongitude());
                 MarkerOptions markerOptions = new MarkerOptions().position(latLng).title(firm.getName());
                 if (firm.getSchedule() == null) {
-                    Eight.dataModel.initialiseScheduleForFirm(firm, () -> {
+                    DataModel.getInstance().initialiseScheduleForFirm(firm, () -> {
                         markerOptions.snippet(firm.getSchedule().toString());
                         Marker marker = googleMap.addMarker(markerOptions);
                         markers.add(marker);
@@ -175,8 +175,8 @@ public class MapViewFragment extends Fragment implements OnMapReadyCallback,
             if (m.getId().equals(marker.getId())) {
                 Intent firmIntent = new Intent(getActivity(), FirmDetailsMasterActivity.class);
                 firmIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                Firm firm = Eight.dataModel.getActiveFirmFromName(marker.getTitle());
-                Eight.dataModel.initialiseDataStoreForSelectedFirm(firm, () -> context.startActivity(firmIntent));
+                Firm firm = DataModel.getInstance().getActiveFirmFromName(marker.getTitle());
+                DataModel.getInstance().initialiseDataStoreForSelectedFirm(firm, () -> context.startActivity(firmIntent));
             }
         }
     }

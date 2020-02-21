@@ -21,7 +21,6 @@ import java.util.List;
 import rvo.com.book.R;
 import rvo.com.book.android.main_app.alerts.AddAlertDialog;
 import rvo.com.book.android.main_app.alerts.EightAlertDialog;
-import rvo.com.book.common.Eight;
 import rvo.com.book.android.EightSharedPreferences;
 import rvo.com.book.datamodel.entities.Category;
 import rvo.com.book.datamodel.entities.DataModel;
@@ -38,7 +37,7 @@ public class CategoriesFragment extends Fragment {
         super.onCreateView(inflater, container, savedInstanceState);
         View thisView = inflater.inflate(R.layout.categories_fragment, container, false);
         GridView gridView = thisView.findViewById(R.id.categoriesGridView);
-        List<Category> categories = Eight.dataModel.getCategories();
+        List<Category> categories = DataModel.getInstance().getCategories();
         if (categories.size() == 1) {
             gridView.setNumColumns(1);
         } else if (categories.size() == 2) {
@@ -110,10 +109,10 @@ public class CategoriesFragment extends Fragment {
         });
         addAlertDialog.show();
         deleteButton.setOnClickListener(view -> {
-            if (!Eight.dataModel.categoryHasProducts(category)) {
+            if (!DataModel.getInstance().categoryHasProducts(category)) {
                 makeProgressBarVisible();
                 CategoryRepository.getInstance().deleteRecord(category).addOnCompleteListener(command -> {
-                    Eight.dataModel.removeCategory(category.getId());
+                    DataModel.getInstance().removeCategory(category.getId());
                     adapter.setCategories();
                     makeProgressBarGone();
                 });

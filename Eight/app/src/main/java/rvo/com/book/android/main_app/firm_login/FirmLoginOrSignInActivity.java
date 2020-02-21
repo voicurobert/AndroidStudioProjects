@@ -23,10 +23,12 @@ import rvo.com.book.R;
 import rvo.com.book.android.EightSharedPreferences;
 import rvo.com.book.android.main_app.EightMainAppActivity;
 import rvo.com.book.android.main_app.alerts.EightAlertDialog;
+import rvo.com.book.android.main_app.billing.BillingActivity;
+import rvo.com.book.android.main_app.billing.InAppBilling;
 import rvo.com.book.android.main_app.reset_password.ForgotPassword;
 import rvo.com.book.android.notification.FirebaseProperties;
-import rvo.com.book.common.Eight;
-import rvo.com.book.common.Validator;
+import rvo.com.book.common.Tools;
+import rvo.com.book.datamodel.entities.DataModel;
 import rvo.com.book.datamodel.entities.Firm;
 import rvo.com.book.datamodel.repositories.FirmRepository;
 
@@ -59,7 +61,7 @@ public class FirmLoginOrSignInActivity extends FragmentActivity {
         emailEditText.setOnFocusChangeListener((view, b) -> {
             if (!b) {
                 if (!emailEditText.getText().toString().equals("")) {
-                    String email = Validator.getEmailFromEditText(emailEditText);
+                    String email = Tools.getEmailFromEditText(emailEditText);
                     if (email != null && email.equals("")) {
                         EightAlertDialog.showAlertWithMessage("Email is incorrect", activity);
                         emailEditText.requestFocus();
@@ -70,7 +72,7 @@ public class FirmLoginOrSignInActivity extends FragmentActivity {
         passwordEditText = findViewById(R.id.firmPasswordLoginEditTextId);
         passwordEditText.setOnFocusChangeListener((view, b) -> {
             if (!b) {
-                String password = Validator.getPasswordFromEditText(passwordEditText);
+                String password = Tools.getPasswordFromEditText(passwordEditText);
                 if (password != null && password.equals("")) {
                     EightAlertDialog.showAlertWithMessage("Password is incorrect", activity);
                     passwordEditText.requestFocus();
@@ -81,13 +83,13 @@ public class FirmLoginOrSignInActivity extends FragmentActivity {
         CheckBox stayLoggedIdRadioButton = findViewById(R.id.firmStayLoggedIdCheckBoxId);
         stayLoggedIdRadioButton.setOnCheckedChangeListener((compoundButton, b) -> stayLoggedIn = b);
         loginButton.setOnClickListener(view -> {
-            String email = Validator.getEmailFromEditText(emailEditText);
+            String email = Tools.getEmailFromEditText(emailEditText);
             if (email == null) {
                 EightAlertDialog.showAlertWithMessage("Set email", activity);
                 emailEditText.requestFocus();
                 return;
             }
-            String password = Validator.getPasswordFromEditText(passwordEditText);
+            String password = Tools.getPasswordFromEditText(passwordEditText);
             if (password == null) {
                 EightAlertDialog.showAlertWithMessage("Set password", activity);
                 passwordEditText.requestFocus();
@@ -134,6 +136,13 @@ public class FirmLoginOrSignInActivity extends FragmentActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        InAppBilling.getInstance().isSubscribed(subscribed -> {
+            if (!subscribed) {
+                Intent intent = new Intent(this, BillingActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
     }
 
     @Override
@@ -161,7 +170,7 @@ public class FirmLoginOrSignInActivity extends FragmentActivity {
 
     private void activateEightMainAppActivity() {
         Intent activityIntent = new Intent(getApplicationContext(), EightMainAppActivity.class);
-        Eight.dataModel.initialiseDataStore(null, () -> {
+        DataModel.getInstance().initialiseDataStore(null, () -> {
             startActivity(activityIntent);
             finish();
         });
@@ -194,7 +203,7 @@ public class FirmLoginOrSignInActivity extends FragmentActivity {
                             EightSharedPreferences.getInstance().saveString(EightSharedPreferences.FIRM_PASSWORD_KEY, password, activity);
                         }
                         Firm firm = (Firm) object;
-                        Eight.dataModel.setFirm(firm);
+                        DataModel.getInstance().setFirm(firm);
                         firm.setFirebaseToken(FirebaseProperties.getInstance().getCurrentToken());
                         FirmRepository.getInstance().updateRecord(firm, Firm.FIREBASE_TOKEN, firm.getFirebaseToken());
                         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();

@@ -1,6 +1,7 @@
 package rvo.com.book.android.main_app.reset_password;
 
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,8 +12,11 @@ import androidx.fragment.app.FragmentActivity;
 
 import rvo.com.book.R;
 import rvo.com.book.android.main_app.alerts.EightAlertDialog;
-import rvo.com.book.common.Validator;
+import rvo.com.book.common.Tools;
+import rvo.com.book.datamodel.entities.Customer;
+import rvo.com.book.datamodel.entities.Firm;
 import rvo.com.book.datamodel.repositories.CustomerRepository;
+import rvo.com.book.datamodel.repositories.FirebaseRepository;
 import rvo.com.book.datamodel.repositories.FirmRepository;
 
 public class ResetPasswordActivity extends FragmentActivity {
@@ -48,7 +52,35 @@ public class ResetPasswordActivity extends FragmentActivity {
                 EightAlertDialog.showAlertWithMessage(message, activity);
             } else {
                 showProgress();
-                ForgotPassword.updatePasswordIfConnected(activity, password, context, email, () -> {
+                updatePasswordIfConnected(activity, password, email, context);
+            }
+        });
+    }
+
+    private void updatePasswordIfConnected(Activity activity, String password, String email, String context) {
+        FirebaseRepository repository;
+        if (context.equals(ForgotPassword.CUSTOMER)) {
+            repository = CustomerRepository.getInstance();
+        } else {
+            repository = FirmRepository.getInstance();
+        }
+        repository.objectFromEmail(email, object -> {
+            if (object == null) {
+                EightAlertDialog.showAlertWithMessage(activity.getString(R.string.email_not_exists), activity);
+                return;
+            }
+            if (object instanceof Customer) {
+                Customer customer = (Customer)object;
+                customer.setPassword(password);
+                CustomerRepository.getInstance().updateRecord(customer, Customer.PASSWORD, customer.getPassword()).addOnCompleteListener(command -> {
+                    EightAlertDialog.showAlertWithMessage(getString(R.string.password_change), activity);
+                    goneProgress();
+                    activity.finish();
+                });
+            } else if (object instanceof Firm) {
+                Firm firm = (Firm)object;
+                firm.setPassword(password);
+                FirmRepository.getInstance().updateRecord(firm, Firm.PASSWORD, firm.getPassword()).addOnCompleteListener(command -> {
                     EightAlertDialog.showAlertWithMessage(getString(R.string.password_change), activity);
                     goneProgress();
                     activity.finish();
@@ -64,7 +96,7 @@ public class ResetPasswordActivity extends FragmentActivity {
             }
             switch (key) {
                 case "email":
-                    String email = Validator.getEmailFromEditText(emailEditText);
+                    String email = Tools.getEmailFromEditText(emailEditText);
                     if (email == null) {
                         EightAlertDialog.showAlertWithMessage(getString(R.string.email_not_set), activity);
                     } else if (email.equals("")) {
@@ -89,8 +121,8 @@ public class ResetPasswordActivity extends FragmentActivity {
                     }
                     break;
                 case "retypePassword":
-                    String p1 = Validator.getPasswordFromEditText(passwordEditText);
-                    String p2 = Validator.getPasswordFromEditText(retypePasswordEditText);
+                    String p1 = Tools.getPasswordFromEditText(passwordEditText);
+                    String p2 = Tools.getPasswordFromEditText(retypePasswordEditText);
                     if (p1 != null && p2 != null && !p2.equals(p1)) {
                         EightAlertDialog.showAlertWithMessage(getString(R.string.passwords_not_match), activity);
                     }
@@ -107,7 +139,7 @@ public class ResetPasswordActivity extends FragmentActivity {
             emailEditText.requestFocus();
             return message;
         } else {
-            email = Validator.getEmailFromEditText(emailEditText);
+            email = Tools.getEmailFromEditText(emailEditText);
         }
         if (passwordEditText.getText().toString().equals("")) {
             message = getString(R.string.enter_password);
@@ -115,7 +147,7 @@ public class ResetPasswordActivity extends FragmentActivity {
             return message;
         } else {
             // it is encrypted
-            password = Validator.getPasswordFromEditText(passwordEditText);
+            password = Tools.getPasswordFromEditText(passwordEditText);
         }
         if (retypePasswordEditText.getText().toString().equals("")) {
             message = getString(R.string.enter_password);
@@ -123,7 +155,7 @@ public class ResetPasswordActivity extends FragmentActivity {
             return message;
         } else {
             // it is encrypted
-            retypedPassword = Validator.getPasswordFromEditText(retypePasswordEditText);
+            retypedPassword = Tools.getPasswordFromEditText(retypePasswordEditText);
         }
         if (password != null && retypedPassword != null) {
             if (!password.equals(retypedPassword)) {

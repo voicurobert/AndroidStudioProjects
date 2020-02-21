@@ -13,11 +13,13 @@ import android.widget.TextView;
 import java.util.List;
 
 import rvo.com.book.R;
-import rvo.com.book.common.Eight;
 import rvo.com.book.android.EightSharedPreferences;
 import rvo.com.book.datamodel.entities.Booking;
 import rvo.com.book.datamodel.entities.Customer;
-import rvo.com.book.datamodel.repositories.FirestoreManager;
+import rvo.com.book.datamodel.entities.DataModel;
+import rvo.com.book.datamodel.entities.Firm;
+import rvo.com.book.datamodel.repositories.BookingRepository;
+import rvo.com.book.datamodel.repositories.CustomerRepository;
 import rvo.com.book.android.notification.NotificationManager;
 
 public class PendingBookingAdapter implements ListAdapter {
@@ -84,15 +86,13 @@ public class PendingBookingAdapter implements ListAdapter {
         ImageView declineBooking = view.findViewById(R.id.declineBookingId);
         TextView statusTextView = view.findViewById(R.id.bookingStatusTextViewId);
         if (booking.getCustomerId() != null) {
-            Eight.firestoreManager.getObjectFromId(FirestoreManager.CUSTOMERS, booking.getCustomerId(), Customer.class, object -> {
+            CustomerRepository.getInstance().objectFromId(booking.getCustomerId(), object -> {
                 if (EightSharedPreferences.getInstance().isFirmMode()) {
-                    bookingTextView.setText(
-                            booking.getPendingBookingDescriptionForFirmMode());
+                    bookingTextView.setText(booking.getPendingBookingDescriptionForFirmMode());
                     activateBooking.setVisibility(View.VISIBLE);
                     declineBooking.setVisibility(View.VISIBLE);
                 } else {
-                    bookingTextView.setText(
-                            booking.getPendingBookingDescriptionForCustomerMode());
+                    bookingTextView.setText(booking.getPendingBookingDescriptionForCustomerMode());
                     statusTextView.setVisibility(View.VISIBLE);
                     declineBooking.setVisibility(View.VISIBLE);
                 }
@@ -113,22 +113,23 @@ public class PendingBookingAdapter implements ListAdapter {
             String notifTitle;
             String notifBody;
             String alertTitle;
+            Firm firm = DataModel.getInstance().getFirm();
             if (status.equals(Booking.ACTIVE)) {
                 alertTitle = "Accept booking on " + booking.dateDescription() + "?";
                 notifTitle = "Accept booking";
-                notifBody = Eight.dataModel.getFirm().getName() + " has accepted your booking!";
+                notifBody = firm.getName() + " has accepted your booking!";
             } else {
                 alertTitle = "Reject booking?";
                 notifTitle = "Reject booking";
-                notifBody = Eight.dataModel.getFirm().getName() + " has rejected your booking!";
+                notifBody = firm.getName() + " has rejected your booking!";
             }
             AlertDialog.Builder builder = new AlertDialog.Builder(context);
             builder.setTitle(alertTitle);
             builder.setPositiveButton("OK", (dialog, which) -> {
                 // activation
-                Eight.firestoreManager.setBookingActivationStatus(booking.getId(), status);
                 booking.setStatus(status);
-                Eight.firestoreManager.getObjectFromId(FirestoreManager.CUSTOMERS, booking.getCustomerId(), Customer.class, object -> {
+                BookingRepository.getInstance().updateRecord(booking, Booking.STATUS, status);
+                CustomerRepository.getInstance().objectFromId(booking.getCustomerId(), object -> {
                     Customer customer = (Customer) object;
                     if (customer != null) {
                         NotificationManager.getInstance().sendNotification(notifTitle, notifBody, customer.getFirebaseToken());
@@ -147,11 +148,11 @@ public class PendingBookingAdapter implements ListAdapter {
             AlertDialog.Builder builder = new AlertDialog.Builder(context);
             builder.setTitle(R.string.delete_booking);
             builder.setPositiveButton("OK", (dialog, which) -> {
-                Eight.firestoreManager.deleteBooking(booking.getId());
+                BookingRepository.getInstance().deleteRecord(booking);
                 NotificationManager.getInstance().sendNotification("Deleted booking.",
-                                                                   Eight.dataModel.getCustomer().getName() +
+                                                                   DataModel.getInstance().getCustomer().getName() +
                                                                    " has deleted a booking!",
-                                                                   Eight.dataModel.getFirm().getFirebaseToken());
+                                                                   DataModel.getInstance().getFirm().getFirebaseToken());
                 if (bookingActivation != null) {
                     bookingActivation.activatedBooking();
                 }

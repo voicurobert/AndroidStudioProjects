@@ -6,11 +6,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import rvo.com.book.common.Eight;
 import rvo.com.book.common.EightDate;
 import rvo.com.book.datamodel.interfaces.IDownloadFinished;
-import rvo.com.book.datamodel.repositories.FirestoreManager;
+import rvo.com.book.datamodel.repositories.BookingRepository;
+import rvo.com.book.datamodel.repositories.CategoryRepository;
+import rvo.com.book.datamodel.repositories.EmployeeRepository;
 import rvo.com.book.datamodel.repositories.FirmRepository;
+import rvo.com.book.datamodel.repositories.ProductRepository;
+import rvo.com.book.datamodel.repositories.ScheduleRepository;
 
 
 public class DataModel extends DataSetObserver {
@@ -75,30 +78,35 @@ public class DataModel extends DataSetObserver {
     // INITIALISATION
 
     public void initialiseDataStore(Firm firm, IDownloadFinished downloadFinished) {
-        final Firm rootFirm;
+        Firm rootFirm;
         if (firm == null) {
             rootFirm = this.firm;
         } else {
+            this.firm = firm;
             rootFirm = firm;
         }
         initialiseScheduleForFirm(rootFirm, () ->
                 initialiseCategories(rootFirm, () ->
-                        initialiseProducts(rootFirm.getId(), () ->
+                        initialiseProducts(rootFirm, () ->
                                 initialiseEmployees(rootFirm, downloadFinished))));
     }
 
     public void initialiseDataStoreForSelectedFirm(Firm firm, IDownloadFinished downloadFinished) {
         this.firm = firm;
         initialiseCategories(firm, () ->
-                initialiseProducts(firm.getId(), () ->
+                initialiseProducts(firm, () ->
                         initialiseEmployees(firm, downloadFinished)));
     }
 
     public void initialiseActiveFirms(IDownloadFinished downloadFinished) {
         activeFirms.clear();
-        FirmRepository.getInstance().getActiveFirms(object -> {
-            if (object != null & object instanceof List) {
-                activeFirms.addAll((List<Firm>) object);
+        FirmRepository.getInstance().getActiveFirms(objects -> {
+            if (objects != null) {
+                for (FirebaseRecord record : objects) {
+                    if (record instanceof Firm) {
+                        activeFirms.add((Firm) record);
+                    }
+                }
                 downloadFinished.finished();
             } else {
                 downloadFinished.finished();
@@ -109,13 +117,14 @@ public class DataModel extends DataSetObserver {
     // CATEGORIES
     public void initialiseCategories(Firm firm, IDownloadFinished downloadFinished) {
         categories.clear();
-        Eight.firestoreManager.categoriesForFirmOwnerId(firm, object -> {
-            if (object instanceof ArrayList<?>) {
-                ArrayList<Category> categoryList = (ArrayList<Category>) object;
-                categories.addAll(categoryList);
-                if (downloadFinished != null) {
-                    downloadFinished.finished();
-                }
+        CategoryRepository.getInstance().objectsWithFirmId(firm, objects -> {
+            for (FirebaseRecord record : objects) {
+                Category category = (Category)record;
+                category.setFirm(firm);
+                categories.add(category);
+            }
+            if (downloadFinished != null) {
+                downloadFinished.finished();
             }
         });
     }
@@ -176,9 +185,7 @@ public class DataModel extends DataSetObserver {
 
     public String getCategoryNameFromCategoryId(String categoryId) {
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
-            Optional<String> name = categories.stream()
-                                              .filter(category -> category.getId().equals(categoryId))
-                                              .map(Category::getName).findFirst();
+            Optional<String> name = categories.stream().filter(category -> category.getId().equals(categoryId)).map(Category::getName).findFirst();
             return name.orElse("");
         } else {
             for (Category category : categories) {
@@ -217,15 +224,19 @@ public class DataModel extends DataSetObserver {
 
     // PRODUCTS
 
-    public void initialiseProducts(String firmOwnerId, IDownloadFinished downloadFinished) {
+    public void initialiseProducts(Firm firm, IDownloadFinished downloadFinished) {
         products.clear();
-        Eight.firestoreManager.productsFromFirmOwnerId(firmOwnerId, object -> {
-            if (object instanceof ArrayList<?>) {
-                ArrayList<Product> productList = (ArrayList<Product>) object;
-                products.addAll(productList);
-                if (downloadFinished != null) {
-                    downloadFinished.finished();
+        ProductRepository.getInstance().objectsWithFirmId(firm, objects -> {
+            if (objects != null) {
+                for (FirebaseRecord record : objects) {
+                    Product product = (Product)record;
+                    product.setFirm(firm);
+                    product.setCategory(getCategoryFromCategoryId(product.getFirmCategoryId()));
+                    products.add(product);
                 }
+            }
+            if (downloadFinished != null) {
+                downloadFinished.finished();
             }
         });
     }
@@ -281,16 +292,15 @@ public class DataModel extends DataSetObserver {
 
     public void initialiseEmployees(Firm firm, IDownloadFinished downloadFinished) {
         employees.clear();
-        Eight.firestoreManager.employeesForFirmId(firm.getId(), object -> {
-            if (object instanceof ArrayList<?>) {
-                ArrayList<Employee> employeeList = (ArrayList<Employee>) object;
-                employees.addAll(employeeList);
-                if (downloadFinished != null) {
-                    downloadFinished.finished();
-                }
+        EmployeeRepository.getInstance().objectsWithFirmId(firm, objects -> {
+            for (FirebaseRecord record : objects) {
+                Employee employee = (Employee)record;
+                employees.add(employee);
+            }
+            if (downloadFinished != null) {
+                downloadFinished.finished();
             }
         });
-
     }
 
 
@@ -337,7 +347,7 @@ public class DataModel extends DataSetObserver {
 
 
     public void initialiseScheduleForFirm(Firm firm, IDownloadFinished downloadFinished) {
-        Eight.firestoreManager.getObjectFromId(FirestoreManager.SCHEDULES, firm.getScheduleId(), Schedule.class, object -> {
+        ScheduleRepository.getInstance().objectFromId(firm.getScheduleId(), object -> {
             if (object != null) {
                 Schedule schedule = (Schedule) object;
                 firm.setSchedule(schedule);
@@ -349,9 +359,9 @@ public class DataModel extends DataSetObserver {
     }
 
     public void initialiseSchedulesForEmployee(Employee employee, IDownloadFinished downloadFinished) {
-        Eight.firestoreManager.getObjectFromId(FirestoreManager.SCHEDULES, employee.getScheduleId(), Schedule.class, object -> {
-            Schedule schedule = (Schedule) object;
-            if (schedule != null) {
+        ScheduleRepository.getInstance().objectFromId(employee.getScheduleId(), object -> {
+            if (object != null) {
+                Schedule schedule = (Schedule) object;
                 employee.setSchedule(schedule);
                 employee.setWorkingHours(schedule.getWorkingHoursForDay(new EightDate().getDayAsString()));
                 downloadFinished.finished();
@@ -363,19 +373,20 @@ public class DataModel extends DataSetObserver {
 
     public void initialiseBookingsForEmployeeOnDate(Employee employee, EightDate date, IDownloadFinished downloadFinished) {
         employee.getBookings().clear();
-        Eight.firestoreManager.getBookingsForEmployeeForDate(employee, date, object -> {
-            if (object instanceof ArrayList<?>) {
-                List<Booking> bookings = (ArrayList<Booking>) object;
-                for (Booking booking : bookings) {
+        BookingRepository.getInstance().getBookingsForEmployeeForDate(employee, date, objects -> {
+            if (!objects.isEmpty()) {
+                for (FirebaseRecord record : objects) {
+                    Booking booking = (Booking) record;
                     if (booking.getEightDate().inPastAs(date)) {
-                        Eight.firestoreManager.setBookingActivationStatus(booking.getId(), Booking.FINISHED);
+                        BookingRepository.getInstance().updateRecord(booking, Booking.STATUS, Booking.FINISHED);
                         booking.setStatus(Booking.FINISHED);
                     }
                     employee.addBooking(booking);
                 }
-                employee.computeBookings();
-                downloadFinished.finished();
             }
+
+            employee.computeBookings();
+            downloadFinished.finished();
         });
     }
 

@@ -20,10 +20,10 @@ import java.util.List;
 import rvo.com.book.R;
 import rvo.com.book.android.main_app.alerts.AddAlertDialog;
 import rvo.com.book.android.main_app.alerts.EightAlertDialog;
-import rvo.com.book.common.Eight;
 import rvo.com.book.android.EightSharedPreferences;
-import rvo.com.book.common.Validator;
+import rvo.com.book.common.Tools;
 import rvo.com.book.datamodel.entities.Category;
+import rvo.com.book.datamodel.entities.DataModel;
 import rvo.com.book.datamodel.entities.Product;
 import rvo.com.book.datamodel.repositories.ProductRepository;
 
@@ -45,7 +45,7 @@ public class ProductsFragment extends Fragment {
         View thisView = inflater.inflate(R.layout.products_fragment, container, false);
         GridView gridView = thisView.findViewById(R.id.productsGridView);
 
-        List<Product> products = Eight.dataModel.getProductsFromCategoryId(category);
+        List<Product> products = DataModel.getInstance().getProductsFromCategoryId(category);
         if (products.size() == 1) {
             gridView.setNumColumns(1);
         } else {
@@ -62,7 +62,7 @@ public class ProductsFragment extends Fragment {
     }
 
     private void addProductButtonClicked() {
-        List<String> categories = Eight.dataModel.getCategoryNamesAsList();
+        List<String> categories = DataModel.getInstance().getCategoryNamesAsList();
         if (categories.isEmpty()) {
             EightAlertDialog.showAlertWithMessage("Create at least one category before you create products!", getActivity());
             return;
@@ -71,7 +71,7 @@ public class ProductsFragment extends Fragment {
         addAlertDialog.createAlertDialog();
         View alertView = addAlertDialog.getView();
         Spinner categoriesSpinner = alertView.findViewById(R.id.categoriesSpinnerId);
-        CustomSpinnerAdapter categoriesAdapter = new CustomSpinnerAdapter(getContext(), Eight.dataModel.getCategoryNamesAsList());
+        CustomSpinnerAdapter categoriesAdapter = new CustomSpinnerAdapter(getContext(), DataModel.getInstance().getCategoryNamesAsList());
         categoriesSpinner.setAdapter(categoriesAdapter);
         EditText productNameEditText = alertView.findViewById(R.id.productNameEditTextId);
         EditText priceEditText = alertView.findViewById(R.id.priceEditTextId);
@@ -86,24 +86,25 @@ public class ProductsFragment extends Fragment {
         Button addButton = alertView.findViewById(R.id.insertOrEditProductButtonId);
         Button closeButton = alertView.findViewById(R.id.productCloseButtonId);
         addButton.setOnClickListener(view -> {
-            String productName = Validator.getProductNameFromEditText(productNameEditText, this);
+            String productName = Tools.getProductNameFromEditText(productNameEditText, this);
             String price = priceEditText.getText().toString();
             if (price.equals(" ")) {
                 EightAlertDialog.showAlertWithMessage("Set product name...", getActivity());
             }
-            String duration = Validator.createDurationStringFromHoursAndMinutesSpinner(hoursSpinner, minutesSpinner);
+            String duration = Tools
+                    .createDurationStringFromHoursAndMinutesSpinner(hoursSpinner, minutesSpinner);
             String selectedCategory = (String) categoriesSpinner.getSelectedItem();
-            Category category = Eight.dataModel.getCategoryIdFromCategoryName(selectedCategory);
+            Category category = DataModel.getInstance().getCategoryIdFromCategoryName(selectedCategory);
             Product product = new Product();
             product.setName(productName);
             product.setDuration(duration);
             product.setPrice(Integer.valueOf(price));
             product.setFirmCategoryId(category.getId());
             product.setCategory(category);
-            product.setFirmId(Eight.dataModel.getFirm().getId());
-            product.setFirm(Eight.dataModel.getFirm());
+            product.setFirmId(DataModel.getInstance().getFirm().getId());
+            product.setFirm(DataModel.getInstance().getFirm());
             ProductRepository.getInstance().insertRecord(product).addOnCompleteListener(command -> {
-                Eight.dataModel.addProduct(product);
+                DataModel.getInstance().addProduct(product);
                 productsAdapter.setProductsForCategory(category);
                 addAlertDialog.close();
             });
@@ -117,9 +118,9 @@ public class ProductsFragment extends Fragment {
         addAlertDialog.createAlertDialog();
         View alertView = addAlertDialog.getView();
         Spinner categoriesSpinner = alertView.findViewById(R.id.categoriesSpinnerId);
-        CustomSpinnerAdapter categoriesAdapter = new CustomSpinnerAdapter(getContext(), Eight.dataModel.getCategoryNamesAsList());
+        CustomSpinnerAdapter categoriesAdapter = new CustomSpinnerAdapter(getContext(), DataModel.getInstance().getCategoryNamesAsList());
         categoriesSpinner.setAdapter(categoriesAdapter);
-        categoriesSpinner.setSelection(Eight.dataModel.getCategories().indexOf(Eight.dataModel.getCategoryFromCategoryId(product.getCategory().getId())));
+        categoriesSpinner.setSelection(DataModel.getInstance().getCategories().indexOf(DataModel.getInstance().getCategoryFromCategoryId(product.getCategory().getId())));
         EditText productNameEditText = alertView.findViewById(R.id.productNameEditTextId);
         productNameEditText.setText(product.getName());
         EditText priceEditText = alertView.findViewById(R.id.priceEditTextId);
@@ -149,12 +150,13 @@ public class ProductsFragment extends Fragment {
                 EightAlertDialog.showAlertWithMessage("Set price ...", getActivity());
             }
             Integer priceInteger = Integer.valueOf(price);
-            String duration = Validator.createDurationStringFromHoursAndMinutesSpinner(hoursSpinner, minutesSpinner);
+            String duration = Tools
+                    .createDurationStringFromHoursAndMinutesSpinner(hoursSpinner, minutesSpinner);
             if (duration.equals(" ")) {
                 EightAlertDialog.showAlertWithMessage("Set duration ...", getActivity());
             }
             String selectedCategory = (String) categoriesSpinner.getSelectedItem();
-            Category category = Eight.dataModel.getCategoryFromCategoryName(selectedCategory);
+            Category category = DataModel.getInstance().getCategoryFromCategoryName(selectedCategory);
             product.setName(productName);
             product.setPrice(priceInteger);
             product.setDuration(duration);
@@ -170,9 +172,9 @@ public class ProductsFragment extends Fragment {
         });
         addAlertDialog.show();
         deleteButton.setOnClickListener(view -> {
-            Category category = Eight.dataModel.getCategoryFromCategoryId(product.getCategory().getId());
+            Category category = DataModel.getInstance().getCategoryFromCategoryId(product.getCategory().getId());
             ProductRepository.getInstance().deleteRecord(product).addOnCompleteListener(command -> {
-                Eight.dataModel.removeProduct(product.getId());
+                DataModel.getInstance().removeProduct(product.getId());
                 productsAdapter.setProductsForCategory(category);
                 addAlertDialog.close();
             });

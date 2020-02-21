@@ -33,18 +33,19 @@ import rvo.com.book.android.main_app.alerts.AddAlertDialog;
 import rvo.com.book.android.main_app.alerts.EightAlertDialog;
 import rvo.com.book.android.main_app.billing.BillingActivity;
 import rvo.com.book.android.main_app.billing.InAppBilling;
-import rvo.com.book.common.Eight;
 import rvo.com.book.common.EightDate;
 import rvo.com.book.android.EightSharedPreferences;
 import rvo.com.book.datamodel.entities.Booking;
 import rvo.com.book.datamodel.entities.Category;
 import rvo.com.book.datamodel.entities.Customer;
+import rvo.com.book.datamodel.entities.DataModel;
 import rvo.com.book.datamodel.entities.Employee;
 import rvo.com.book.datamodel.entities.Firm;
 import rvo.com.book.datamodel.entities.Product;
 import rvo.com.book.datamodel.entities.Schedule;
 import rvo.com.book.android.notification.NotificationManager;
 import rvo.com.book.android.main_app.customer_login.CustomerLoginOrSignInActivity;
+import rvo.com.book.datamodel.repositories.BookingRepository;
 
 public class ScheduleFragment extends Fragment {
 
@@ -73,7 +74,7 @@ public class ScheduleFragment extends Fragment {
         progressBar = thisView.findViewById(R.id.scheduleProgressBarId);
         currentDayTextView = thisView.findViewById(R.id.currentDayTextView);
         currentDayTextView.setText(date.toString());
-        firm = Eight.dataModel.getFirm();
+        firm = DataModel.getInstance().getFirm();
 
         Button tomorrowButton = thisView.findViewById(R.id.tomorrowButtonId);
         Button yesterdayButton = thisView.findViewById(R.id.yesterdayButtonId);
@@ -82,15 +83,15 @@ public class ScheduleFragment extends Fragment {
 
         bookingsListView = thisView.findViewById(R.id.bookingsCardListView);
         Spinner employeesSpinner = thisView.findViewById(R.id.employeesSpinnerId);
-        employeeNames = Eight.dataModel.getEmployeeNames();
+        employeeNames = DataModel.getInstance().getEmployeeNames();
         CustomSpinnerAdapter customSpinnerAdapter = new CustomSpinnerAdapter(getContext(), employeeNames);
         employeesSpinner.setAdapter(customSpinnerAdapter);
         employeesSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                final Employee employee = Eight.dataModel.getEmployeeFromName(employeeNames.get(i));
+                final Employee employee = DataModel.getInstance().getEmployeeFromName(employeeNames.get(i));
                 if (employee.getSchedule() == null) {
-                    Eight.dataModel.initialiseSchedulesForEmployee(employee, () -> computeScheduleProgramViewForEmployee(employee));
+                    DataModel.getInstance().initialiseSchedulesForEmployee(employee, () -> computeScheduleProgramViewForEmployee(employee));
                 } else {
                     computeScheduleProgramViewForEmployee(employee);
                 }
@@ -143,7 +144,7 @@ public class ScheduleFragment extends Fragment {
             return;
         }
         setProgressVisible();
-        Eight.dataModel.initialiseBookingsForEmployeeOnDate(employee, date, () -> {
+        DataModel.getInstance().initialiseBookingsForEmployeeOnDate(employee, date, () -> {
             List<Map<String, Booking>> bookingsOnTime = employee.getBookingsOnHourAsList();
 
             BookingAdapter adapter = new BookingAdapter(this, bookingsOnTime, employee);
@@ -158,8 +159,8 @@ public class ScheduleFragment extends Fragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(this.getActivity());
         builder.setTitle(alertTitle);
         builder.setPositiveButton("OK", (dialog, which) -> {
-            Eight.firestoreManager.setBookingActivationStatus(booking.getId(), Booking.DECLINE);
             booking.setStatus(Booking.DECLINE);
+            BookingRepository.getInstance().updateRecord(booking, Booking.STATUS, Booking.DECLINE);
             computeScheduleProgramViewForEmployee(selectedEmployee);
         });
         builder.setNegativeButton(getString(R.string.cancel), (dialog, which) -> dialog.cancel());
@@ -170,7 +171,7 @@ public class ScheduleFragment extends Fragment {
 
     private void insertBookingButtonClicked() {
         if (!EightSharedPreferences.getInstance().isFirmMode() &&
-            Eight.dataModel.getCustomer() == null) {
+            DataModel.getInstance().getCustomer() == null) {
             preSignInOrLogin();
             return;
         }
@@ -198,17 +199,17 @@ public class ScheduleFragment extends Fragment {
         View alertView = insertBookingDialog.getView();
         Spinner categoriesSpinner = alertView.findViewById(R.id.categoriesSpinnerId);
         Spinner productsSpinner = alertView.findViewById(R.id.productsSpinnerId);
-        CustomSpinnerAdapter arrayAdapter = new CustomSpinnerAdapter(getContext(), Eight.dataModel.getCategoriesNamesFromCategoryIds(selectedEmployee.getCategories()));
+        CustomSpinnerAdapter arrayAdapter = new CustomSpinnerAdapter(getContext(), DataModel.getInstance().getCategoriesNamesFromCategoryIds(selectedEmployee.getCategories()));
         categoriesSpinner.setAdapter(arrayAdapter);
         String categoryName = arrayAdapter.getItem(0);
-        Category category = Eight.dataModel.getCategoryFromCategoryName(categoryName);
-        CustomSpinnerAdapter productsAdapter = new CustomSpinnerAdapter(getContext(), Eight.dataModel.getProductNamesFromCategory(category));
+        Category category = DataModel.getInstance().getCategoryFromCategoryName(categoryName);
+        CustomSpinnerAdapter productsAdapter = new CustomSpinnerAdapter(getContext(), DataModel.getInstance().getProductNamesFromCategory(category));
         categoriesSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 String categoryName = arrayAdapter.getItem(i);
-                Category category = Eight.dataModel.getCategoryFromCategoryName(categoryName);
-                CustomSpinnerAdapter productsAdapter = new CustomSpinnerAdapter(getContext(), Eight.dataModel.getProductNamesFromCategory(category));
+                Category category = DataModel.getInstance().getCategoryFromCategoryName(categoryName);
+                CustomSpinnerAdapter productsAdapter = new CustomSpinnerAdapter(getContext(), DataModel.getInstance().getProductNamesFromCategory(category));
                 productsSpinner.setAdapter(productsAdapter);
             }
 
@@ -239,7 +240,7 @@ public class ScheduleFragment extends Fragment {
             String bookHours = (String) hoursSpinner.getSelectedItem();
             String bookMinutes = (String) minutesSpinner.getSelectedItem();
             String productName = (String) productsSpinner.getSelectedItem();
-            Product product = Eight.dataModel.getProductFromProductName(productName);
+            Product product = DataModel.getInstance().getProductFromProductName(productName);
             if (EightSharedPreferences.getInstance().isFirmMode() &&
                 customerEditText.getText().toString().equals("")) {
                 EightAlertDialog.showAlertWithMessage("Customer name must be set!", this.getActivity());
@@ -271,7 +272,7 @@ public class ScheduleFragment extends Fragment {
         Booking booking = new Booking();
         booking.setDate(date.getDateInRestFormat());
         if (customerName == null) {
-            Customer customer = Eight.dataModel.getCustomer();
+            Customer customer = DataModel.getInstance().getCustomer();
             booking.setCustomer(customer);
             booking.setCustomerId(customer.getId());
             booking.setCustomerName(customer.getName());
@@ -287,10 +288,9 @@ public class ScheduleFragment extends Fragment {
         booking.setProductId(product.getId());
         booking.setProductName(product.getName());
         booking.setProduct(product);
-        booking.setFirmId(Eight.dataModel.getFirm().getId());
-        booking.setFirm(Eight.dataModel.getFirm());
-
-        Eight.firestoreManager.insertBooking(booking);
+        booking.setFirmId(DataModel.getInstance().getFirm().getId());
+        booking.setFirm(DataModel.getInstance().getFirm());
+        BookingRepository.getInstance().insertRecord(booking);
         if (!isBookFromFirm) {
             NotificationManager.getInstance().sendNotification("New booking",
                                                                customerName + " has requested a booking for " + product.getName() + " at " + date.toString(),

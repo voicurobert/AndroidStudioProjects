@@ -13,8 +13,8 @@ import androidx.cardview.widget.CardView;
 import java.util.List;
 
 import rvo.com.book.R;
-import rvo.com.book.common.Eight;
 import rvo.com.book.datamodel.entities.Category;
+import rvo.com.book.datamodel.entities.DataModel;
 import rvo.com.book.datamodel.entities.Product;
 
 public class ProductsAdapter implements ListAdapter {
@@ -28,7 +28,7 @@ public class ProductsAdapter implements ListAdapter {
     }
 
     public void setProductsForCategory(Category category) {
-        this.products = Eight.dataModel.getProductsFromCategoryId(category);
+        this.products = DataModel.getInstance().getProductsFromCategoryId(category);
     }
 
     @Override

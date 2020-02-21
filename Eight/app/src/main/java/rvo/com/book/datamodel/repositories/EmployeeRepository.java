@@ -4,12 +4,12 @@ import rvo.com.book.datamodel.entities.Employee;
 
 public class EmployeeRepository extends FirebaseRepository {
     private static final EmployeeRepository SINGLETON = new EmployeeRepository();
-    private static final String COLLECTION = "employee";
+    private static final String COLLECTION = "employees";
 
-    public EmployeeRepository() {
+    private EmployeeRepository() {
         super();
         initializeFirestore(COLLECTION);
-        setObjectClass(Employee.class);
+        setObjectClass(new Employee());
     }
 
     public static EmployeeRepository getInstance(){

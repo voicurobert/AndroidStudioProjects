@@ -2,7 +2,7 @@ package rvo.com.book;
 
 import org.junit.Test;
 
-import rvo.com.book.common.Validator;
+import rvo.com.book.common.Tools;
 
 import static org.junit.Assert.assertEquals;
 
@@ -19,7 +19,7 @@ public class ExampleUnitTest {
 
     @Test
     public void phoneNumberIsCorrect() {
-        assertEquals(true, Validator.isPhoneNumberCorrect("760318696"));
+        assertEquals(true, Tools.isPhoneNumberCorrect("760318696"));
     }
 
     @Test

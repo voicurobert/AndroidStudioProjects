@@ -4,12 +4,12 @@ import rvo.com.book.datamodel.entities.Customer;
 
 public class CustomerRepository extends FirebaseRepository {
     private static final CustomerRepository SINGLETON = new CustomerRepository();
-    private static final String COLLECTION = "customer";
+    private static final String COLLECTION = "customers";
 
-    public CustomerRepository() {
+    private CustomerRepository() {
         super();
         initializeFirestore(COLLECTION);
-        setObjectClass(Customer.class);
+        setObjectClass(new Customer());
     }
 
     public static CustomerRepository getInstance(){

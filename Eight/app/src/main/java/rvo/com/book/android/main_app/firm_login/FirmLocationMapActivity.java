@@ -29,7 +29,7 @@ import java.util.List;
 import java.util.Locale;
 
 import rvo.com.book.R;
-import rvo.com.book.common.Eight;
+import rvo.com.book.datamodel.entities.DataModel;
 import rvo.com.book.datamodel.entities.Firm;
 import rvo.com.book.android.main_app.SetScheduleActivity;
 import rvo.com.book.datamodel.repositories.FirmRepository;
@@ -61,11 +61,11 @@ public class FirmLocationMapActivity extends FragmentActivity implements OnMapRe
 
         context = (String) getIntent().getSerializableExtra("context");
         if (context != null) {
+            Firm firm = DataModel.getInstance().getFirm();
             if (context.equals("updateAddress")) {
                 nextOrUpdateButton.setText(getString(R.string.update_address));
                 nextOrUpdateButton.setOnClickListener(v -> {
                     if (!address.equals("")) {
-                        Firm firm = Eight.dataModel.getFirm();
                         firm.setAddress(address);
                         firm.setPoint(new GeoPoint(addressLocation.latitude, addressLocation.longitude));
                         FirmRepository.getInstance().updateRecord(firm, Firm.POINT, firm.getPoint(), Firm.ADDRESS, firm.getAddress());
@@ -75,7 +75,6 @@ public class FirmLocationMapActivity extends FragmentActivity implements OnMapRe
             } else {
                 nextOrUpdateButton.setOnClickListener(v -> {
                     if (!address.equals("")) {
-                        Firm firm = Eight.dataModel.getFirm();
                         firm.setAddress(address);
                         GeoPoint point = new GeoPoint(addressLocation.latitude, addressLocation.longitude);
                         firm.setPoint(point);
@@ -105,7 +104,7 @@ public class FirmLocationMapActivity extends FragmentActivity implements OnMapRe
             googleMap.setOnMyLocationClickListener(this);
             fusedLocationProviderClient.getLastLocation().addOnSuccessListener(this, location -> {
                 if (context.equals("updateAddress")) {
-                    Firm firm = Eight.dataModel.getFirm();
+                    Firm firm = DataModel.getInstance().getFirm();
                     addressLocation = firm.pointAsLatLng();
                     googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(addressLocation, 15));
                     address = getAddressFromLocation(addressLocation.latitude, addressLocation.longitude);

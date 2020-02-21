@@ -13,12 +13,14 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import rvo.com.book.R;
 import rvo.com.book.android.main_app.alerts.EightAlertDialog;
-import rvo.com.book.common.Eight;
+import rvo.com.book.datamodel.entities.DataModel;
 import rvo.com.book.datamodel.entities.Employee;
 import rvo.com.book.datamodel.entities.Firm;
 import rvo.com.book.datamodel.entities.Schedule;
 import rvo.com.book.android.main_app.firm_login.FirmLoginOrSignInActivity;
+import rvo.com.book.datamodel.repositories.EmployeeRepository;
 import rvo.com.book.datamodel.repositories.FirmRepository;
+import rvo.com.book.datamodel.repositories.ScheduleRepository;
 
 public class SetScheduleActivity extends FragmentActivity {
 
@@ -47,7 +49,7 @@ public class SetScheduleActivity extends FragmentActivity {
     private Schedule schedule;
     private String context;
     private Employee employee;
-
+    private DataModel dataModel;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -55,20 +57,21 @@ public class SetScheduleActivity extends FragmentActivity {
         setContentView(R.layout.set_schedule_for_activity);
         activity = this;
         context = (String) getIntent().getSerializableExtra("context");
+        dataModel = DataModel.getInstance();
         if (context != null) {
             if (context.equals("employee")) {
                 String id = getIntent().getStringExtra("employeeId");
-                employee = Eight.dataModel.getEmployeeFromId(id);
+                employee = dataModel.getEmployeeFromId(id);
                 schedule = employee.getSchedule();
             } else {
-                schedule = Eight.dataModel.getFirm().getSchedule();
+                schedule = dataModel.getFirm().getSchedule();
             }
         }
 
         TextView titleTextViewId = findViewById(R.id.setScheduleTitleTextViewId);
         String title;
         if (employee == null) {
-            title = Eight.dataModel.getFirm().getName() + "'s schedule";
+            title = dataModel.getFirm().getName() + "'s schedule";
         } else {
             title = employee.getName() + "'s schedule";
         }
@@ -97,7 +100,7 @@ public class SetScheduleActivity extends FragmentActivity {
         saturdayEndsEditTextTime = findViewById(R.id.saturdayEndsTimeEditText);
         sundayEndsEditTextTime = findViewById(R.id.sundayEndsTimeEditText);
 
-        Schedule firmSchedule = Eight.dataModel.getFirm().getSchedule();
+        Schedule firmSchedule = dataModel.getFirm().getSchedule();
         if (firmSchedule == null) {
             setWorkingHours(mondayStartsEditTextTime, mondayEndsEditTextTime, null, null);
             setWorkingHours(tuesdayStartsEditTextTime, tuesdayEndsEditTextTime, null, null);
@@ -209,53 +212,73 @@ public class SetScheduleActivity extends FragmentActivity {
             String sundayWh = activity.getWorkingHoursString(sundayStartsEditTextTime, sundayEndsEditTextTime);
             if (schedule == null) {
                 insertSchedule(monday, tuesday, wednesday, thursday, friday, saturday, sunday,
-                               mondayWh, tuesdayWh, wednesdayWh, thursdayWh, fridayWh, saturdayWh,
-                               sundayWh);
+                               mondayWh, tuesdayWh, wednesdayWh, thursdayWh, fridayWh, saturdayWh, sundayWh);
             } else {
                 updateSchedule(monday, tuesday, wednesday, thursday, friday, saturday, sunday,
-                               mondayWh, tuesdayWh, wednesdayWh, thursdayWh, fridayWh, saturdayWh,
-                               sundayWh);
+                               mondayWh, tuesdayWh, wednesdayWh, thursdayWh, fridayWh, saturdayWh, sundayWh);
             }
         });
     }
 
-    private void insertSchedule(String monday, String tuesday, String wednesday, String thursday,
-                                String friday, String saturday, String sunday, String mondayWh,
-                                String tuesdayWh, String wednesdayWh, String thursdayWh,
-                                String fridayWh, String saturdayWh, String sundayWh) {
-        FirebaseAuth.getInstance().signInAnonymously();
-
-        Eight.firestoreManager.writeSchedule(monday, tuesday, wednesday, thursday, friday, saturday, sunday,
-                                             mondayWh, tuesdayWh, wednesdayWh, thursdayWh, fridayWh, saturdayWh,
-                                             sundayWh, object -> {
-                    Schedule schedule = (Schedule) object;
-                    if (context.equals("firm")) {
-                        Firm firm = Eight.dataModel.getFirm();
-                        firm.setScheduleId(schedule.getId());
-                        firm.setSchedule(schedule);
-                        FirmRepository.getInstance().insertRecord(firm);
-                    } else {
-                        employee.setSchedule(schedule);
-                        Eight.firestoreManager.updateEmployeeWithScheduleId(employee.getId(), schedule.getId());
-                    }
-                    activateFirmLoginActivity();
-                    finish();
-                });
+    private void insertSchedule(String monday, String tuesday, String wednesday, String thursday, String friday, String saturday, String sunday,
+                                String mondayWh, String tuesdayWh, String wednesdayWh, String thursdayWh, String fridayWh, String saturdayWh, String sundayWh) {
+        FirebaseAuth.getInstance().signInAnonymously().addOnCompleteListener(command -> {
+            Schedule schedule = new Schedule();
+            schedule.setMonday(monday);
+            schedule.setTuesday(tuesday);
+            schedule.setWednesday(wednesday);
+            schedule.setThursday(thursday);
+            schedule.setFriday(friday);
+            schedule.setSaturday(saturday);
+            schedule.setSunday(sunday);
+            schedule.setMondayWorkingHours(mondayWh);
+            schedule.setTuesdayWorkingHours(tuesdayWh);
+            schedule.setWednesdayWorkingHours(wednesdayWh);
+            schedule.setThursdayWorkingHours(thursdayWh);
+            schedule.setFridayWorkingHours(fridayWh);
+            schedule.setSaturdayWorkingHours(saturdayWh);
+            schedule.setSundayWorkingHours(sundayWh);
+            ScheduleRepository.getInstance().insertRecord(schedule).addOnCompleteListener(task -> {
+                if (context.equals("firm")) {
+                    Firm firm = dataModel.getFirm();
+                    firm.setScheduleId(schedule.getId());
+                    firm.setSchedule(schedule);
+                    FirmRepository.getInstance().insertRecord(firm);
+                } else {
+                    employee.setSchedule(schedule);
+                    employee.setScheduleId(schedule.getId());
+                    EmployeeRepository.getInstance().updateRecord(employee, Employee.SCHEDULE_ID, employee.getScheduleId());
+                }
+                activateFirmLoginActivity();
+                finish();
+            });
+        });
     }
 
-    private void updateSchedule(String monday, String tuesday, String wednesday, String thursday,
-                                String friday, String saturday, String sunday, String mondayWh,
-                                String tuesdayWh, String wednesdayWh, String thursdayWh,
-                                String fridayWh, String saturdayWh, String sundayWh) {
-        Eight.firestoreManager.updateSchedule(schedule, monday, tuesday, wednesday, thursday, friday, saturday,
-                                sunday, mondayWh, tuesdayWh, wednesdayWh, thursdayWh, fridayWh,
-                                saturdayWh, sundayWh);
-        if (context.equals("employee")) {
-            employee.setSchedule(schedule);
-        } else {
-            Eight.dataModel.getFirm().setSchedule(schedule);
-        }
-        finish();
+    private void updateSchedule(String monday, String tuesday, String wednesday, String thursday, String friday, String saturday, String sunday,
+                                String mondayWh, String tuesdayWh, String wednesdayWh, String thursdayWh, String fridayWh, String saturdayWh, String sundayWh) {
+        ScheduleRepository.getInstance().updateRecord(schedule,
+                                                      Schedule.MONDAY, monday,
+                                                      Schedule.TUESDAY, tuesday,
+                                                      Schedule.WEDNESDAY, wednesday,
+                                                      Schedule.THURSDAY, thursday,
+                                                      Schedule.FRIDAY, friday,
+                                                      Schedule.SATURDAY, saturday,
+                                                      Schedule.SUNDAY, sunday,
+                                                      Schedule.MONDAY_WORKING_HOURS, mondayWh,
+                                                      Schedule.TUESDAY_WORKING_HOURS, tuesdayWh,
+                                                      Schedule.WEDNESDAY_WORKING_HOURS, wednesdayWh,
+                                                      Schedule.THURSDAY_WORKING_HOURS, thursdayWh,
+                                                      Schedule.FRIDAY_WORKING_HOURS, fridayWh,
+                                                      Schedule.SATURDAY_WORKING_HOURS, saturdayWh,
+                                                      Schedule.SUNDAY_WORKING_HOURS, sundayWh).addOnCompleteListener(command -> {
+            if (context.equals("employee")) {
+                employee.setSchedule(schedule);
+            } else {
+                dataModel.getFirm().setSchedule(schedule);
+            }
+            finish();
+        });
     }
 
     private void activateFirmLoginActivity() {
@@ -280,7 +303,7 @@ public class SetScheduleActivity extends FragmentActivity {
         setCheckBoxValue(saturdayCheckBox, schedule.isSaturday());
         setCheckBoxValue(sundayCheckBox, schedule.isSunday());
         if (context.equals("employee")) {
-            Schedule firmSchedule = Eight.dataModel.getFirm().getSchedule();
+            Schedule firmSchedule = dataModel.getFirm().getSchedule();
             setWorkingHours(mondayStartsEditTextTime, mondayEndsEditTextTime, schedule.getMondayWorkingHours(), firmSchedule.getMondayWorkingHours());
             setWorkingHours(tuesdayStartsEditTextTime, tuesdayEndsEditTextTime,
                             schedule.getTuesdayWorkingHours(),

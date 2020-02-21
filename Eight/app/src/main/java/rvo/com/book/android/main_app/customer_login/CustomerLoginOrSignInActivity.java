@@ -19,15 +19,14 @@ import com.google.firebase.iid.FirebaseInstanceId;
 
 import rvo.com.book.R;
 import rvo.com.book.android.main_app.alerts.EightAlertDialog;
-import rvo.com.book.common.Eight;
 import rvo.com.book.android.EightSharedPreferences;
-import rvo.com.book.common.Validator;
+import rvo.com.book.common.Tools;
 import rvo.com.book.datamodel.entities.Customer;
 import rvo.com.book.android.notification.FirebaseProperties;
 import rvo.com.book.android.main_app.EightMainAppActivity;
 import rvo.com.book.android.main_app.reset_password.ForgotPassword;
+import rvo.com.book.datamodel.entities.DataModel;
 import rvo.com.book.datamodel.repositories.CustomerRepository;
-import rvo.com.book.datamodel.repositories.FirestoreManager;
 
 public class CustomerLoginOrSignInActivity extends FragmentActivity {
 
@@ -59,7 +58,7 @@ public class CustomerLoginOrSignInActivity extends FragmentActivity {
         emailEditText.setOnFocusChangeListener((v, hasFocus) -> {
             if (!hasFocus) { // focus lost
                 if (!emailEditText.getText().toString().equals("")) {
-                    String email = Validator.getEmailFromEditText(emailEditText);
+                    String email = Tools.getEmailFromEditText(emailEditText);
                     if (email != null && email.equals("")) {
                         EightAlertDialog.showAlertWithMessage("Email is incorrect!", activity);
                     }
@@ -69,8 +68,8 @@ public class CustomerLoginOrSignInActivity extends FragmentActivity {
         passwordEditText = findViewById(R.id.customerPasswordLoginEditTextId);
         passwordEditText.setOnFocusChangeListener((v, hasFocus) -> {
             if (!hasFocus) {
-                Validator.getEmailFromEditText(emailEditText);
-                Validator.getPasswordFromEditText(passwordEditText);
+                Tools.getEmailFromEditText(emailEditText);
+                Tools.getPasswordFromEditText(passwordEditText);
             }
 
         });
@@ -92,8 +91,8 @@ public class CustomerLoginOrSignInActivity extends FragmentActivity {
     }
 
     private void loginButtonClicked() {
-        String email = Validator.getEmailFromEditText(emailEditText);
-        String password = Validator.getPasswordFromEditText(passwordEditText);
+        String email = Tools.getEmailFromEditText(emailEditText);
+        String password = Tools.getPasswordFromEditText(passwordEditText);
         if (email == null) {
             EightAlertDialog.showAlertWithMessage("Email not set!", activity);
             return;
@@ -160,7 +159,7 @@ public class CustomerLoginOrSignInActivity extends FragmentActivity {
                             EightSharedPreferences.getInstance().saveString(EightSharedPreferences.CUSTOMER_EMAIL_KEY, email, activity);
                             EightSharedPreferences.getInstance().saveString(EightSharedPreferences.CUSTOMER_PASSWORD_KEY, password, activity);
                         }
-                        Eight.dataModel.setCustomer((Customer) object);
+                        DataModel.getInstance().setCustomer((Customer) object);
                         progressBar.setVisibility(View.GONE);
                         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
                         firebaseAuth.signOut();
@@ -172,14 +171,14 @@ public class CustomerLoginOrSignInActivity extends FragmentActivity {
     }
 
     private void activateEightMainAppActivity() {
-        Customer customer = Eight.dataModel.getCustomer();
+        Customer customer = DataModel.getInstance().getCustomer();
         if (customer != null) {
             customer.setFirebaseToken(FirebaseProperties.getInstance().getCurrentToken());
             CustomerRepository.getInstance().updateRecord(customer, Customer.FIREBASE_TOKEN, customer.getFirebaseToken());
         }
         progressBar.setVisibility(View.VISIBLE);
         Intent intent = new Intent(getApplicationContext(), EightMainAppActivity.class);
-        Eight.dataModel.initialiseActiveFirms(() -> {
+        DataModel.getInstance().initialiseActiveFirms(() -> {
             progressBar.setVisibility(View.GONE);
             startActivity(intent);
             finish();

@@ -17,9 +17,8 @@ import com.android.billingclient.api.SkuDetailsParams;
 import java.util.ArrayList;
 import java.util.List;
 
-import rvo.com.book.android.main_app.alerts.EightAlertDialog;
-import rvo.com.book.common.Eight;
 import rvo.com.book.Log;
+import rvo.com.book.common.Tools;
 
 public class InAppBilling implements PurchasesUpdatedListener, BillingClientStateListener, AcknowledgePurchaseResponseListener {
 
@@ -82,7 +81,7 @@ public class InAppBilling implements PurchasesUpdatedListener, BillingClientStat
 
 
     protected void subscribe(IBillingResponse response) {
-        Eight.isGooglePlayServicesAvailable(activity);
+        Tools.isGooglePlayServicesAvailable(activity);
         billingClient.querySkuDetailsAsync(skuDetailsParams, (billingResult, skuDetailsList) -> {
             if (billingResult.getResponseCode() == BillingClient.BillingResponseCode.SERVICE_DISCONNECTED) {
                 response.subscribed(false);

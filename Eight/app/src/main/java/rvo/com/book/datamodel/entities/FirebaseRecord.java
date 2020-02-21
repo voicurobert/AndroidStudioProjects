@@ -2,7 +2,7 @@ package rvo.com.book.datamodel.entities;
 
 import java.io.Serializable;
 
-public abstract class FirebaseRecord implements Serializable {
+public class FirebaseRecord implements Serializable {
 
     private String id;
 

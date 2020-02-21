@@ -10,8 +10,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import rvo.com.book.R;
-import rvo.com.book.common.Eight;
 import rvo.com.book.datamodel.entities.Booking;
+import rvo.com.book.datamodel.entities.DataModel;
+import rvo.com.book.datamodel.entities.FirebaseRecord;
+import rvo.com.book.datamodel.repositories.BookingRepository;
 
 public class PendingBookingsActivity extends AppCompatActivity {
 
@@ -33,14 +35,14 @@ public class PendingBookingsActivity extends AppCompatActivity {
     }
 
     protected void refreshBookings() {
-        Eight.firestoreManager.getPendingBookingsForFirmOwnerId(Eight.dataModel.getFirm(), object -> {
-            if (object instanceof ArrayList<?>) {
-                List<Booking> bookings = (ArrayList) object;
-                PendingBookingAdapter adapter = new PendingBookingAdapter(getApplicationContext(), bookings, () -> refreshBookings());
-                listView.setAdapter(adapter);
-                listView.invalidateViews();
+        BookingRepository.getInstance().getPendingBookingsForFirmOwnerId(DataModel.getInstance().getFirm(), objects -> {
+            List<Booking> bookings = new ArrayList<>();
+            for (FirebaseRecord record : objects){
+                bookings.add((Booking)record);
             }
+            PendingBookingAdapter adapter = new PendingBookingAdapter(getApplicationContext(), bookings, this::refreshBookings);
+            listView.setAdapter(adapter);
+            listView.invalidateViews();
         });
-
     }
 }

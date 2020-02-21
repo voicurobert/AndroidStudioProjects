@@ -21,10 +21,11 @@ import java.util.List;
 import rvo.com.book.R;
 import rvo.com.book.android.main_app.alerts.AddAlertDialog;
 import rvo.com.book.android.main_app.alerts.EightAlertDialog;
-import rvo.com.book.common.Eight;
 import rvo.com.book.android.EightSharedPreferences;
 import rvo.com.book.datamodel.entities.Category;
+import rvo.com.book.datamodel.entities.DataModel;
 import rvo.com.book.datamodel.entities.Employee;
+import rvo.com.book.datamodel.repositories.EmployeeRepository;
 
 public class EmployeeAdapter implements ListAdapter {
     private Context context;
@@ -128,7 +129,7 @@ public class EmployeeAdapter implements ListAdapter {
     private String getCategoryNames(Employee employee) {
         StringBuilder stringBuilder = new StringBuilder();
         for (String categoryId : employee.getCategories()) {
-            Category category = Eight.dataModel.getCategoryFromCategoryId(categoryId);
+            Category category = DataModel.getInstance().getCategoryFromCategoryId(categoryId);
             stringBuilder.append(category.getName());
             stringBuilder.append(", ");
         }
@@ -144,7 +145,7 @@ public class EmployeeAdapter implements ListAdapter {
         addAlertDialog.createAlertDialog();
         View alertView = addAlertDialog.getView();
         LinearLayout categoriesLayout = alertView.findViewById(R.id.categoriesLayout);
-        fragment.setSelectedCategories(Eight.dataModel.getCategoriesFromCategoryIds(employee.getCategories()));
+        fragment.setSelectedCategories(DataModel.getInstance().getCategoriesFromCategoryIds(employee.getCategories()));
         fragment.setDrawLayout(true);
         List<CheckBox> checkBoxes = fragment.getCategoriesAsListOfCheckBoxes();
         for (CheckBox checkBox : checkBoxes) {
@@ -164,16 +165,18 @@ public class EmployeeAdapter implements ListAdapter {
                 EightAlertDialog.showAlertWithMessage("Set employee name...", fragment.getActivity());
                 return;
             }
-            Eight.firestoreManager.updateEmployee(employee, employeeName, fragment.getSelectedCategoryIds());
+            employee.setName(employeeName);
+            employee.setCategories(fragment.getSelectedCategoryIds());
+            EmployeeRepository.getInstance().updateRecord(employee, Employee.NAME, employee.getName(), Employee.CATEGORY_IDS, employee.getCategories());
             addAlertDialog.close();
 
         });
         addAlertDialog.show();
         deleteButton.setOnClickListener(v -> {
-            Eight.firestoreManager.deleteEmployee(employee);
-            Eight.dataModel.removeEmployee(employee);
-            addAlertDialog.close();
-
+            EmployeeRepository.getInstance().deleteRecord(employee).addOnCompleteListener(command -> {
+                DataModel.getInstance().removeEmployee(employee);
+                addAlertDialog.close();
+            });
         });
         closeButton.setOnClickListener(v -> addAlertDialog.close());
     }
@@ -183,7 +186,7 @@ public class EmployeeAdapter implements ListAdapter {
         intent.putExtra("context", "employee");
         intent.putExtra("employeeId", employee.getId());
         if (employee.getSchedule() == null) {
-            Eight.dataModel.initialiseSchedulesForEmployee(employee, () -> fragment.startActivity(intent));
+            DataModel.getInstance().initialiseSchedulesForEmployee(employee, () -> fragment.startActivity(intent));
         } else {
             fragment.startActivity(intent);
         }

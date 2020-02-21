@@ -4,12 +4,12 @@ import rvo.com.book.datamodel.entities.Product;
 
 public class ProductRepository extends FirebaseRepository {
     private static final ProductRepository SINGLETON = new ProductRepository();
-    private static final String COLLECTION = "product";
+    private static final String COLLECTION = "products";
 
-    public ProductRepository() {
+    private ProductRepository() {
         super();
         initializeFirestore(COLLECTION);
-        setObjectClass(Product.class);
+        setObjectClass(new Product());
     }
 
     public static ProductRepository getInstance(){

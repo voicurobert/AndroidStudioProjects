@@ -14,7 +14,7 @@ import androidx.cardview.widget.CardView;
 import java.util.List;
 
 import rvo.com.book.R;
-import rvo.com.book.common.Eight;
+import rvo.com.book.datamodel.entities.DataModel;
 import rvo.com.book.datamodel.entities.Firm;
 
 public class FirmsAdapter implements ListAdapter {
@@ -89,7 +89,7 @@ public class FirmsAdapter implements ListAdapter {
         if (firm.getSchedule() != null) {
             firmScheduleTextView.setText(firm.getSchedule().toString());
         } else {
-            Eight.dataModel.initialiseScheduleForFirm(firm, () -> firmScheduleTextView.setText(firm.getSchedule().toString()));
+            DataModel.getInstance().initialiseScheduleForFirm(firm, () -> firmScheduleTextView.setText(firm.getSchedule().toString()));
         }
         CardView cardView = view.findViewById(R.id.firmCardViewId);
         cardView.setOnClickListener(view1 -> activateFirmDetailsActivityForFirm(firm));
@@ -98,9 +98,9 @@ public class FirmsAdapter implements ListAdapter {
     }
 
     private void activateFirmDetailsActivityForFirm(Firm firm) {
-        Eight.dataModel.setFirm(firm);
+        DataModel.getInstance().setFirm(firm);
         context.activateProgress();
-        Eight.dataModel.initialiseDataStoreForSelectedFirm(firm, () -> {
+        DataModel.getInstance().initialiseDataStoreForSelectedFirm(firm, () -> {
             context.deactivateProgress();
             context.activateFirmDetailsActivity();
         });

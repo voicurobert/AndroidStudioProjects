@@ -4,12 +4,12 @@ import rvo.com.book.datamodel.entities.Category;
 
 public class CategoryRepository extends FirebaseRepository {
     private static final CategoryRepository SINGLETON = new CategoryRepository();
-    private static final String COLLECTION = "category";
+    private static final String COLLECTION = "categories";
 
-    public CategoryRepository() {
+    private CategoryRepository() {
         super();
         initializeFirestore(COLLECTION);
-        setObjectClass(Category.class);
+        setObjectClass(new Category());
     }
 
     public static CategoryRepository getInstance(){

@@ -6,13 +6,6 @@ import android.content.Intent;
 import com.google.firebase.auth.FirebaseAuth;
 
 import rvo.com.book.R;
-import rvo.com.book.android.main_app.alerts.EightAlertDialog;
-import rvo.com.book.common.Eight;
-import rvo.com.book.datamodel.entities.Customer;
-import rvo.com.book.datamodel.entities.Firm;
-import rvo.com.book.datamodel.interfaces.IDownloadFinished;
-import rvo.com.book.datamodel.repositories.CustomerRepository;
-import rvo.com.book.datamodel.repositories.FirmRepository;
 
 public class ForgotPassword {
 
@@ -36,32 +29,6 @@ public class ForgotPassword {
                 activity.startActivity(intent);
             }
         });
-    }
-
-    protected static void updatePasswordIfConnected(Activity activity, String password, String context, String email, IDownloadFinished downloadFinished) {
-        if (context.equals(CUSTOMER)) {
-            CustomerRepository.getInstance().objectFromEmail(email, object -> {
-                if (object != null) {
-                    Customer customer = (Customer)object;
-                    customer.setPassword(password);
-                    CustomerRepository.getInstance().updateRecord(customer, Customer.PASSWORD, customer.getPassword());
-                    downloadFinished.finished();
-                } else {
-                    EightAlertDialog.showAlertWithMessage(activity.getString(R.string.email_not_exists), activity);
-                }
-            });
-        } else {
-            FirmRepository.getInstance().objectFromEmail(email, object -> {
-                if (object != null) {
-                    Firm firm = (Firm)object;
-                    firm.setPassword(password);
-                    FirmRepository.getInstance().updateRecord(firm, Firm.PASSWORD, firm.getPassword());
-                    downloadFinished.finished();
-                } else {
-                    EightAlertDialog.showAlertWithMessage(activity.getString(R.string.email_not_exists), activity);
-                }
-            });
-        }
     }
 
 

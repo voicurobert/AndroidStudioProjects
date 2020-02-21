@@ -6,18 +6,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-
 import androidx.annotation.Nullable;
 import androidx.fragment.app.FragmentActivity;
-
 import com.google.firebase.auth.FirebaseAuth;
-
 import rvo.com.book.R;
 import rvo.com.book.android.main_app.alerts.EightAlertDialog;
-import rvo.com.book.common.Eight;
-import rvo.com.book.common.Validator;
+import rvo.com.book.common.Tools;
+import rvo.com.book.datamodel.entities.DataModel;
 import rvo.com.book.datamodel.entities.Firm;
-import rvo.com.book.datamodel.interfaces.IObjectModified;
 import rvo.com.book.datamodel.repositories.FirmRepository;
 
 
@@ -52,20 +48,16 @@ public class FirmSignInActivity extends FragmentActivity {
         progressBar = findViewById(R.id.firmSignInProgressBarId);
         activity = this;
         nextButton.setOnClickListener(v -> {
-            progressBar.setVisibility(View.VISIBLE);
             if (canSignInButtonBePressed()) {
-                String email = Validator.getEmailFromEditText(emailEditText);
+                progressBar.setVisibility(View.VISIBLE);
+                String email = Tools.getEmailFromEditText(emailEditText);
                 FirebaseAuth.getInstance().signInAnonymously().addOnCompleteListener(task -> {
                     if (task.isComplete()) {
                         FirmRepository.getInstance().objectFromEmail(email, object -> {
                             if (object != null) {
                                 EightAlertDialog.showAlertWithMessage("Email exists, please set another email!", activity);
                             } else {
-                                insertFirmOwner(() -> {
-                                    activateSetFirmAddressActivity();
-                                    progressBar.setVisibility(View.GONE);
-                                    finishAndRemoveTask();
-                                });
+                                insertFirmOwner();
                             }
                         });
                     }
@@ -74,17 +66,19 @@ public class FirmSignInActivity extends FragmentActivity {
         });
     }
 
-    private void insertFirmOwner(IObjectModified objectModified) {
+    private void insertFirmOwner() {
         FirebaseAuth.getInstance().signInAnonymously().addOnCompleteListener(activity, task -> {
             if (task.isComplete()) {
                 Firm firm = new Firm();
-                firm.setName(Validator.getNameFromEditText(firmNameEditText));
-                firm.setEmail(Validator.getEmailFromEditText(emailEditText));
-                firm.setPassword(Validator.getPasswordFromEditText(passwordEditText));
-                firm.setPhoneNumber(Validator.getPhoneNumberFromEditText(phoneNumberEditText));
+                firm.setName(Tools.getNameFromEditText(firmNameEditText));
+                firm.setEmail(Tools.getEmailFromEditText(emailEditText));
+                firm.setPassword(Tools.getPasswordFromEditText(passwordEditText));
+                firm.setPhoneNumber(Tools.getPhoneNumberFromEditText(phoneNumberEditText));
                 firm.setStatus(0);
-                Eight.dataModel.setFirm(firm);
-                objectModified.objectModified();
+                DataModel.getInstance().setFirm(firm);
+                activateSetFirmAddressActivity();
+                progressBar.setVisibility(View.GONE);
+                finishAndRemoveTask();
             }
         });
 
@@ -101,7 +95,7 @@ public class FirmSignInActivity extends FragmentActivity {
             if (!hasFocus) {
                 switch (type) {
                     case "email":
-                        String email = Validator.getEmailFromEditText(emailEditText);
+                        String email = Tools.getEmailFromEditText(emailEditText);
                         if (email == null) {
                             EightAlertDialog.showAlertWithMessage("Email is not set!", activity);
                         } else if (email.equals("")) {
@@ -110,15 +104,15 @@ public class FirmSignInActivity extends FragmentActivity {
                         break;
                     case "password":
                     case "retypedPassword":
-                        String p1 = Validator.getPasswordFromEditText(passwordEditText);
-                        String p2 = Validator.getPasswordFromEditText(reTypePasswordEditText);
+                        String p1 = Tools.getPasswordFromEditText(passwordEditText);
+                        String p2 = Tools.getPasswordFromEditText(reTypePasswordEditText);
                         if (p1 != null && p2 != null && !p1.equals("") && !p2.equals("") &&
                             !p1.equals(p2)) {
                             EightAlertDialog.showAlertWithMessage("Passwords does not match", activity);
                             break;
                         }
                     case "phoneNumber":
-                        String phoneNumber = Validator
+                        String phoneNumber = Tools
                                 .getPhoneNumberFromEditText(phoneNumberEditText);
                         if (phoneNumber != null && phoneNumber.equals("")) {
                             EightAlertDialog.showAlertWithMessage("Phone number is incorrect", activity);
@@ -130,7 +124,7 @@ public class FirmSignInActivity extends FragmentActivity {
     }
 
     private boolean canSignInButtonBePressed() {
-        String email = Validator.getEmailFromEditText(emailEditText);
+        String email = Tools.getEmailFromEditText(emailEditText);
         if (email == null) {
             EightAlertDialog.showAlertWithMessage("Email is not set!", this);
             return false;
@@ -138,16 +132,16 @@ public class FirmSignInActivity extends FragmentActivity {
             EightAlertDialog.showAlertWithMessage("Email is not correct!", this);
             return false;
         }
-        if (Validator.getNameFromEditText(firmNameEditText) == null) {
+        if (Tools.getNameFromEditText(firmNameEditText) == null) {
             EightAlertDialog.showAlertWithMessage("Firm name is not set!", activity);
             return false;
         }
-        String p1 = Validator.getPasswordFromEditText(passwordEditText);
+        String p1 = Tools.getPasswordFromEditText(passwordEditText);
         if (p1 == null) {
             EightAlertDialog.showAlertWithMessage("Password is not set!", activity);
             return false;
         }
-        String p2 = Validator.getPasswordFromEditText(reTypePasswordEditText);
+        String p2 = Tools.getPasswordFromEditText(reTypePasswordEditText);
         if (p2 == null) {
             EightAlertDialog.showAlertWithMessage("Retyped Password is not set!", activity);
             return false;
@@ -156,7 +150,7 @@ public class FirmSignInActivity extends FragmentActivity {
             EightAlertDialog.showAlertWithMessage("Passwords does not match", activity);
             return false;
         }
-        String phoneNumber = Validator.getPhoneNumberFromEditText(phoneNumberEditText);
+        String phoneNumber = Tools.getPhoneNumberFromEditText(phoneNumberEditText);
         if (phoneNumber == null) {
             EightAlertDialog.showAlertWithMessage("Phone number is not set!", activity);
             return false;

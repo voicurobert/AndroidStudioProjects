@@ -5,9 +5,9 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.List;
-
+import rvo.com.book.datamodel.entities.FirebaseRecord;
 import rvo.com.book.datamodel.entities.Firm;
-import rvo.com.book.datamodel.interfaces.IObjectRetrieved;
+import rvo.com.book.datamodel.interfaces.OnObjectsRetrieved;
 
 public class FirmRepository extends FirebaseRepository {
 
@@ -17,28 +17,28 @@ public class FirmRepository extends FirebaseRepository {
     private FirmRepository() {
         super();
         initializeFirestore(COLLECTION);
-        setObjectClass(Firm.class);
+        setObjectClass(new Firm());
     }
 
     public static FirmRepository getInstance(){
         return SINGLETON;
     }
 
-    public void getActiveFirms(IObjectRetrieved objectRetrieved) {
+    public void getActiveFirms(OnObjectsRetrieved objectRetrieved) {
         getCollectionReference().whereEqualTo(Firm.STATUS, 1).get().addOnCompleteListener(task -> {
-            List<Firm> firms = new ArrayList<>();
+            List<FirebaseRecord> firms = new ArrayList<>();
             if (task.isSuccessful()) {
                 QuerySnapshot qs = task.getResult();
                 if (qs != null && !qs.isEmpty()) {
                     for (QueryDocumentSnapshot documentSnapshot : qs) {
                         firms.add(documentSnapshot.toObject(Firm.class));
                     }
-                    objectRetrieved.onObjectRetrieved(firms);
+                    objectRetrieved.onObjectsRetrieved(firms);
                 } else {
-                    objectRetrieved.onObjectRetrieved(firms);
+                    objectRetrieved.onObjectsRetrieved(firms);
                 }
             } else {
-                objectRetrieved.onObjectRetrieved(firms);
+                objectRetrieved.onObjectsRetrieved(firms);
             }
         }).addOnFailureListener(Throwable::printStackTrace);
     }

@@ -23,26 +23,26 @@ import rvo.com.book.android.main_app.alerts.AddAlertDialog;
 import rvo.com.book.android.main_app.alerts.EightAlertDialog;
 import rvo.com.book.android.main_app.billing.BillingActivity;
 import rvo.com.book.android.main_app.billing.InAppBilling;
-import rvo.com.book.common.Eight;
 import rvo.com.book.android.EightSharedPreferences;
-import rvo.com.book.datamodel.repositories.FirestoreManager;
+import rvo.com.book.datamodel.entities.DataModel;
 import rvo.com.book.datamodel.entities.Firm;
 import rvo.com.book.datamodel.entities.Schedule;
 import rvo.com.book.android.main_app.firm_login.FirmLocationMapActivity;
 import rvo.com.book.datamodel.repositories.FirmRepository;
+import rvo.com.book.datamodel.repositories.ScheduleRepository;
 
 public class EightMainAppActivity extends FragmentActivity {
 
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
-
+    private Firm firm;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_app_activity);
         navigationView = findViewById(R.id.navigationViewId);
         loadOrUnloadMenuItems(navigationView.getMenu());
-
+        firm = DataModel.getInstance().getFirm();
         navigationView.setNavigationItemSelectedListener(item -> {
             switch (item.getItemId()) {
                 case R.id.firmDetailsId:
@@ -110,15 +110,11 @@ public class EightMainAppActivity extends FragmentActivity {
     }
 
     private void editFirmDetailsMenuClicked() {
-        Eight.dataModel.initialiseDataStore(null, () -> {
-            Intent firmIntent = new Intent(getApplicationContext(), FirmDetailsMasterActivity.class);
-            startActivity(firmIntent);
-        });
-
+        Intent firmIntent = new Intent(getApplicationContext(), FirmDetailsMasterActivity.class);
+        startActivity(firmIntent);
     }
 
     private void editFirmMenuClicked() {
-        Firm owner = Eight.dataModel.getFirm();
         AddAlertDialog addAlertDialog = new AddAlertDialog(R.layout.edit_firm_layout, this, getLayoutInflater(), getString(R.string.editFirm_string));
         addAlertDialog.createAlertDialog();
         View alertView = addAlertDialog.getView();
@@ -134,10 +130,10 @@ public class EightMainAppActivity extends FragmentActivity {
             }
         });
 
-        firmNameEditText.setText(owner.getName());
-        firmEmailEditText.setText(owner.getEmail());
-        firmPhoneNumberEditText.setText(owner.getPhoneNumber());
-        firmAddressEditText.setText(owner.getAddress());
+        firmNameEditText.setText(firm.getName());
+        firmEmailEditText.setText(firm.getEmail());
+        firmPhoneNumberEditText.setText(firm.getPhoneNumber());
+        firmAddressEditText.setText(firm.getAddress());
         Button editFirm = alertView.findViewById(R.id.editFirmButtonId_edit_firm_layout);
         editFirm.setText(R.string.edit);
         editFirm.setOnClickListener(v -> {
@@ -154,7 +150,6 @@ public class EightMainAppActivity extends FragmentActivity {
             if (phoneNumber.equals(" ")) {
                 EightAlertDialog.showAlertWithMessage("Firm phone number not set!", getParent());
             }
-            Firm firm = Eight.dataModel.getFirm();
             firm.setName(firmName);
             firm.setPhoneNumber(phoneNumber);
             FirmRepository.getInstance().updateRecord(firm, Firm.NAME, firm.getName(),Firm.PHONE_NUMBER, firm.getPhoneNumber());
@@ -174,11 +169,13 @@ public class EightMainAppActivity extends FragmentActivity {
     private void editScheduleFirmMenuClicked() {
         Intent intent = new Intent(getApplicationContext(), SetScheduleActivity.class);
         intent.putExtra("context", "firm");
-        if (Eight.dataModel.getFirm().getSchedule() == null) {
-            Eight.firestoreManager.getObjectFromId(FirestoreManager.SCHEDULES, Eight.dataModel.getFirm().getScheduleId(), Schedule.class, object -> {
-                Schedule schedule = (Schedule) object;
-                Eight.dataModel.getFirm().setSchedule(schedule);
-                startActivity(intent);
+        if (firm.getSchedule() == null) {
+            ScheduleRepository.getInstance().objectFromId(firm.getScheduleId(), object -> {
+                if (object != null) {
+                    Schedule schedule = (Schedule) object;
+                   firm.setSchedule(schedule);
+                    startActivity(intent);
+                }
             });
         } else {
             startActivity(intent);
@@ -187,7 +184,7 @@ public class EightMainAppActivity extends FragmentActivity {
 
     private void activateOrDeactivateFirmMenuClicked(MenuItem item) {
         navigationView.getMenu().findItem(R.id.activateOrDeactivateFirmMenuId);
-        if (Eight.dataModel.getFirm().firmIsActive()) {
+        if (firm.firmIsActive()) {
             // deactivate firm
             activateOrDeactivateFirmButtonDialogClicked(0);
             item.setTitle(getString(R.string.deactivate_firm_string));
@@ -207,10 +204,9 @@ public class EightMainAppActivity extends FragmentActivity {
             title = getResources().getString(R.string.activate_firm);
         }
         builder.setTitle(title);
-        builder.setPositiveButton(getString(R.string.yes), (dialog1, which) -> {
-            Firm firm = Eight.dataModel.getFirm();
+        builder.setPositiveButton(getString(R.string.yes), (dialog1, which) -> { ;
             firm.setStatus(status);
-            FirmRepository.getInstance().updateRecord(Eight.dataModel.getFirm(), Firm.STATUS, firm.getStatus());
+            FirmRepository.getInstance().updateRecord(firm, Firm.STATUS, firm.getStatus());
         });
         builder.setNegativeButton(getString(R.string.no), (dialog, which) -> dialog.cancel());
         android.app.AlertDialog dialog = builder.create();
@@ -238,7 +234,7 @@ public class EightMainAppActivity extends FragmentActivity {
 
     private void activeFirmsMenuClicked() {
         ActiveFirmsFragment activeFirmsFragment = new ActiveFirmsFragment();
-        Eight.dataModel.initialiseActiveFirms(() -> activateFragment(activeFirmsFragment));
+        DataModel.getInstance().initialiseActiveFirms(() -> activateFragment(activeFirmsFragment));
     }
 
     private void loadOrUnloadMenuItems(Menu menu) {
@@ -251,7 +247,7 @@ public class EightMainAppActivity extends FragmentActivity {
             menu.findItem(R.id.activeFirmsId).setVisible(false);
             MenuItem menuItem = menu.findItem(R.id.activateOrDeactivateFirmMenuId);
             if (menuItem != null) {
-                if (Eight.dataModel.getFirm().firmIsActive()) {
+                if (firm.firmIsActive()) {
                     menuItem.setTitle(getResources().getString(R.string.deactivate_firm_string));
                 } else {
                     menuItem.setTitle(getResources().getString(R.string.activate_firm_string));

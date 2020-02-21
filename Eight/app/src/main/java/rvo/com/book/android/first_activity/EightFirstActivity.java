@@ -19,9 +19,10 @@ import rvo.com.book.android.main_app.EightMainAppActivity;
 import rvo.com.book.android.main_app.alerts.EightAlertDialog;
 import rvo.com.book.android.main_app.billing.BillingActivity;
 import rvo.com.book.android.main_app.billing.InAppBilling;
-import rvo.com.book.common.Eight;
 import rvo.com.book.android.EightSharedPreferences;
+import rvo.com.book.common.Tools;
 import rvo.com.book.datamodel.entities.Customer;
+import rvo.com.book.datamodel.entities.DataModel;
 import rvo.com.book.datamodel.entities.Firm;
 import rvo.com.book.android.notification.FirebaseProperties;
 import rvo.com.book.android.main_app.customer_login.CustomerLoginOrSignInActivity;
@@ -46,8 +47,8 @@ public class EightFirstActivity extends FragmentActivity {
         inAppBilling.start(this);
         FirebaseDatabase.getInstance();
         FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(instanceIdResult -> FirebaseProperties.getInstance().setCurrentToken(instanceIdResult.getToken()));
-        Eight.isGooglePlayServicesAvailable(this);
-        if (!Eight.isConnectedToNetwork(getApplicationContext())) {
+        Tools.isGooglePlayServicesAvailable(this);
+        if (!Tools.isConnectedToNetwork(getApplicationContext())) {
             EightAlertDialog.showAlertWithMessage(getString(R.string.no_internet_access), this);
         }
         EightSharedPreferences.getInstance().createSharedPreferencesForActivity(this);
@@ -62,7 +63,7 @@ public class EightFirstActivity extends FragmentActivity {
 
         Button continueAsFirmButton = findViewById(R.id.continueAsFirmButtonId);
         continueAsFirmButton.setOnClickListener(view -> {
-            if (!Eight.isConnectedToNetwork(getApplicationContext())) {
+            if (!Tools.isConnectedToNetwork(getApplicationContext())) {
                 EightAlertDialog.showAlertWithMessage(getString(R.string.no_internet_access), this);
                 return;
             }
@@ -72,7 +73,7 @@ public class EightFirstActivity extends FragmentActivity {
 
         Button continueAsCustomerButton = findViewById(R.id.continueAsCustomerButtonId);
         continueAsCustomerButton.setOnClickListener(view -> {
-            if (!Eight.isConnectedToNetwork(getApplicationContext())) {
+            if (!Tools.isConnectedToNetwork(getApplicationContext())) {
                 EightAlertDialog.showAlertWithMessage(getString(R.string.no_internet_access), this);
                 return;
             }
@@ -85,7 +86,7 @@ public class EightFirstActivity extends FragmentActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        if (!Eight.isConnectedToNetwork(getApplicationContext())) {
+        if (!Tools.isConnectedToNetwork(getApplicationContext())) {
             EightAlertDialog.showAlertWithMessage(getString(R.string.no_internet_access), this);
         }
     }
@@ -155,7 +156,7 @@ public class EightFirstActivity extends FragmentActivity {
                 progressBar.setVisibility(View.VISIBLE);
                 FirmRepository.getInstance().objectFromEmailAndPassword(firmEmail, firmPassword, object -> {
                     Firm firm = (Firm) object;
-                    Eight.dataModel.setFirm(firm);
+                    DataModel.getInstance().setFirm(firm);
                     activateBillingOrFirmMainApp();
                     progressBar.setVisibility(View.GONE);
                 });
@@ -164,7 +165,7 @@ public class EightFirstActivity extends FragmentActivity {
                     if (task.isComplete()) {
                         FirmRepository.getInstance().objectFromEmailAndPassword(firmEmail, firmPassword, object -> {
                             Firm firm = (Firm) object;
-                            Eight.dataModel.setFirm(firm);
+                            DataModel.getInstance().setFirm(firm);
                             activateBillingOrFirmMainApp();
                             progressBar.setVisibility(View.GONE);
                         });
@@ -182,7 +183,7 @@ public class EightFirstActivity extends FragmentActivity {
             if (isUserAuthenticated()) {
                 CustomerRepository.getInstance().objectFromEmailAndPassword(email, password, object -> {
                     Customer customer = (Customer) object;
-                    Eight.dataModel.setCustomer(customer);
+                    DataModel.getInstance().setCustomer(customer);
                     activateEightMainApp();
                     //activateCustomerModeMainActivity();
                     progressBar.setVisibility(View.GONE);
@@ -192,7 +193,7 @@ public class EightFirstActivity extends FragmentActivity {
                     if (task.isComplete()) {
                         CustomerRepository.getInstance().objectFromEmailAndPassword(email, password, object -> {
                             Customer customer = (Customer) object;
-                            Eight.dataModel.setCustomer(customer);
+                            DataModel.getInstance().setCustomer(customer);
                             //activateCustomerModeMainActivity();
                             activateEightMainApp();
                             progressBar.setVisibility(View.GONE);

@@ -28,11 +28,13 @@ import rvo.com.book.android.main_app.alerts.AddAlertDialog;
 import rvo.com.book.android.main_app.alerts.EightAlertDialog;
 import rvo.com.book.android.main_app.billing.BillingActivity;
 import rvo.com.book.android.main_app.billing.InAppBilling;
-import rvo.com.book.common.Eight;
 import rvo.com.book.android.EightSharedPreferences;
 import rvo.com.book.datamodel.entities.Category;
+import rvo.com.book.datamodel.entities.DataModel;
 import rvo.com.book.datamodel.entities.Employee;
 import rvo.com.book.datamodel.entities.Schedule;
+import rvo.com.book.datamodel.repositories.EmployeeRepository;
+import rvo.com.book.datamodel.repositories.ScheduleRepository;
 
 public class EmployeesFragment extends Fragment {
 
@@ -59,7 +61,7 @@ public class EmployeesFragment extends Fragment {
         fragment = this;
         View thisView = inflater.inflate(R.layout.employees_fragment, container, false);
         GridView gridView = thisView.findViewById(R.id.employeesGridLayout);
-        List<Employee> employees = Eight.dataModel.getEmployees();
+        List<Employee> employees = DataModel.getInstance().getEmployees();
         if (employees.size() >= 2) {
             gridView.setNumColumns(2);
         }
@@ -76,7 +78,7 @@ public class EmployeesFragment extends Fragment {
 
     private void addEmployeeButtonClicked() {
         selectedCategories.clear();
-        if (Eight.dataModel.getCategories().isEmpty()) {
+        if (DataModel.getInstance().getCategories().isEmpty()) {
             EightAlertDialog.showAlertWithMessage("Create at least one category before you add employees!", fragment.getActivity());
             return;
         }
@@ -109,15 +111,15 @@ public class EmployeesFragment extends Fragment {
             Employee employee = new Employee();
             employee.setCategories(categoryIds);
             employee.setName(employeeName);
-            employee.setFirmId(Eight.dataModel.getFirm().getId());
-            Eight.firestoreManager.insertEmployee(employee);
-            Eight.dataModel.addEmployee(employee);
+            employee.setFirmId(DataModel.getInstance().getFirm().getId());
+            EmployeeRepository.getInstance().insertRecord(employee);
+            DataModel.getInstance().addEmployee(employee);
             // insert schedule based on firm schedule
-            Schedule schedule = Eight.firestoreManager.insertScheduleBasedOnSchedule(Eight.dataModel.getFirm().getSchedule());
+            Schedule schedule = ScheduleRepository.getInstance().copySchedule(DataModel.getInstance().getFirm().getSchedule());
             employee.setScheduleId(schedule.getId());
-            Eight.firestoreManager.updateEmployeeWithScheduleId(employee.getId(), schedule.getId());
             employee.setSchedule(schedule);
-            adapter.setEmployees(Eight.dataModel.getEmployees());
+            EmployeeRepository.getInstance().updateRecord(employee, Employee.SCHEDULE_ID, employee.getScheduleId());
+            adapter.setEmployees(DataModel.getInstance().getEmployees());
             addAlertDialog.close();
         });
         addAlertDialog.show();
@@ -135,7 +137,7 @@ public class EmployeesFragment extends Fragment {
 
     public List<CheckBox> getCategoriesAsListOfCheckBoxes() {
         List<CheckBox> checkBoxes = new ArrayList<>();
-        List<Category> categories = Eight.dataModel.getCategories();
+        List<Category> categories = DataModel.getInstance().getCategories();
         for (Category category : categories) {
             CheckBox checkBox = new CheckBox(getContext());
             checkBox.setText(category.getName());
@@ -144,7 +146,7 @@ public class EmployeesFragment extends Fragment {
             checkBox.setTextColor(Color.WHITE);
             checkBox.setTextSize(12);
             checkBox.setOnCheckedChangeListener((compoundButton, b) -> {
-                Category c = Eight.dataModel.getCategoryFromCategoryName(compoundButton.getText().toString());
+                Category c = DataModel.getInstance().getCategoryFromCategoryName(compoundButton.getText().toString());
                 if (drawLayout) {
                     return;
                 }
