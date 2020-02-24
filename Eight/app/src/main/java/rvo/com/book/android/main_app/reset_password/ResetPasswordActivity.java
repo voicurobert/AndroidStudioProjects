@@ -31,7 +31,8 @@ public class ResetPasswordActivity extends FragmentActivity {
     private ProgressBar progressBar;
 
 
-    @Override protected void onCreate(Bundle savedInstanceState) {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.reset_password_activity);
 
@@ -70,7 +71,7 @@ public class ResetPasswordActivity extends FragmentActivity {
                 return;
             }
             if (object instanceof Customer) {
-                Customer customer = (Customer)object;
+                Customer customer = (Customer) object;
                 customer.setPassword(password);
                 CustomerRepository.getInstance().updateRecord(customer, Customer.PASSWORD, customer.getPassword()).addOnCompleteListener(command -> {
                     EightAlertDialog.showAlertWithMessage(getString(R.string.password_change), activity);
@@ -78,7 +79,7 @@ public class ResetPasswordActivity extends FragmentActivity {
                     activity.finish();
                 });
             } else if (object instanceof Firm) {
-                Firm firm = (Firm)object;
+                Firm firm = (Firm) object;
                 firm.setPassword(password);
                 FirmRepository.getInstance().updateRecord(firm, Firm.PASSWORD, firm.getPassword()).addOnCompleteListener(command -> {
                     EightAlertDialog.showAlertWithMessage(getString(R.string.password_change), activity);

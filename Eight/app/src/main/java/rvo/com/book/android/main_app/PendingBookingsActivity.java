@@ -37,8 +37,8 @@ public class PendingBookingsActivity extends AppCompatActivity {
     protected void refreshBookings() {
         BookingRepository.getInstance().getPendingBookingsForFirmOwnerId(DataModel.getInstance().getFirm(), objects -> {
             List<Booking> bookings = new ArrayList<>();
-            for (FirebaseRecord record : objects){
-                bookings.add((Booking)record);
+            for (FirebaseRecord record : objects) {
+                bookings.add((Booking) record);
             }
             PendingBookingAdapter adapter = new PendingBookingAdapter(getApplicationContext(), bookings, this::refreshBookings);
             listView.setAdapter(adapter);

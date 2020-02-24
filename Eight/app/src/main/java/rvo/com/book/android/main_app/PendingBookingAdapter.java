@@ -14,13 +14,13 @@ import java.util.List;
 
 import rvo.com.book.R;
 import rvo.com.book.android.EightSharedPreferences;
+import rvo.com.book.android.notification.NotificationManager;
 import rvo.com.book.datamodel.entities.Booking;
 import rvo.com.book.datamodel.entities.Customer;
 import rvo.com.book.datamodel.entities.DataModel;
 import rvo.com.book.datamodel.entities.Firm;
 import rvo.com.book.datamodel.repositories.BookingRepository;
 import rvo.com.book.datamodel.repositories.CustomerRepository;
-import rvo.com.book.android.notification.NotificationManager;
 
 public class PendingBookingAdapter implements ListAdapter {
 

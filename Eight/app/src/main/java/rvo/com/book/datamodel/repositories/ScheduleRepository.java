@@ -13,11 +13,11 @@ public class ScheduleRepository extends FirebaseRepository {
         setObjectClass(new Schedule());
     }
 
-    public static ScheduleRepository getInstance(){
+    public static ScheduleRepository getInstance() {
         return SINGLETON;
     }
 
-    public Schedule copySchedule(Schedule schedule){
+    public Schedule copySchedule(Schedule schedule) {
         Schedule newSchedule = new Schedule();
         newSchedule.setMonday(schedule.getMonday());
         newSchedule.setTuesday(schedule.getTuesday());

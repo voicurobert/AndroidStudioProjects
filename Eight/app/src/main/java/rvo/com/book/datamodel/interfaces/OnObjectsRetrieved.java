@@ -1,6 +1,7 @@
 package rvo.com.book.datamodel.interfaces;
 
 import java.util.List;
+
 import rvo.com.book.datamodel.entities.FirebaseRecord;
 
 @FunctionalInterface

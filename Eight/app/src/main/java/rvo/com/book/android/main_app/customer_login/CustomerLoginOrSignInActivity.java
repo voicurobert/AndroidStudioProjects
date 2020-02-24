@@ -18,13 +18,13 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.iid.FirebaseInstanceId;
 
 import rvo.com.book.R;
-import rvo.com.book.android.main_app.alerts.EightAlertDialog;
 import rvo.com.book.android.EightSharedPreferences;
+import rvo.com.book.android.main_app.EightMainAppActivity;
+import rvo.com.book.android.main_app.alerts.EightAlertDialog;
+import rvo.com.book.android.main_app.reset_password.ForgotPassword;
+import rvo.com.book.android.notification.FirebaseProperties;
 import rvo.com.book.common.Tools;
 import rvo.com.book.datamodel.entities.Customer;
-import rvo.com.book.android.notification.FirebaseProperties;
-import rvo.com.book.android.main_app.EightMainAppActivity;
-import rvo.com.book.android.main_app.reset_password.ForgotPassword;
 import rvo.com.book.datamodel.entities.DataModel;
 import rvo.com.book.datamodel.repositories.CustomerRepository;
 
@@ -147,7 +147,7 @@ public class CustomerLoginOrSignInActivity extends FragmentActivity {
                 EightAlertDialog.showAlertWithMessage("Email incorrect!", activity);
                 emailEditText.requestFocus();
                 progressBar.setVisibility(View.GONE);
-            }else{
+            } else {
                 CustomerRepository.getInstance().objectFromEmailAndPassword(email, password, object -> {
                     if (object == null) {
                         EightAlertDialog.showAlertWithMessage("Password incorrect!", activity);

@@ -19,9 +19,10 @@ import androidx.cardview.widget.CardView;
 import java.util.List;
 
 import rvo.com.book.R;
+import rvo.com.book.android.EightSharedPreferences;
 import rvo.com.book.android.main_app.alerts.AddAlertDialog;
 import rvo.com.book.android.main_app.alerts.EightAlertDialog;
-import rvo.com.book.android.EightSharedPreferences;
+import rvo.com.book.android.main_app.schedule.SetScheduleActivity;
 import rvo.com.book.datamodel.entities.Category;
 import rvo.com.book.datamodel.entities.DataModel;
 import rvo.com.book.datamodel.entities.Employee;
@@ -172,12 +173,10 @@ public class EmployeeAdapter implements ListAdapter {
 
         });
         addAlertDialog.show();
-        deleteButton.setOnClickListener(v -> {
-            EmployeeRepository.getInstance().deleteRecord(employee).addOnCompleteListener(command -> {
-                DataModel.getInstance().removeEmployee(employee);
-                addAlertDialog.close();
-            });
-        });
+        deleteButton.setOnClickListener(v -> EmployeeRepository.getInstance().deleteRecord(employee).addOnCompleteListener(command -> {
+            DataModel.getInstance().removeEmployee(employee);
+            addAlertDialog.close();
+        }));
         closeButton.setOnClickListener(v -> addAlertDialog.close());
     }
 

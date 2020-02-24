@@ -19,13 +19,13 @@ public class BookingRepository extends FirebaseRepository {
     private static final BookingRepository SINGLETON = new BookingRepository();
     private static final String COLLECTION = "bookings";
 
-    private BookingRepository(){
+    private BookingRepository() {
         super();
         initializeFirestore(COLLECTION);
         setObjectClass(new Booking());
     }
 
-    public static BookingRepository getInstance(){
+    public static BookingRepository getInstance() {
         return SINGLETON;
     }
 
@@ -34,7 +34,7 @@ public class BookingRepository extends FirebaseRepository {
             if (task.isSuccessful()) {
                 List<FirebaseRecord> bookings = new ArrayList<>();
                 QuerySnapshot querySnapshot = task.getResult();
-                if (querySnapshot != null && !querySnapshot.isEmpty()){
+                if (querySnapshot != null && !querySnapshot.isEmpty()) {
                     for (QueryDocumentSnapshot documentSnapshot : task.getResult()) {
                         Booking booking = documentSnapshot.toObject(Booking.class);
                         EightDate today = new EightDate();
@@ -96,6 +96,7 @@ public class BookingRepository extends FirebaseRepository {
                             bookings.add(booking);
                         }
                     }
+                    objectRetrieved.onObjectsRetrieved(bookings);
                 } else {
                     objectRetrieved.onObjectsRetrieved(bookings);
                 }

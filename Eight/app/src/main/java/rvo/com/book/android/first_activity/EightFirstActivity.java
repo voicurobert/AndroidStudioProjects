@@ -15,18 +15,18 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.iid.FirebaseInstanceId;
 
 import rvo.com.book.R;
+import rvo.com.book.android.EightSharedPreferences;
 import rvo.com.book.android.main_app.EightMainAppActivity;
 import rvo.com.book.android.main_app.alerts.EightAlertDialog;
 import rvo.com.book.android.main_app.billing.BillingActivity;
 import rvo.com.book.android.main_app.billing.InAppBilling;
-import rvo.com.book.android.EightSharedPreferences;
+import rvo.com.book.android.main_app.customer_login.CustomerLoginOrSignInActivity;
+import rvo.com.book.android.main_app.firm_login.FirmLoginOrSignInActivity;
+import rvo.com.book.android.notification.FirebaseProperties;
 import rvo.com.book.common.Tools;
 import rvo.com.book.datamodel.entities.Customer;
 import rvo.com.book.datamodel.entities.DataModel;
 import rvo.com.book.datamodel.entities.Firm;
-import rvo.com.book.android.notification.FirebaseProperties;
-import rvo.com.book.android.main_app.customer_login.CustomerLoginOrSignInActivity;
-import rvo.com.book.android.main_app.firm_login.FirmLoginOrSignInActivity;
 import rvo.com.book.datamodel.repositories.CustomerRepository;
 import rvo.com.book.datamodel.repositories.FirmRepository;
 
@@ -121,7 +121,11 @@ public class EightFirstActivity extends FragmentActivity {
                 activateBillingActivity();
             } else {
                 progressBar.setVisibility(View.GONE);
-                activateEightMainApp();
+                DataModel.getInstance().initialiseDataStore(null, () -> {
+                    activateEightMainApp();
+                    finish();
+                });
+
             }
         });
     }
@@ -149,8 +153,7 @@ public class EightFirstActivity extends FragmentActivity {
 
     private void handleFirmModeEnabled() {
         String firmEmail = EightSharedPreferences.getInstance().getString(EightSharedPreferences.FIRM_EMAIL_KEY);
-        String firmPassword = EightSharedPreferences.getInstance().getString(
-                EightSharedPreferences.FIRM_PASSWORD_KEY);
+        String firmPassword = EightSharedPreferences.getInstance().getString(EightSharedPreferences.FIRM_PASSWORD_KEY);
         if (firmEmail != null && firmPassword != null) {
             if (isUserAuthenticated()) {
                 progressBar.setVisibility(View.VISIBLE);
@@ -204,7 +207,7 @@ public class EightFirstActivity extends FragmentActivity {
         }
     }
 
-    private boolean isUserAuthenticated(){
+    private boolean isUserAuthenticated() {
         return FirebaseAuth.getInstance().getCurrentUser() != null;
     }
 }

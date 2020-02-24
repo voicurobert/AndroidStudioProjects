@@ -1,13 +1,9 @@
 package rvo.com.book.datamodel.entities;
 
-import android.database.DataSetObservable;
-
 import androidx.annotation.Nullable;
 
 import com.google.firebase.database.IgnoreExtraProperties;
 import com.google.firebase.firestore.Exclude;
-
-import java.io.Serializable;
 
 @IgnoreExtraProperties
 public class Category extends FirebaseRecord {

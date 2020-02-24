@@ -6,9 +6,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+
 import androidx.annotation.Nullable;
 import androidx.fragment.app.FragmentActivity;
+
 import com.google.firebase.auth.FirebaseAuth;
+
 import rvo.com.book.R;
 import rvo.com.book.android.main_app.alerts.EightAlertDialog;
 import rvo.com.book.common.Tools;

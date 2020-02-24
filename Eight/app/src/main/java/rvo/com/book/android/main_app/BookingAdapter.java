@@ -16,8 +16,10 @@ import androidx.fragment.app.Fragment;
 import java.util.List;
 import java.util.Map;
 
+import rvo.com.book.Log;
 import rvo.com.book.R;
 import rvo.com.book.android.EightSharedPreferences;
+import rvo.com.book.android.main_app.schedule.ScheduleFragment;
 import rvo.com.book.datamodel.entities.Booking;
 import rvo.com.book.datamodel.entities.Employee;
 
@@ -27,14 +29,14 @@ public class BookingAdapter implements ListAdapter {
     private Fragment fragment;
     private Employee employee;
 
-    public BookingAdapter(Fragment fragment, List<Map<String, Booking>> bookingMap,
-                          Employee employee) {
+    public BookingAdapter(Fragment fragment, List<Map<String, Booking>> bookingMap, Employee employee) {
         this.bookingMap = bookingMap;
         this.fragment = fragment;
         this.employee = employee;
     }
 
     public void setBookingMap(List<Map<String, Booking>> bookingMap) {
+        this.bookingMap.clear();
         this.bookingMap = bookingMap;
     }
 
@@ -91,51 +93,52 @@ public class BookingAdapter implements ListAdapter {
                 return null;
             }
             view = layoutInflater.inflate(R.layout.booking_card_layout, null);
-            CardView cardView = view.findViewById(R.id.bookingCardViewId);
+        }
+        CardView cardView = view.findViewById(R.id.bookingCardViewId);
 
-            TextView timeTextView = view.findViewById(R.id.bookingTimeTextViewId);
-            TextView bookingProductTextView = view.findViewById(R.id.bookingProductTextViewId);
-            TextView statusTextView = view.findViewById(R.id.statusTextView);
-            String time = (String) bookingsOnTime.keySet().toArray()[0];
-            Booking booking = bookingsOnTime.get(time);
-            cardView.setOnLongClickListener(v -> {
-                if (EightSharedPreferences.getInstance().isFirmMode() && booking != null &&
-                    booking.getCustomerId() == null) {
-                    ((ScheduleFragment) fragment).rejectFirmBooking(booking);
-                }
-                return true;
-            });
-            if (booking != null) {
-                switch (booking.getStatus()) {
-                    case 1:
-                        statusTextView.setText(R.string.status);
-                        statusTextView.setTextColor(activity.getResources().getColor(R.color.lime_green));
-                        break;
-                    case 2:
-                        statusTextView.setText(R.string.finished);
-                        statusTextView.setTextColor(activity.getResources().getColor(R.color.grey));
-                        break;
-                    case 0:
-                        statusTextView.setText(R.string.rejected);
-                        statusTextView.setTextColor(activity.getResources().getColor(R.color.dark_orange));
-                        break;
-                    case -1:
-                        statusTextView.setText(R.string.pending);
-                        statusTextView.setTextColor(Color.BLUE);
-                        break;
-                }
-                if (employee.getSchedule() != null) {
-                    StringBuilder stringBuilder = new StringBuilder();
-                    stringBuilder.append(time);
-                    stringBuilder.append(" - ");
-                    stringBuilder.append(booking.getEmployee().calculateBookEndTime(time, booking.getProduct().calculateDurationAsMinutes()));
-                    timeTextView.setText(stringBuilder.toString());
-                    bookingProductTextView.setText(booking.description());
-                } else {
-                    bookingProductTextView.setText(time);
-                }
+        TextView timeTextView = view.findViewById(R.id.bookingTimeTextViewId);
+        TextView bookingProductTextView = view.findViewById(R.id.bookingProductTextViewId);
+        TextView statusTextView = view.findViewById(R.id.statusTextView);
+        String time = (String) bookingsOnTime.keySet().toArray()[0];
+        Booking booking = bookingsOnTime.get(time);
+        cardView.setOnLongClickListener(v -> {
+            if (EightSharedPreferences.getInstance().isFirmMode() && booking != null &&
+                booking.getCustomerId() == null) {
+                ((ScheduleFragment) fragment).rejectFirmBooking(booking);
+            }
+            return true;
+        });
+        if (booking != null) {
+            switch (booking.getStatus()) {
+                case 1:
+                    statusTextView.setText(R.string.status);
+                    statusTextView.setTextColor(activity.getResources().getColor(R.color.lime_green));
+                    break;
+                case 2:
+                    statusTextView.setText(R.string.finished);
+                    statusTextView.setTextColor(activity.getResources().getColor(R.color.grey));
+                    break;
+                case 0:
+                    statusTextView.setText(R.string.rejected);
+                    statusTextView.setTextColor(activity.getResources().getColor(R.color.dark_orange));
+                    break;
+                case -1:
+                    statusTextView.setText(R.string.pending);
+                    statusTextView.setTextColor(Color.BLUE);
+                    break;
+            }
+            if (employee.getSchedule() != null) {
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.append(time);
+                stringBuilder.append(" - ");
+                stringBuilder.append(booking.getEmployee().calculateBookEndTime(time, booking.getProduct().calculateDurationAsMinutes()));
+                timeTextView.setText(stringBuilder.toString());
+                bookingProductTextView.setText(booking.description());
+            } else {
+                bookingProductTextView.setText(time);
             }
         }
+
         return view;
     }
 

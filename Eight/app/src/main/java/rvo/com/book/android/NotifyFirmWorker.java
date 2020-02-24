@@ -50,8 +50,8 @@ public class NotifyFirmWorker extends Worker {
     private Result processBookingsForFirm(Firm firm) {
         BookingRepository.getInstance().getTodaysBookingsForFirm(firm, objects -> {
             List<Booking> bookings = new ArrayList<>();
-            for(FirebaseRecord record : objects){
-                bookings.add((Booking)record);
+            for (FirebaseRecord record : objects) {
+                bookings.add((Booking) record);
             }
         });
         return Result.success();

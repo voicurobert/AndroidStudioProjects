@@ -5,12 +5,9 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.annotation.Nullable;
-
 import rvo.com.book.datamodel.entities.FirebaseRecord;
 import rvo.com.book.datamodel.entities.Firm;
 import rvo.com.book.datamodel.interfaces.OnObjectRetrieved;
@@ -25,7 +22,7 @@ public abstract class FirebaseRepository {
         return collectionReference;
     }
 
-    protected void initializeFirestore(String collectionName){
+    protected void initializeFirestore(String collectionName) {
         collectionReference = FirebaseFirestore.getInstance().collection(collectionName);
     }
 
@@ -33,20 +30,20 @@ public abstract class FirebaseRepository {
         this.objectClass = objectClass;
     }
 
-    protected String newRecordId(){
+    private String newRecordId() {
         return getCollectionReference().document().getId();
     }
 
-    public Task<Void> insertRecord(FirebaseRecord firebaseRecord){
+    public Task<Void> insertRecord(FirebaseRecord firebaseRecord) {
         firebaseRecord.setId(newRecordId());
         return getCollectionReference().document(firebaseRecord.getId()).set(firebaseRecord);
     }
 
-    public Task<Void> updateRecord(FirebaseRecord record, String key, Object value, @Nullable Object... keysAndValues){
+    public Task<Void> updateRecord(FirebaseRecord record, String key, Object value, @Nullable Object... keysAndValues) {
         return collectionReference.document(record.getId()).update(key, value, keysAndValues);
     }
 
-    public Task<Void> deleteRecord(FirebaseRecord firebaseRecord){
+    public Task<Void> deleteRecord(FirebaseRecord firebaseRecord) {
         return getCollectionReference().document(firebaseRecord.getId()).delete();
     }
 
@@ -92,7 +89,7 @@ public abstract class FirebaseRepository {
                     for (QueryDocumentSnapshot documentSnapshot : query) {
                         objectRetrieved.onObjectRetrieved(documentSnapshot.toObject(objectClass.getClass()));
                     }
-                }else{
+                } else {
                     objectRetrieved.onObjectRetrieved(null);
                 }
             }
@@ -104,7 +101,7 @@ public abstract class FirebaseRepository {
             if (task.isSuccessful()) {
                 List<FirebaseRecord> categories = new ArrayList<>();
                 QuerySnapshot querySnapshot = task.getResult();
-                if ( querySnapshot != null && !querySnapshot.isEmpty() ){
+                if (querySnapshot != null && !querySnapshot.isEmpty()) {
                     for (QueryDocumentSnapshot documentSnapshot : querySnapshot) {
                         FirebaseRecord record = documentSnapshot.toObject(objectClass.getClass());
                         categories.add(record);

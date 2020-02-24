@@ -42,7 +42,7 @@ public class ActiveFirmsFragment extends Fragment {
             if (activity != null) {
                 activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragmentLayoutId, new MapViewFragment()).addToBackStack(getClass().getSimpleName()).commit();
             }
-        } ));
+        }));
         return myView;
     }
 

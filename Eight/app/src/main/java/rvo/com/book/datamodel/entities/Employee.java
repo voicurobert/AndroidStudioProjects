@@ -164,6 +164,8 @@ public class Employee extends FirebaseRecord {
             Integer t2 = Integer.valueOf(time2);
             if (t1 > t2) {
                 return 1;
+            } else if (t1.equals(t2)){
+                return 0;
             } else {
                 return -1;
             }

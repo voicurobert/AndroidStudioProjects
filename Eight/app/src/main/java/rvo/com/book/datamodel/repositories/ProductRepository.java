@@ -12,7 +12,7 @@ public class ProductRepository extends FirebaseRepository {
         setObjectClass(new Product());
     }
 
-    public static ProductRepository getInstance(){
+    public static ProductRepository getInstance() {
         return SINGLETON;
     }
 }

@@ -12,7 +12,7 @@ public class CategoryRepository extends FirebaseRepository {
         setObjectClass(new Category());
     }
 
-    public static CategoryRepository getInstance(){
+    public static CategoryRepository getInstance() {
         return SINGLETON;
     }
 }

@@ -18,16 +18,17 @@ import androidx.fragment.app.FragmentActivity;
 import com.google.android.material.navigation.NavigationView;
 
 import rvo.com.book.R;
+import rvo.com.book.android.EightSharedPreferences;
 import rvo.com.book.android.first_activity.EightFirstActivity;
 import rvo.com.book.android.main_app.alerts.AddAlertDialog;
 import rvo.com.book.android.main_app.alerts.EightAlertDialog;
 import rvo.com.book.android.main_app.billing.BillingActivity;
 import rvo.com.book.android.main_app.billing.InAppBilling;
-import rvo.com.book.android.EightSharedPreferences;
+import rvo.com.book.android.main_app.firm_login.FirmLocationMapActivity;
+import rvo.com.book.android.main_app.schedule.SetScheduleActivity;
 import rvo.com.book.datamodel.entities.DataModel;
 import rvo.com.book.datamodel.entities.Firm;
 import rvo.com.book.datamodel.entities.Schedule;
-import rvo.com.book.android.main_app.firm_login.FirmLocationMapActivity;
 import rvo.com.book.datamodel.repositories.FirmRepository;
 import rvo.com.book.datamodel.repositories.ScheduleRepository;
 
@@ -36,13 +37,14 @@ public class EightMainAppActivity extends FragmentActivity {
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
     private Firm firm;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_app_activity);
+        firm = DataModel.getInstance().getFirm();
         navigationView = findViewById(R.id.navigationViewId);
         loadOrUnloadMenuItems(navigationView.getMenu());
-        firm = DataModel.getInstance().getFirm();
         navigationView.setNavigationItemSelectedListener(item -> {
             switch (item.getItemId()) {
                 case R.id.firmDetailsId:
@@ -152,7 +154,7 @@ public class EightMainAppActivity extends FragmentActivity {
             }
             firm.setName(firmName);
             firm.setPhoneNumber(phoneNumber);
-            FirmRepository.getInstance().updateRecord(firm, Firm.NAME, firm.getName(),Firm.PHONE_NUMBER, firm.getPhoneNumber());
+            FirmRepository.getInstance().updateRecord(firm, Firm.NAME, firm.getName(), Firm.PHONE_NUMBER, firm.getPhoneNumber());
             addAlertDialog.close();
         });
         Button closeButton = alertView.findViewById(R.id.editFirmCloseButtonId_edit_firm_layout);
@@ -173,7 +175,7 @@ public class EightMainAppActivity extends FragmentActivity {
             ScheduleRepository.getInstance().objectFromId(firm.getScheduleId(), object -> {
                 if (object != null) {
                     Schedule schedule = (Schedule) object;
-                   firm.setSchedule(schedule);
+                    firm.setSchedule(schedule);
                     startActivity(intent);
                 }
             });
@@ -204,7 +206,7 @@ public class EightMainAppActivity extends FragmentActivity {
             title = getResources().getString(R.string.activate_firm);
         }
         builder.setTitle(title);
-        builder.setPositiveButton(getString(R.string.yes), (dialog1, which) -> { ;
+        builder.setPositiveButton(getString(R.string.yes), (dialog1, which) -> {
             firm.setStatus(status);
             FirmRepository.getInstance().updateRecord(firm, Firm.STATUS, firm.getStatus());
         });

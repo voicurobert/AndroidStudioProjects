@@ -1,4 +1,4 @@
-package rvo.com.book.android.main_app;
+package rvo.com.book.android.main_app.schedule;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,11 +13,11 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import rvo.com.book.R;
 import rvo.com.book.android.main_app.alerts.EightAlertDialog;
+import rvo.com.book.android.main_app.firm_login.FirmLoginOrSignInActivity;
 import rvo.com.book.datamodel.entities.DataModel;
 import rvo.com.book.datamodel.entities.Employee;
 import rvo.com.book.datamodel.entities.Firm;
 import rvo.com.book.datamodel.entities.Schedule;
-import rvo.com.book.android.main_app.firm_login.FirmLoginOrSignInActivity;
 import rvo.com.book.datamodel.repositories.EmployeeRepository;
 import rvo.com.book.datamodel.repositories.FirmRepository;
 import rvo.com.book.datamodel.repositories.ScheduleRepository;

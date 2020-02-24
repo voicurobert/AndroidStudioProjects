@@ -1,4 +1,4 @@
-package rvo.com.book.android.main_app;
+package rvo.com.book.android.main_app.schedule;
 
 
 import android.app.AlertDialog;
@@ -29,12 +29,16 @@ import java.util.List;
 import java.util.Map;
 
 import rvo.com.book.R;
+import rvo.com.book.android.EightSharedPreferences;
+import rvo.com.book.android.main_app.BookingAdapter;
+import rvo.com.book.android.main_app.CustomSpinnerAdapter;
 import rvo.com.book.android.main_app.alerts.AddAlertDialog;
 import rvo.com.book.android.main_app.alerts.EightAlertDialog;
 import rvo.com.book.android.main_app.billing.BillingActivity;
 import rvo.com.book.android.main_app.billing.InAppBilling;
+import rvo.com.book.android.main_app.customer_login.CustomerLoginOrSignInActivity;
+import rvo.com.book.android.notification.NotificationManager;
 import rvo.com.book.common.EightDate;
-import rvo.com.book.android.EightSharedPreferences;
 import rvo.com.book.datamodel.entities.Booking;
 import rvo.com.book.datamodel.entities.Category;
 import rvo.com.book.datamodel.entities.Customer;
@@ -43,8 +47,6 @@ import rvo.com.book.datamodel.entities.Employee;
 import rvo.com.book.datamodel.entities.Firm;
 import rvo.com.book.datamodel.entities.Product;
 import rvo.com.book.datamodel.entities.Schedule;
-import rvo.com.book.android.notification.NotificationManager;
-import rvo.com.book.android.main_app.customer_login.CustomerLoginOrSignInActivity;
 import rvo.com.book.datamodel.repositories.BookingRepository;
 
 public class ScheduleFragment extends Fragment {
@@ -191,10 +193,7 @@ public class ScheduleFragment extends Fragment {
             EightAlertDialog.showAlertWithMessage("You cannot make a booking in the past!", getActivity());
             return;
         }
-        AddAlertDialog insertBookingDialog = new AddAlertDialog(R.layout.insert_booking_layout,
-                                                                this,
-                                                                getLayoutInflater(),
-                                                                "Add booking at " + selectedEmployee.getName());
+        AddAlertDialog insertBookingDialog = new AddAlertDialog(R.layout.insert_booking_layout, this, getLayoutInflater(), "Add booking at " + selectedEmployee.getName());
         insertBookingDialog.createAlertDialog();
         View alertView = insertBookingDialog.getView();
         Spinner categoriesSpinner = alertView.findViewById(R.id.categoriesSpinnerId);
@@ -235,7 +234,6 @@ public class ScheduleFragment extends Fragment {
         if (EightSharedPreferences.getInstance().isCustomerMode()) {
             customerLinearLayout.setVisibility(View.GONE);
         }
-
         addButton.setOnClickListener(view -> {
             String bookHours = (String) hoursSpinner.getSelectedItem();
             String bookMinutes = (String) minutesSpinner.getSelectedItem();

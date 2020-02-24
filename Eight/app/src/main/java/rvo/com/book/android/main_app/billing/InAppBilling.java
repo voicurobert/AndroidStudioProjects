@@ -27,7 +27,7 @@ public class InAppBilling implements PurchasesUpdatedListener, BillingClientStat
     private Activity activity;
     private IBillingResponse billingResponse;
     private static SkuDetailsParams skuDetailsParams;
-    private  static InAppBilling instance = new InAppBilling();
+    private static InAppBilling instance = new InAppBilling();
 
     static {
         List<String> skuList = new ArrayList<>();
@@ -44,7 +44,7 @@ public class InAppBilling implements PurchasesUpdatedListener, BillingClientStat
         return instance;
     }
 
-    public void start(Activity activity){
+    public void start(Activity activity) {
         this.activity = activity;
         billingClient = BillingClient.newBuilder(activity).enablePendingPurchases().setListener(this).build();
         billingClient.startConnection(this);
@@ -56,7 +56,7 @@ public class InAppBilling implements PurchasesUpdatedListener, BillingClientStat
 
 
     public void isSubscribed(IBillingResponse billingResponse) {
-        if (!billingClient.isReady()){
+        if (!billingClient.isReady()) {
             billingClient.startConnection(this);
         }
         billingClient.queryPurchaseHistoryAsync(BillingClient.SkuType.SUBS, (billingResult, purchaseHistoryRecordList) -> {
@@ -131,7 +131,7 @@ public class InAppBilling implements PurchasesUpdatedListener, BillingClientStat
     }
 
     protected void remakeConnection() {
-        if (!billingClient.isReady()){
+        if (!billingClient.isReady()) {
             billingClient.endConnection();
             billingClient = BillingClient.newBuilder(activity).enablePendingPurchases().setListener(this).build();
             billingClient.startConnection(this);

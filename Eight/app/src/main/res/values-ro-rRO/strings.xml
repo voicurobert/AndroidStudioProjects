@@ -47,7 +47,7 @@
     <string name="stay_logged_in">Rămâneti autentificat?</string>
     <string name="register_customer_title">Înregistrează client</string>
     <string name="username">Username</string>
-    <string name="subscribe_description">Pentru a utiliza Eight ca firmă, va trebui să vă abonați. Abonamentul costă 30 LEI pe lună, prima lună este gratuită, apoi pentru a doua lună primești o reducere de 10 LEI. Puteți anula abonamentul oricând.</string>
+    <string name="subscribe_description">Pentru a utiliza Eight ca firmă, va trebui să vă abonați. \n\n Abonamentul costă 30 LEI pe lună, prima lună este gratuită, apoi pentru a doua lună primești o reducere de 10 LEI. \n\n Puteți anula abonamentul oricând.</string>
     <string name="no_product_selected">Nu se poate face o rezervare fără un produs selectat!</string>
     <string name="book_welcome_message">Gestionarea rezervărilor</string>
     <string name="phone_number">Număr telefon</string>

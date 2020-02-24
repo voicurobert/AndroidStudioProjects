@@ -11,9 +11,9 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import rvo.com.book.R;
 import rvo.com.book.android.main_app.alerts.EightAlertDialog;
+import rvo.com.book.android.notification.FirebaseProperties;
 import rvo.com.book.common.Tools;
 import rvo.com.book.datamodel.entities.Customer;
-import rvo.com.book.android.notification.FirebaseProperties;
 import rvo.com.book.datamodel.repositories.CustomerRepository;
 
 
@@ -111,7 +111,7 @@ public class CustomerSignInActivity extends FragmentActivity {
         }
         FirebaseAuth.getInstance().signInAnonymously().addOnCompleteListener(activity, task -> {
             if (task.isComplete()) {
-               CustomerRepository.getInstance().objectFromEmail(email, object -> {
+                CustomerRepository.getInstance().objectFromEmail(email, object -> {
                     if (object != null) {
                         EightAlertDialog.showAlertWithMessage("Email already exists! Please enter another email!", activity);
                     } else {

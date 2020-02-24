@@ -3,6 +3,7 @@ package rvo.com.book.datamodel.entities;
 
 import com.google.firebase.database.IgnoreExtraProperties;
 import com.google.firebase.firestore.Exclude;
+
 import rvo.com.book.android.EightSharedPreferences;
 
 

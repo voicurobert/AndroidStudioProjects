@@ -3,8 +3,10 @@ package rvo.com.book.datamodel.repositories;
 
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import rvo.com.book.datamodel.entities.FirebaseRecord;
 import rvo.com.book.datamodel.entities.Firm;
 import rvo.com.book.datamodel.interfaces.OnObjectsRetrieved;
@@ -20,7 +22,7 @@ public class FirmRepository extends FirebaseRepository {
         setObjectClass(new Firm());
     }
 
-    public static FirmRepository getInstance(){
+    public static FirmRepository getInstance() {
         return SINGLETON;
     }
 

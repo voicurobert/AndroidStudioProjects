@@ -43,7 +43,7 @@
     <string name="signOut_string">Sign out</string>
     <string name="privacyPolicy_string">Privacy Policy</string>
     <string name="delete">Delete</string>
-    <string name="subscribe_description">In order to use Eight as a firm you will need to subscribe. The subscription costs 30 LEI per month, first month is free, then for the second month you get a discount of 10 LEI.You can cancel the subscription at any time.</string>
+    <string name="subscribe_description">In order to use Eight as a firm you will need to subscribe. \n\n The subscription costs 30 LEI per month, first month is free, then for the second month you get a discount of 10 LEI. \n\n You can cancel the subscription at any time.</string>
     -->
     <string name="subscribe_button">Subscribe</string>
     -->

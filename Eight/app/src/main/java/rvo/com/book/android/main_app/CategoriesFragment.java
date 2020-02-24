@@ -19,9 +19,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import rvo.com.book.R;
+import rvo.com.book.android.EightSharedPreferences;
 import rvo.com.book.android.main_app.alerts.AddAlertDialog;
 import rvo.com.book.android.main_app.alerts.EightAlertDialog;
-import rvo.com.book.android.EightSharedPreferences;
 import rvo.com.book.datamodel.entities.Category;
 import rvo.com.book.datamodel.entities.DataModel;
 import rvo.com.book.datamodel.repositories.CategoryRepository;

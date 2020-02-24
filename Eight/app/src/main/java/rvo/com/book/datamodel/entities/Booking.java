@@ -4,12 +4,11 @@ package rvo.com.book.datamodel.entities;
 import com.google.firebase.database.IgnoreExtraProperties;
 import com.google.firebase.firestore.Exclude;
 
-import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 
-import rvo.com.book.common.EightDate;
 import rvo.com.book.android.EightSharedPreferences;
+import rvo.com.book.common.EightDate;
 
 @IgnoreExtraProperties
 public class Booking extends FirebaseRecord {

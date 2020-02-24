@@ -63,12 +63,12 @@ public class YourBookingsFragment extends Fragment {
     private void setTodaysBookings() {
         if (EightSharedPreferences.getInstance().isFirmMode()) {
             showProgressBar();
-            BookingRepository.getInstance().getPendingBookingsForFirmOwnerId((Firm)owner, objects -> {
+            BookingRepository.getInstance().getPendingBookingsForFirmOwnerId((Firm) owner, objects -> {
                 List<Booking> bookings = new ArrayList<>();
-                for (FirebaseRecord record : objects){
+                for (FirebaseRecord record : objects) {
                     bookings.add((Booking) record);
                 }
-                PendingBookingAdapter adapter = new PendingBookingAdapter(getContext(), bookings, () -> setTodaysBookings());
+                PendingBookingAdapter adapter = new PendingBookingAdapter(getContext(), bookings, this::setTodaysBookings);
                 goneProgressBar();
                 bookingsListView.setAdapter(adapter);
                 bookingsListView.invalidateViews();
@@ -81,17 +81,18 @@ public class YourBookingsFragment extends Fragment {
         if (customer != null) {
             showProgressBar();
             BookingRepository.getInstance().getAllBookingsFromCustomerId(customer, objects -> {
-                List<Booking> bookings = new ArrayList<>();
-                for (FirebaseRecord record : objects) {
-                    bookings.add((Booking)record);
+                if (!objects.isEmpty()) {
+                    List<Booking> bookings = new ArrayList<>();
+                    for (FirebaseRecord record : objects) {
+                        bookings.add((Booking) record);
+                    }
+                    PendingBookingAdapter adapter = new PendingBookingAdapter(fragment.getContext(), bookings, this::setCustomerBookings);
+                    bookingsListView.setAdapter(adapter);
+                    bookingsListView.invalidate();
                 }
-                PendingBookingAdapter adapter = new PendingBookingAdapter(fragment.getContext(), bookings, () -> setCustomerBookings());
-                bookingsListView.setAdapter(adapter);
-                bookingsListView.invalidate();
                 goneProgressBar();
             });
         }
-
     }
 
 

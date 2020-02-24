@@ -11,6 +11,7 @@ import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import rvo.com.book.R;
+import rvo.com.book.android.main_app.schedule.ScheduleFragment;
 
 
 public class FirmDetailsFragment extends Fragment {

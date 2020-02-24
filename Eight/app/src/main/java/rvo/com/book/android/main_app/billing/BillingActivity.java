@@ -33,7 +33,7 @@ public class BillingActivity extends AppCompatActivity implements IBillingRespon
 
     private void initiateSubscribe() {
         billing.subscribe(subscribed -> {
-            if (!subscribed){
+            if (!subscribed) {
                 EightAlertDialog.showAlertWithMessage("Are you connected to google play? Please check that you are logged in.", this);
             }
         });

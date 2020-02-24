@@ -12,7 +12,7 @@ public class EmployeeRepository extends FirebaseRepository {
         setObjectClass(new Employee());
     }
 
-    public static EmployeeRepository getInstance(){
+    public static EmployeeRepository getInstance() {
         return SINGLETON;
     }
 }

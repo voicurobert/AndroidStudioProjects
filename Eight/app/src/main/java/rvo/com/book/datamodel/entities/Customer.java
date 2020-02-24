@@ -3,8 +3,6 @@ package rvo.com.book.datamodel.entities;
 import com.google.firebase.database.IgnoreExtraProperties;
 import com.google.firebase.firestore.Exclude;
 
-import java.io.Serializable;
-
 @IgnoreExtraProperties
 public class Customer extends FirebaseRecord {
 

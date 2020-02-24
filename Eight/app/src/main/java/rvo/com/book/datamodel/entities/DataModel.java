@@ -18,7 +18,7 @@ import rvo.com.book.datamodel.repositories.ScheduleRepository;
 
 public class DataModel extends DataSetObserver {
 
-    private static DataModel instance = new DataModel() ;
+    private static DataModel instance = new DataModel();
     // categories for selected firm, when in Customer mode, and categories for firm in Firm mode
     private List<Category> categories;
     // products for selected firm, when in Customer mode, and products for firm in Firm mode
@@ -40,13 +40,6 @@ public class DataModel extends DataSetObserver {
 
     public static DataModel getInstance() {
         return instance;
-    }
-
-    public void clear() {
-        activeFirms.clear();
-        categories.clear();
-        products.clear();
-        employees.clear();
     }
 
     // GETTERS AND SETTERS
@@ -101,7 +94,7 @@ public class DataModel extends DataSetObserver {
     public void initialiseActiveFirms(IDownloadFinished downloadFinished) {
         activeFirms.clear();
         FirmRepository.getInstance().getActiveFirms(objects -> {
-            if (objects != null) {
+            if (!objects.isEmpty()) {
                 for (FirebaseRecord record : objects) {
                     if (record instanceof Firm) {
                         activeFirms.add((Firm) record);
@@ -114,15 +107,17 @@ public class DataModel extends DataSetObserver {
         });
     }
 
-    // CATEGORIES
-    public void initialiseCategories(Firm firm, IDownloadFinished downloadFinished) {
+    private void initialiseCategories(Firm firm, IDownloadFinished downloadFinished) {
         categories.clear();
         CategoryRepository.getInstance().objectsWithFirmId(firm, objects -> {
-            for (FirebaseRecord record : objects) {
-                Category category = (Category)record;
-                category.setFirm(firm);
-                categories.add(category);
+            if (!objects.isEmpty()) {
+                for (FirebaseRecord record : objects) {
+                    Category category = (Category) record;
+                    category.setFirm(firm);
+                    categories.add(category);
+                }
             }
+
             if (downloadFinished != null) {
                 downloadFinished.finished();
             }
@@ -159,21 +154,6 @@ public class DataModel extends DataSetObserver {
         return null;
     }
 
-    public String getCategoryNamesFromCategoryIds(String categoryIds) {
-        StringBuilder stringBuilder = new StringBuilder();
-        String[] ids = categoryIds.split(",");
-        for (int i = 0; i < ids.length; i++) {
-            Category category = getCategoryFromCategoryId(ids[i]);
-            if (i == ids.length - 1) {
-                stringBuilder.append(category.getName());
-            } else {
-                stringBuilder.append(category.getName());
-                stringBuilder.append(", ");
-            }
-        }
-        return stringBuilder.toString();
-    }
-
     public Category getCategoryFromCategoryId(String idCategory) {
         for (Category category : categories) {
             if (category.getId().equals(idCategory)) {
@@ -183,7 +163,7 @@ public class DataModel extends DataSetObserver {
         return null;
     }
 
-    public String getCategoryNameFromCategoryId(String categoryId) {
+    private String getCategoryNameFromCategoryId(String categoryId) {
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
             Optional<String> name = categories.stream().filter(category -> category.getId().equals(categoryId)).map(Category::getName).findFirst();
             return name.orElse("");
@@ -224,12 +204,12 @@ public class DataModel extends DataSetObserver {
 
     // PRODUCTS
 
-    public void initialiseProducts(Firm firm, IDownloadFinished downloadFinished) {
+    private void initialiseProducts(Firm firm, IDownloadFinished downloadFinished) {
         products.clear();
         ProductRepository.getInstance().objectsWithFirmId(firm, objects -> {
-            if (objects != null) {
+            if (!objects.isEmpty()) {
                 for (FirebaseRecord record : objects) {
-                    Product product = (Product)record;
+                    Product product = (Product) record;
                     product.setFirm(firm);
                     product.setCategory(getCategoryFromCategoryId(product.getFirmCategoryId()));
                     products.add(product);
@@ -253,10 +233,6 @@ public class DataModel extends DataSetObserver {
 
     public void addProduct(Product product) {
         products.add(product);
-    }
-
-    public List<Product> getProducts() {
-        return products;
     }
 
     public ArrayList<Product> getProductsFromCategoryId(Category category) {
@@ -290,12 +266,14 @@ public class DataModel extends DataSetObserver {
 
     // EMPLOYEES
 
-    public void initialiseEmployees(Firm firm, IDownloadFinished downloadFinished) {
+    private void initialiseEmployees(Firm firm, IDownloadFinished downloadFinished) {
         employees.clear();
         EmployeeRepository.getInstance().objectsWithFirmId(firm, objects -> {
-            for (FirebaseRecord record : objects) {
-                Employee employee = (Employee)record;
-                employees.add(employee);
+            if (!objects.isEmpty()) {
+                for (FirebaseRecord record : objects) {
+                    Employee employee = (Employee) record;
+                    employees.add(employee);
+                }
             }
             if (downloadFinished != null) {
                 downloadFinished.finished();
@@ -351,9 +329,9 @@ public class DataModel extends DataSetObserver {
             if (object != null) {
                 Schedule schedule = (Schedule) object;
                 firm.setSchedule(schedule);
-                if (downloadFinished != null) {
-                    downloadFinished.finished();
-                }
+            }
+            if (downloadFinished != null) {
+                downloadFinished.finished();
             }
         });
     }
@@ -364,6 +342,8 @@ public class DataModel extends DataSetObserver {
                 Schedule schedule = (Schedule) object;
                 employee.setSchedule(schedule);
                 employee.setWorkingHours(schedule.getWorkingHoursForDay(new EightDate().getDayAsString()));
+            }
+            if (downloadFinished != null) {
                 downloadFinished.finished();
             }
         });
@@ -384,7 +364,6 @@ public class DataModel extends DataSetObserver {
                     employee.addBooking(booking);
                 }
             }
-
             employee.computeBookings();
             downloadFinished.finished();
         });
@@ -410,15 +389,6 @@ public class DataModel extends DataSetObserver {
             }
         }
         return false;
-    }
-
-    public void removeProductsFromCategoryId(Category category) {
-        for (Product product : products) {
-            if (product.getCategory().equals(category)) {
-                products.remove(product);
-                return;
-            }
-        }
     }
 
     public void removeProduct(String productId) {

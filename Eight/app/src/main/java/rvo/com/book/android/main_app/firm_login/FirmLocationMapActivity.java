@@ -29,9 +29,9 @@ import java.util.List;
 import java.util.Locale;
 
 import rvo.com.book.R;
+import rvo.com.book.android.main_app.schedule.SetScheduleActivity;
 import rvo.com.book.datamodel.entities.DataModel;
 import rvo.com.book.datamodel.entities.Firm;
-import rvo.com.book.android.main_app.SetScheduleActivity;
 import rvo.com.book.datamodel.repositories.FirmRepository;
 
 public class FirmLocationMapActivity extends FragmentActivity implements OnMapReadyCallback,
