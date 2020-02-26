@@ -8,6 +8,9 @@
         android:id="@+id/yourBookingsId"
         android:title="@string/your_bookings" />
     <item
+        android:id="@+id/pendingBookingsId"
+        android:title="@string/pending_bookings_title" />
+    <item
         android:id="@+id/firmDetailsId"
         android:title="@string/firm_details" />
     <item

@@ -48,13 +48,10 @@ public class YourBookingsFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View myView = inflater.inflate(R.layout.your_bookings_fragment, container, false);
         progressBar = myView.findViewById(R.id.ownerProfileProgressBarId);
-        TextView titleTextView = myView.findViewById(R.id.ownerTitleTextViewId);
         bookingsListView = myView.findViewById(R.id.profileBookingsListViewId);
         if (EightSharedPreferences.getInstance().isFirmMode()) {
-            titleTextView.setText(R.string.owner_firm_title);
             setTodaysBookings();
         } else {
-            titleTextView.setText(R.string.owner_customer_title);
             setCustomerBookings();
         }
         return myView;
@@ -63,12 +60,12 @@ public class YourBookingsFragment extends Fragment {
     private void setTodaysBookings() {
         if (EightSharedPreferences.getInstance().isFirmMode()) {
             showProgressBar();
-            BookingRepository.getInstance().getPendingBookingsForFirmOwnerId((Firm) owner, objects -> {
+            BookingRepository.getInstance().getTodaysBookingsForFirm((Firm) owner, objects -> {
                 List<Booking> bookings = new ArrayList<>();
                 for (FirebaseRecord record : objects) {
                     bookings.add((Booking) record);
                 }
-                PendingBookingAdapter adapter = new PendingBookingAdapter(getContext(), bookings, this::setTodaysBookings);
+                PendingBookingAdapter adapter = new PendingBookingAdapter(getContext(), bookings, this::setTodaysBookings, "today's firm bookings");
                 goneProgressBar();
                 bookingsListView.setAdapter(adapter);
                 bookingsListView.invalidateViews();
@@ -86,7 +83,7 @@ public class YourBookingsFragment extends Fragment {
                     for (FirebaseRecord record : objects) {
                         bookings.add((Booking) record);
                     }
-                    PendingBookingAdapter adapter = new PendingBookingAdapter(fragment.getContext(), bookings, this::setCustomerBookings);
+                    PendingBookingAdapter adapter = new PendingBookingAdapter(fragment.getContext(), bookings, this::setCustomerBookings, "customer");
                     bookingsListView.setAdapter(adapter);
                     bookingsListView.invalidate();
                 }

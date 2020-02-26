@@ -27,57 +27,51 @@ public class PendingBookingAdapter implements ListAdapter {
     private List<Booking> bookings;
     private Context context;
     private ISetBookingActivation bookingActivation;
+    private String mode;
 
-    public PendingBookingAdapter(Context context, List<Booking> bookings, ISetBookingActivation bookingActivation) {
+    public PendingBookingAdapter(Context context, List<Booking> bookings, ISetBookingActivation bookingActivation, String mode) {
         this.context = context;
         this.bookings = bookings;
         this.bookingActivation = bookingActivation;
+        this.mode = mode;
     }
 
-    @Override
-    public boolean areAllItemsEnabled() {
+    @Override public boolean areAllItemsEnabled() {
         return false;
     }
 
-    @Override
-    public boolean isEnabled(int i) {
+    @Override public boolean isEnabled(int i) {
         return false;
     }
 
-    @Override
-    public void registerDataSetObserver(DataSetObserver dataSetObserver) {
+    @Override public void registerDataSetObserver(DataSetObserver dataSetObserver) {
 
     }
 
-    @Override
-    public void unregisterDataSetObserver(DataSetObserver dataSetObserver) {
+    @Override public void unregisterDataSetObserver(DataSetObserver dataSetObserver) {
 
     }
 
-    @Override
-    public int getCount() {
+    @Override public int getCount() {
         return bookings.size();
     }
 
-    @Override
-    public Booking getItem(int i) {
+    @Override public Booking getItem(int i) {
         return bookings.get(i);
     }
 
-    @Override
-    public long getItemId(int i) {
+    @Override public long getItemId(int i) {
         return i;
     }
 
-    @Override
-    public boolean hasStableIds() {
+    @Override public boolean hasStableIds() {
         return false;
     }
 
-    @Override
-    public View getView(int i, View view, ViewGroup viewGroup) {
+    @Override public View getView(int i, View view, ViewGroup viewGroup) {
         if (view == null) {
-            LayoutInflater layoutInflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            LayoutInflater layoutInflater = (LayoutInflater) this.context
+                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             view = layoutInflater.inflate(R.layout.pending_booking_item, null);
         }
         Booking booking = getItem(i);
@@ -85,23 +79,41 @@ public class PendingBookingAdapter implements ListAdapter {
         ImageView activateBooking = view.findViewById(R.id.acceptBookingId);
         ImageView declineBooking = view.findViewById(R.id.declineBookingId);
         TextView statusTextView = view.findViewById(R.id.bookingStatusTextViewId);
-        if (booking.getCustomerId() != null) {
-            CustomerRepository.getInstance().objectFromId(booking.getCustomerId(), object -> {
-                if (EightSharedPreferences.getInstance().isFirmMode()) {
-                    bookingTextView.setText(booking.getPendingBookingDescriptionForFirmMode());
-                    activateBooking.setVisibility(View.VISIBLE);
-                    declineBooking.setVisibility(View.VISIBLE);
-                } else {
-                    bookingTextView.setText(booking.getPendingBookingDescriptionForCustomerMode());
-                    statusTextView.setVisibility(View.VISIBLE);
-                    declineBooking.setVisibility(View.VISIBLE);
-                }
-                if (booking.isDeclined()) {
-                    declineBooking.setEnabled(false);
-                }
-            });
-        }
+        //        if (booking.getCustomerId() != null) {
+        //            CustomerRepository.getInstance().objectFromId(booking.getCustomerId(), object -> {
+        //                if (EightSharedPreferences.getInstance().isFirmMode()) {
+        //                    bookingTextView.setText(booking.getPendingBookingDescriptionForFirmMode());
+        //                    activateBooking.setVisibility(View.VISIBLE);
+        //                    declineBooking.setVisibility(View.VISIBLE);
+        //                } else {
+        //                    bookingTextView.setText(booking.getPendingBookingDescriptionForCustomerMode());
+        //                    statusTextView.setVisibility(View.VISIBLE);
+        //                    declineBooking.setVisibility(View.VISIBLE);
+        //                }
+        //                if (booking.isDeclined()) {
+        //                    declineBooking.setEnabled(false);
+        //                }
+        //            });
+        //        }
 
+        if (EightSharedPreferences.getInstance().isFirmMode()) {
+            bookingTextView.setText(booking.getPendingBookingDescriptionForFirmMode());
+            activateBooking.setVisibility(View.VISIBLE);
+            declineBooking.setVisibility(View.VISIBLE);
+        } else {
+            bookingTextView.setText(booking.getPendingBookingDescriptionForCustomerMode());
+            statusTextView.setVisibility(View.VISIBLE);
+            declineBooking.setVisibility(View.VISIBLE);
+        }
+        if (booking.isDeclined()) {
+            declineBooking.setEnabled(false);
+        }
+        if (mode.equals("today's firm bookings")) {
+            bookingTextView.setText(booking.getBookingDescriptionForFirmMode());
+            activateBooking.setVisibility(View.GONE);
+            declineBooking.setVisibility(View.GONE);
+            statusTextView.setVisibility(View.GONE);
+        }
         statusTextView.setText(booking.activeString());
         activateBooking.setOnClickListener(v -> activateOrDeactivateBooking(booking, Booking.ACTIVE));
         declineBooking.setOnClickListener(v -> activateOrDeactivateBooking(booking, Booking.DECLINE));
@@ -132,7 +144,9 @@ public class PendingBookingAdapter implements ListAdapter {
                 CustomerRepository.getInstance().objectFromId(booking.getCustomerId(), object -> {
                     Customer customer = (Customer) object;
                     if (customer != null) {
-                        NotificationManager.getInstance().sendNotification(notifTitle, notifBody, customer.getFirebaseToken());
+                        NotificationManager.getInstance()
+                                           .sendNotification(notifTitle, notifBody, customer
+                                                   .getFirebaseToken());
                         if (bookingActivation != null) {
                             bookingActivation.activatedBooking();
                         }
@@ -150,9 +164,12 @@ public class PendingBookingAdapter implements ListAdapter {
             builder.setPositiveButton("OK", (dialog, which) -> {
                 BookingRepository.getInstance().deleteRecord(booking);
                 NotificationManager.getInstance().sendNotification("Deleted booking.",
-                                                                   DataModel.getInstance().getCustomer().getName() +
-                                                                   " has deleted a booking!",
-                                                                   DataModel.getInstance().getFirm().getFirebaseToken());
+                                                                   DataModel.getInstance()
+                                                                            .getCustomer()
+                                                                            .getName() +
+                                                                   " has deleted a booking!", DataModel
+                                                                           .getInstance().getFirm()
+                                                                           .getFirebaseToken());
                 if (bookingActivation != null) {
                     bookingActivation.activatedBooking();
                 }
@@ -164,18 +181,15 @@ public class PendingBookingAdapter implements ListAdapter {
         }
     }
 
-    @Override
-    public int getItemViewType(int i) {
+    @Override public int getItemViewType(int i) {
         return i;
     }
 
-    @Override
-    public int getViewTypeCount() {
+    @Override public int getViewTypeCount() {
         return 1;
     }
 
-    @Override
-    public boolean isEmpty() {
+    @Override public boolean isEmpty() {
         return false;
     }
 }

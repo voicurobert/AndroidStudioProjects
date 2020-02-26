@@ -63,6 +63,7 @@ public class InAppBilling implements PurchasesUpdatedListener, BillingClientStat
             List<Purchase> purchases = billingClient.queryPurchases(BillingClient.SkuType.SUBS).getPurchasesList();
             if (purchases != null && !purchases.isEmpty()) {
                 for (Purchase purchase : purchases) {
+                    Log.log("STATE: " + purchase.getPurchaseState());
                     if (purchase.getPurchaseState() == Purchase.PurchaseState.UNSPECIFIED_STATE) {
                         billingResponse.subscribed(false);
                     } else {

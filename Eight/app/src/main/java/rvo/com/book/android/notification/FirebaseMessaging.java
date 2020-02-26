@@ -13,7 +13,7 @@ import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
 import rvo.com.book.R;
-import rvo.com.book.android.main_app.PendingBookingsActivity;
+import rvo.com.book.android.main_app.PendingBookingsFragment;
 
 public class FirebaseMessaging extends FirebaseMessagingService {
 
@@ -24,7 +24,7 @@ public class FirebaseMessaging extends FirebaseMessagingService {
     }
 
     private void showNotification(RemoteMessage.Notification notification) {
-        Intent intent = new Intent(this, PendingBookingsActivity.class);
+        Intent intent = new Intent(this, PendingBookingsFragment.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
         TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
         stackBuilder.addNextIntentWithParentStack(intent);

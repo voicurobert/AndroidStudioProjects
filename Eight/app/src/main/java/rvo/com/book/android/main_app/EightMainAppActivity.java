@@ -38,8 +38,7 @@ public class EightMainAppActivity extends FragmentActivity {
     private NavigationView navigationView;
     private Firm firm;
 
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    @Override protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_app_activity);
         firm = DataModel.getInstance().getFirm();
@@ -49,37 +48,33 @@ public class EightMainAppActivity extends FragmentActivity {
             switch (item.getItemId()) {
                 case R.id.firmDetailsId:
                     editFirmDetailsMenuClicked();
-                    closeDrawer();
                     break;
                 case R.id.editFirmMenuId:
                     editFirmMenuClicked();
-                    closeDrawer();
                     break;
                 case R.id.editScheduleFirmMenuId:
                     editScheduleFirmMenuClicked();
-                    closeDrawer();
                     break;
                 case R.id.activateOrDeactivateFirmMenuId:
                     activateOrDeactivateFirmMenuClicked(item);
-                    closeDrawer();
                     break;
                 case R.id.signOutMenuId:
                     signOutMenuClicked();
-                    closeDrawer();
                     break;
                 case R.id.privacyPolicyMenuId:
                     privacyPolicyMenuClicked();
-                    closeDrawer();
                     break;
                 case R.id.activeFirmsId:
                     activeFirmsMenuClicked();
-                    closeDrawer();
                     break;
                 case R.id.yourBookingsId:
                     yourBookingsMenuClicked();
-                    closeDrawer();
+                    break;
+                case R.id.pendingBookingsId:
+                    pendingBookingsMenuClicked();
                     break;
             }
+            closeDrawer();
             return true;
         });
         drawerLayout = findViewById(R.id.drawerLayoutId);
@@ -88,13 +83,11 @@ public class EightMainAppActivity extends FragmentActivity {
         activateDefaultFragment();
     }
 
-    @Override
-    protected void onResume() {
+    @Override protected void onResume() {
         super.onResume();
     }
 
-    @Override
-    protected void onPause() {
+    @Override protected void onPause() {
         super.onPause();
     }
 
@@ -120,10 +113,14 @@ public class EightMainAppActivity extends FragmentActivity {
         AddAlertDialog addAlertDialog = new AddAlertDialog(R.layout.edit_firm_layout, this, getLayoutInflater(), getString(R.string.editFirm_string));
         addAlertDialog.createAlertDialog();
         View alertView = addAlertDialog.getView();
-        EditText firmNameEditText = alertView.findViewById(R.id.firmNameEditTextId_edit_firm_layout);
-        EditText firmEmailEditText = alertView.findViewById(R.id.firmEmailEditTextId_edit_firm_layout);
-        EditText firmPhoneNumberEditText = alertView.findViewById(R.id.phoneNumberEditTextId_edit_firm_layout);
-        EditText firmAddressEditText = alertView.findViewById(R.id.firmAddressEditTextId_edit_firm_layout);
+        EditText firmNameEditText = alertView
+                .findViewById(R.id.firmNameEditTextId_edit_firm_layout);
+        EditText firmEmailEditText = alertView
+                .findViewById(R.id.firmEmailEditTextId_edit_firm_layout);
+        EditText firmPhoneNumberEditText = alertView
+                .findViewById(R.id.phoneNumberEditTextId_edit_firm_layout);
+        EditText firmAddressEditText = alertView
+                .findViewById(R.id.firmAddressEditTextId_edit_firm_layout);
 
         firmAddressEditText.setOnFocusChangeListener((v, hasFocus) -> {
             if (hasFocus) {
@@ -154,7 +151,9 @@ public class EightMainAppActivity extends FragmentActivity {
             }
             firm.setName(firmName);
             firm.setPhoneNumber(phoneNumber);
-            FirmRepository.getInstance().updateRecord(firm, Firm.NAME, firm.getName(), Firm.PHONE_NUMBER, firm.getPhoneNumber());
+            FirmRepository.getInstance()
+                          .updateRecord(firm, Firm.NAME, firm.getName(), Firm.PHONE_NUMBER, firm
+                                  .getPhoneNumber());
             addAlertDialog.close();
         });
         Button closeButton = alertView.findViewById(R.id.editFirmCloseButtonId_edit_firm_layout);
@@ -259,10 +258,8 @@ public class EightMainAppActivity extends FragmentActivity {
     }
 
     protected void activateFragment(Fragment fragment) {
-        getSupportFragmentManager().beginTransaction()
-                                   .replace(R.id.fragmentLayoutId, fragment)
-                                   .addToBackStack(fragment.getClass().getSimpleName())
-                                   .commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragmentLayoutId, fragment)
+                                   .addToBackStack(fragment.getClass().getSimpleName()).commit();
     }
 
     private void activateActivity(Class c) {
@@ -274,13 +271,15 @@ public class EightMainAppActivity extends FragmentActivity {
         activateFragment(new YourBookingsFragment());
     }
 
-    @Override
-    public void onBackPressed() {
+    private void pendingBookingsMenuClicked() {
+        activateFragment(new PendingBookingsFragment());
+    }
+
+    @Override public void onBackPressed() {
         finish();
     }
 
-    @Override
-    protected void onPostResume() {
+    @Override protected void onPostResume() {
         super.onPostResume();
         if (EightSharedPreferences.getInstance().isCustomerMode()) {
             return;

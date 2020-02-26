@@ -53,13 +53,7 @@ public class EightFirstActivity extends FragmentActivity {
         }
         EightSharedPreferences.getInstance().createSharedPreferencesForActivity(this);
 
-        if (EightSharedPreferences.getInstance().modeEnabled()) {
-            if (EightSharedPreferences.getInstance().isFirmMode()) {
-                handleFirmModeEnabled();
-            } else if (EightSharedPreferences.getInstance().isCustomerMode()) {
-                handleCustomerModeEnabled();
-            }
-        }
+        loginIfAutentificated();
 
         Button continueAsFirmButton = findViewById(R.id.continueAsFirmButtonId);
         continueAsFirmButton.setOnClickListener(view -> {
@@ -82,6 +76,15 @@ public class EightFirstActivity extends FragmentActivity {
         });
     }
 
+    private void loginIfAutentificated(){
+        if (EightSharedPreferences.getInstance().modeEnabled()) {
+            if (EightSharedPreferences.getInstance().isFirmMode()) {
+                handleFirmModeEnabled();
+            } else if (EightSharedPreferences.getInstance().isCustomerMode()) {
+                handleCustomerModeEnabled();
+            }
+        }
+    }
 
     @Override
     protected void onResume() {
@@ -89,6 +92,7 @@ public class EightFirstActivity extends FragmentActivity {
         if (!Tools.isConnectedToNetwork(getApplicationContext())) {
             EightAlertDialog.showAlertWithMessage(getString(R.string.no_internet_access), this);
         }
+        loginIfAutentificated();
     }
 
     @Override
@@ -125,7 +129,6 @@ public class EightFirstActivity extends FragmentActivity {
                     activateEightMainApp();
                     finish();
                 });
-
             }
         });
     }

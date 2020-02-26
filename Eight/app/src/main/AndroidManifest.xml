@@ -98,7 +98,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".android.main_app.PendingBookingsActivity">
+        <activity android:name=".android.main_app.PendingBookingsFragment">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 

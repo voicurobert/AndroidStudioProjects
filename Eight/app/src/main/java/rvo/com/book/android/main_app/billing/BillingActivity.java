@@ -10,6 +10,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import rvo.com.book.R;
+import rvo.com.book.android.EightSharedPreferences;
 import rvo.com.book.android.main_app.alerts.EightAlertDialog;
 import rvo.com.book.android.main_app.firm_login.FirmLoginOrSignInActivity;
 
@@ -58,5 +59,10 @@ public class BillingActivity extends AppCompatActivity implements IBillingRespon
         } else {
             EightAlertDialog.showAlertWithMessage("You are not subscribed!", this);
         }
+    }
+
+    @Override public void onBackPressed() {
+        super.onBackPressed();
+        EightSharedPreferences.getInstance().signOut(this);
     }
 }

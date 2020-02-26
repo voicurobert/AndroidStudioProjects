@@ -233,8 +233,14 @@ public class Booking extends FirebaseRecord {
     }
 
     @Exclude
+    public String getBookingDescriptionForFirmMode() {
+        String customerName = (this.customerName != null) ? this.customerName : customer.getName();
+        return customerName + " has booking for " + productName + " at " + employeeName + " on " + dateDescription();
+    }
+
+    @Exclude
     public String getPendingBookingDescriptionForCustomerMode() {
-        return productName + " at " + employeeName + " on " + dateDescription();
+        return productName + " at " + employeeName + " on " + dateDescription() + " with " + customerName;
 
     }
 

@@ -2,10 +2,8 @@ package rvo.com.book.datamodel.repositories;
 
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import rvo.com.book.common.EightDate;
 import rvo.com.book.datamodel.entities.Booking;
 import rvo.com.book.datamodel.entities.Customer;
@@ -54,7 +52,7 @@ public class BookingRepository extends FirebaseRepository {
     }
 
     public void getBookingsForEmployeeForDate(Employee employee, EightDate date, OnObjectsRetrieved objectsRetrieved) {
-        getCollectionReference().whereEqualTo(Booking.EMPLOYEE_ID, employee.getId()).get().addOnCompleteListener(task -> {
+            getCollectionReference().whereEqualTo(Booking.EMPLOYEE_ID, employee.getId()).get().addOnCompleteListener(task -> {
             List<FirebaseRecord> bookings = new ArrayList<>();
             if (task.isSuccessful()) {
                 QuerySnapshot querySnapshot = task.getResult();
@@ -115,18 +113,22 @@ public class BookingRepository extends FirebaseRepository {
                     for (QueryDocumentSnapshot documentSnapshot : querySnapshot) {
                         Booking booking = documentSnapshot.toObject(Booking.class);
                         EightDate today = new EightDate();
+
                         if (today.sameDateAs(booking.getEightDate()) &&
-                            today.getDate().getTime() > booking.getEightDate().getDate().getTime() &&
+                            today.getDate().getTime() <= booking.getEightDate().getDate().getTime() &&
                             booking.isActive()) {
                             booking.setFirm(DataModel.getInstance().getFirm());
                             bookings.add(booking);
                         }
                     }
+                    objectRetrieved.onObjectsRetrieved(bookings);
                 } else {
                     objectRetrieved.onObjectsRetrieved(bookings);
                 }
-
+            } else {
+                objectRetrieved.onObjectsRetrieved(new ArrayList<>());
             }
         });
     }
+
 }
