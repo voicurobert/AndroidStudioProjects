@@ -1,16 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AndroidConfiguredLogFilters">
+    <filters>
+      <filter>
+        <option name="logLevel" value="verbose" />
+        <option name="logMessagePattern" value="" />
+        <option name="logTagPattern" value="EIGHT" />
+        <option name="name" value="Eight" />
+        <option name="packageNamePattern" value="" />
+        <option name="pid" value="" />
+      </filter>
+    </filters>
+  </component>
   <component name="AndroidLayouts">
     <shared>
       <config />
     </shared>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_LOG_LEVEL" value="info" />
+    <option name="TOOL_WINDOW_LOG_LEVEL" value="error" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f976190d-e30a-4638-b494-74d6103cb403" name="Default Changelist" comment="commit from another repo">
+    <list default="true" id="f976190d-e30a-4638-b494-74d6103cb403" name="Default Changelist" comment="refactory">
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.bin" afterDir="false" />
@@ -18,104 +30,12 @@
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/classAnalysis.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/javaCompile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_firestore_21_4_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_firestore_21_4_0_aar.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/app/app.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/EightFirstActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/first_activity/EightFirstActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/NotifyFirmWorker.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/NotifyFirmWorker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/PrivacyPolicyActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/main_app/PrivacyPolicyActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/alerts/AddAlertDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/main_app/alerts/AddAlertDialog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/alerts/EightAlertDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/main_app/alerts/EightAlertDialog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/billing/BillingActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/main_app/billing/BillingActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/billing/IBillingResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/main_app/billing/IBillingResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/billing/InAppBilling.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/main_app/billing/InAppBilling.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/common/CustomSpinnerAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/main_app/CustomSpinnerAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/common/Eight.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/common/Eight.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/common/EightSharedPreferences.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/EightSharedPreferences.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/common/Log.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/Log.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/common/Validator.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/common/Validator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/eight_db/Booking.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/datamodel/entities/Booking.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/eight_db/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/datamodel/entities/Category.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/eight_db/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/datamodel/entities/Customer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/eight_db/DataModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/datamodel/entities/DataModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/eight_db/Employee.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/datamodel/entities/Employee.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/eight_db/FirestoreManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/datamodel/repositories/FirestoreManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/eight_db/Firm.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/datamodel/entities/Firm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/eight_db/IDownloadFinished.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/datamodel/interfaces/IDownloadFinished.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/eight_db/IObjectModified.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/datamodel/interfaces/IObjectModified.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/eight_db/IObjectRetrieved.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/datamodel/interfaces/IObjectRetrieved.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/eight_db/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/datamodel/entities/Product.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/eight_db/Schedule.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/datamodel/entities/Schedule.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/firebase/FirebaseAuthManager.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/firebase/FirebaseMessaging.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/notification/FirebaseMessaging.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/firebase/FirebaseProperties.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/notification/FirebaseProperties.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/firebase/FirebaseService.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/notification/FirebaseService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/firebase/NotificationManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/notification/NotificationManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/firebase/retrofit/Notification.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/notification/retrofit/Notification.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/firebase/retrofit/Response.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/notification/retrofit/Response.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/firebase/retrofit/Result.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/notification/retrofit/Result.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/firebase/retrofit/RetrofitAPIService.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/notification/retrofit/RetrofitAPIService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/firebase/retrofit/RetrofitClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/notification/retrofit/RetrofitClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/firebase/retrofit/Sender.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/notification/retrofit/Sender.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/main_app/ActiveFirmsFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/main_app/ActiveFirmsFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/main_app/BookingAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/main_app/BookingAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/main_app/CategoriesAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/main_app/CategoriesAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/main_app/CategoriesFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/main_app/CategoriesFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/main_app/EightMainAppActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/main_app/EightMainAppActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/main_app/EmployeeAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/main_app/EmployeeAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/main_app/EmployeesFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/main_app/EmployeesFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/main_app/FirmDetailsFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/main_app/FirmDetailsFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/main_app/FirmDetailsMasterActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/main_app/FirmDetailsMasterActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/main_app/FirmsAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/main_app/FirmsAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/main_app/ISetBookingActivation.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/main_app/ISetBookingActivation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/main_app/MapViewFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/main_app/MapViewFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/main_app/PendingBookingAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/main_app/PendingBookingAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/main_app/PendingBookingsActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/main_app/PendingBookingsActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/main_app/ProductsAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/main_app/ProductsAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/main_app/ProductsFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/main_app/ProductsFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/main_app/ScheduleFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/main_app/ScheduleFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/main_app/SetScheduleActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/main_app/SetScheduleActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/main_app/YourBookingsFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/main_app/YourBookingsFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/main_app/customer_login/CustomerLoginOrSignInActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/main_app/customer_login/CustomerLoginOrSignInActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/main_app/customer_login/CustomerSignInActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/main_app/customer_login/CustomerSignInActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/main_app/firm_login/FirmLocationMapActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/main_app/firm_login/FirmLocationMapActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/main_app/firm_login/FirmLoginOrSignInActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/main_app/firm_login/FirmLoginOrSignInActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/main_app/firm_login/FirmSignInActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/main_app/firm_login/FirmSignInActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/reset_password/ForgotPassword.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/main_app/reset_password/ForgotPassword.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/reset_password/ResetPasswordActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/main_app/reset_password/ResetPasswordActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/activate_button.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/active_firms_activity.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/active_firms_activity.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/add_or_edit_category_layout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/add_or_edit_category_layout.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/add_or_edit_employee_layout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/add_or_edit_employee_layout.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/add_or_edit_product_layout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/add_or_edit_product_layout.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/billing_activity_layout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/billing_activity_layout.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/categories_fragment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/categories_fragment.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/category_group.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/category_group.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/customer_login_or_signin_activity.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/customer_login_or_signin_activity.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/customer_mode_main_activity.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/customer_mode_main_activity.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/customer_signin_activity.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/customer_signin_activity.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/edit_firm_layout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/edit_firm_layout.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/eight_first_activity.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/eight_first_activity.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/employees_fragment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/employees_fragment.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/firm_details_fragment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/firm_details_fragment.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/firm_item.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/firm_item.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/firm_location_map_activity.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/firm_location_map_activity.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/firm_login_or_signin_activity.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/firm_login_or_signin_activity.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/firm_signin_activity.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/firm_signin_activity.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/insert_booking_layout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/insert_booking_layout.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/privacy_policy_layout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/privacy_policy_layout.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/reset_password_activity.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/reset_password_activity.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/schedule_fragment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/schedule_fragment.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/set_schedule_for_activity.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/set_schedule_for_activity.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/your_bookings_fragment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/your_bookings_fragment.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values-v21/styles.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values-v21/styles.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/styles.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/styles.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -126,7 +46,7 @@
   <component name="DefaultGradleProjectSettings">
     <option name="isMigrated" value="true" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="Pixel_3_API_29_-_Firm" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="Pixel_2_API_29" />
   <component name="ExternalProjectsManager">
     <system id="GRADLE">
       <state>
@@ -137,32 +57,95 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/first_activity/EightFirstActivity.java">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/main_app/PendingBookingAdapter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-349">
-              <caret line="67" column="12" selection-start-line="67" selection-start-column="12" selection-end-line="67" selection-end-column="12" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/main_app/ActiveFirmsFragment.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="476">
-              <caret line="51" column="31" lean-forward="true" selection-start-line="51" selection-start-column="31" selection-end-line="51" selection-end-column="31" />
+            <state relative-caret-position="394">
+              <caret line="74" column="61" selection-start-line="74" selection-start-column="61" selection-end-line="74" selection-end-column="61" />
               <folding>
-                <element signature="e#4051#4052#0" expanded="true" />
-                <element signature="e#4143#4144#0" expanded="true" />
+                <element signature="e#8036#8037#0" expanded="true" />
+                <element signature="e#8060#8061#0" expanded="true" />
+                <element signature="e#8107#8108#0" expanded="true" />
+                <element signature="e#8131#8132#0" expanded="true" />
+                <element signature="e#8173#8174#0" expanded="true" />
+                <element signature="e#8201#8202#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/pending_booking_item.xml">
+          <provider selected="true" editor-type-id="android-designer2" />
+          <provider editor-type-id="text-editor">
+            <state relative-caret-position="1071">
+              <caret line="63" column="8" selection-start-line="63" selection-start-column="8" selection-end-line="63" selection-end-column="8" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/build.gradle">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="199">
+              <caret line="41" column="52" selection-start-line="41" selection-start-column="52" selection-end-line="41" selection-end-column="52" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/rvo/com/book/datamodel/entities/Booking.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="708">
+              <caret line="235" column="34" selection-start-line="235" selection-start-column="34" selection-end-line="235" selection-end-column="34" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/main_app/PendingBookingsFragment.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="323">
+              <caret line="38" column="54" selection-start-line="38" selection-start-column="54" selection-end-line="38" selection-end-column="54" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/rvo/com/book/datamodel/repositories/BookingRepository.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="595">
+              <caret line="51" column="5" selection-start-line="51" selection-start-column="5" selection-end-line="51" selection-end-column="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/rvo/com/book/common/EightDate.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="595">
+              <caret line="125" column="73" selection-start-line="125" selection-start-column="73" selection-end-line="125" selection-end-column="73" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/main_app/billing/BillingActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="527">
-              <caret line="42" column="75" lean-forward="true" selection-start-line="42" selection-start-column="75" selection-end-line="42" selection-end-column="75" />
+            <state relative-caret-position="804">
+              <caret line="65" column="49" selection-start-line="65" selection-start-column="49" selection-end-line="65" selection-end-column="49" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/EightSharedPreferences.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="48" column="48" selection-start-line="48" selection-start-column="48" selection-end-line="48" selection-end-column="48" />
+              <folding>
+                <element signature="e#2176#2177#0" expanded="true" />
+                <element signature="e#2222#2223#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -170,17 +153,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/main_app/billing/InAppBilling.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="545">
-              <caret line="133" column="13" selection-start-line="133" selection-start-column="13" selection-end-line="133" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/rvo/com/book/common/Eight.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="491">
-              <caret line="61" column="39" lean-forward="true" selection-start-line="61" selection-start-column="39" selection-end-line="61" selection-end-column="39" />
+            <state relative-caret-position="595">
+              <caret line="55" selection-start-line="55" selection-end-line="55" />
             </state>
           </provider>
         </entry>
@@ -197,6 +171,7 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>getParentF</find>
+      <find>.getFirm</find>
     </findStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/app</dir>
@@ -214,63 +189,63 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/src/main/java/rvo/com/book/reset_password/ForgotPassword.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/rvo/com/book/main_app/CategoriesFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/rvo/com/book/main_app/firm_login/FirmSignInActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/rvo/com/book/main_app/YourBookingsFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/rvo/com/book/EightFirstActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/rvo/com/book/main_app/ScheduleFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/rvo/com/book/main_app/EmployeesFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/rvo/com/book/billing/InAppBilling.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/rvo/com/book/billing/BillingActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/rvo/com/book/main_app/EightMainAppActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/rvo/com/book/main_app/customer_login/CustomerSignInActivity.java" />
-        <option value="$PROJECT_DIR$/app/build.gradle" />
-        <option value="$PROJECT_DIR$/app/src/main/java/rvo/com/book/eight_db/FirestoreManager.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/main_app/EightFirstActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/main_app/SetScheduleActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/main_app/customer_login/CustomerSignInActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/main_app/firm_login/FirmSignInActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/rvo/com/book/datamodel/entities/Product.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/main_app/reset_password/ForgotPassword.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/first_activity/EightFirstActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/main_app/reset_password/ResetPasswordActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/rvo/com/book/datamodel/interfaces/IObjectRetrieved.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/rvo/com/book/datamodel/interfaces/OnObjectsRetrieved.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/rvo/com/book/datamodel/repositories/FieldKeys.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/rvo/com/book/datamodel/entities/FirebaseRecord.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/rvo/com/book/datamodel/repositories/ProductRepository.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/rvo/com/book/datamodel/repositories/EmployeeRepository.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/rvo/com/book/datamodel/repositories/CustomerRepository.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/rvo/com/book/datamodel/repositories/CategoryRepository.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/rvo/com/book/datamodel/repositories/FirmRepository.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/rvo/com/book/datamodel/repositories/FirebaseRepository.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/rvo/com/book/datamodel/interfaces/OnObjectRetrieved.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/rvo/com/book/datamodel/repositories/FirestoreManager.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/rvo/com/book/common/Eight.java" />
-        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/values-v21/styles.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/eight_first_activity.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/add_or_edit_category_layout.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/add_or_edit_employee_layout.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/add_or_edit_product_layout.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/billing_activity_layout.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/category_group.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/customer_login_or_signin_activity.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/customer_signin_activity.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/edit_firm_layout.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/firm_location_map_activity.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/firm_login_or_signin_activity.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/firm_signin_activity.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/insert_booking_layout.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/reset_password_activity.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/schedule_fragment.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/set_schedule_for_activity.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/values/styles.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/main_app/customer_login/CustomerLoginOrSignInActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/categories_fragment.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/drawable-v24/selectItem" />
-        <option value="$PROJECT_DIR$/app/src/main/res/drawable/selectItem" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/firm_details_fragment.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/firm_item.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/active_firms_activity.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/main_app/firm_login/FirmLoginOrSignInActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/main_app/billing/IBillingResponse.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/main_app/ActiveFirmsFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/rvo/com/book/datamodel/entities/Employee.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/main_app/CategoriesAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/main_app/CategoriesFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/main_app/customer_login/CustomerLoginOrSignInActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/main_app/EmployeeAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/main_app/EmployeesFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/main_app/FirmsAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/main_app/firm_login/FirmLocationMapActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/main_app/firm_login/FirmLoginOrSignInActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/main_app/firm_login/FirmSignInActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/main_app/MapViewFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/main_app/ProductsAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/main_app/ProductsFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/main_app/ScheduleFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/main_app/SetScheduleActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/NotifyFirmWorker.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/rvo/com/book/common/Tools.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/rvo/com/book/datamodel/repositories/ScheduleRepository.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/rvo/com/book/datamodel/entities/DataModel.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/menu/actionbar_menu.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/your_bookings_fragment.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/main_app/PendingBookingsActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/main_app/EightMainAppActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/pending_bookings_activity_layout.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/main_app/YourBookingsFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/main_app/PendingBookingsFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/main_app/billing/InAppBilling.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/first_activity/EightFirstActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/main_app/billing/BillingActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/rvo/com/book/datamodel/entities/Booking.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/main_app/PendingBookingAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/rvo/com/book/datamodel/repositories/BookingRepository.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/pending_booking_item.xml" />
+        <option value="$PROJECT_DIR$/app/build.gradle" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="y" value="22" />
-    <option name="width" value="1793" />
+    <option name="y" value="21" />
+    <option name="width" value="1794" />
     <option name="height" value="1098" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -279,7 +254,17 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="Eight" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Eight" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
       <pane id="AndroidView">
         <subPane>
           <expand>
@@ -311,24 +296,7 @@
               <item name="java" type="edd41e36:AndroidSourceTypeNode" />
               <item name="book" type="cbb59c9e:AndroidPsiDirectoryNode" />
               <item name="android" type="462c0819:PsiDirectoryNode" />
-              <item name="first_activity" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Eight" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="book" type="cbb59c9e:AndroidPsiDirectoryNode" />
-              <item name="android" type="462c0819:PsiDirectoryNode" />
               <item name="main_app" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Eight" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="book" type="cbb59c9e:AndroidPsiDirectoryNode" />
-              <item name="android" type="462c0819:PsiDirectoryNode" />
-              <item name="main_app" type="462c0819:PsiDirectoryNode" />
-              <item name="alerts" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Eight" type="1abcf292:AndroidViewProjectNode" />
@@ -341,55 +309,18 @@
             </path>
             <path>
               <item name="Eight" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="book" type="cbb59c9e:AndroidPsiDirectoryNode" />
-              <item name="android" type="462c0819:PsiDirectoryNode" />
-              <item name="main_app" type="462c0819:PsiDirectoryNode" />
-              <item name="customer_login" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Eight" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="book" type="cbb59c9e:AndroidPsiDirectoryNode" />
-              <item name="android" type="462c0819:PsiDirectoryNode" />
-              <item name="main_app" type="462c0819:PsiDirectoryNode" />
-              <item name="firm_login" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Eight" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="book" type="cbb59c9e:AndroidPsiDirectoryNode" />
-              <item name="android" type="462c0819:PsiDirectoryNode" />
-              <item name="main_app" type="462c0819:PsiDirectoryNode" />
-              <item name="reset_password" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Eight" type="1abcf292:AndroidViewProjectNode" />
               <item name="Gradle Scripts" type="ae0cef3a:AndroidBuildScriptsGroupNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="Eight" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Eight" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
       <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="ExportApk.ApkPath" value="$PROJECT_DIR$/app" />
+    <property name="ExportApk.ApkPath" value="C:\Projects\AndroidStudioProjects\Eight\app" />
     <property name="ExportApk.BuildVariants" value="release" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="android.sdk.path" value="$USER_HOME$/Library/Android/sdk" />
@@ -536,7 +467,35 @@
       <option name="project" value="LOCAL" />
       <updated>1581616061540</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="commit">
+      <created>1582040604491</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1582040604491</updated>
+    </task>
+    <task id="LOCAL-00008" summary="mods">
+      <created>1582135912003</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1582135912003</updated>
+    </task>
+    <task id="LOCAL-00009" summary="refactory">
+      <created>1582300195050</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1582300195050</updated>
+    </task>
+    <task id="LOCAL-00010" summary="mods">
+      <created>1582725428878</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1582725428878</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -544,25 +503,25 @@
     <editor active="true" />
     <layout>
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
-      <window_info content_ui="combo" id="Project" order="1" sideWeight="0.4933749" visible="true" weight="0.18369782" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" sideWeight="0.48913044" visible="true" weight="0.13836978" />
       <window_info id="Structure" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
-      <window_info id="Build Variants" order="4" sideWeight="0.5066251" side_tool="true" weight="0.18369782" />
+      <window_info id="Build Variants" order="4" sideWeight="0.51086956" side_tool="true" weight="0.13836978" />
       <window_info id="Image Layers" order="5" />
       <window_info id="Designer" order="6" />
       <window_info id="Resources Explorer" order="7" weight="0.32951146" />
       <window_info id="Capture Tool" order="8" />
-      <window_info anchor="bottom" id="Version Control" order="0" />
-      <window_info anchor="bottom" id="Logcat" order="1" weight="0.34762275" />
+      <window_info anchor="bottom" id="Version Control" order="0" weight="0.32969603" />
+      <window_info anchor="bottom" id="Logcat" order="1" sideWeight="0.4998012" weight="0.42400622" />
       <window_info anchor="bottom" id="TODO" order="2" />
       <window_info anchor="bottom" id="Terminal" order="3" />
-      <window_info anchor="bottom" id="Event Log" order="4" sideWeight="0.5001988" side_tool="true" weight="0.23772408" />
-      <window_info anchor="bottom" id="Build" order="5" sideWeight="0.4998012" weight="0.21901792" />
-      <window_info anchor="bottom" id="Android Profiler" order="6" />
-      <window_info anchor="bottom" id="Find" order="7" weight="0.3289166" />
-      <window_info anchor="bottom" id="Messages" order="8" />
-      <window_info active="true" anchor="bottom" id="Run" order="9" visible="true" weight="0.3289166" />
-      <window_info anchor="bottom" id="Debug" order="10" weight="0.32935324" />
+      <window_info anchor="bottom" id="Event Log" order="4" sideWeight="0.5001988" side_tool="true" weight="0.34762275" />
+      <window_info anchor="bottom" id="Build" order="5" sideWeight="0.49821073" visible="true" weight="0.28293064" />
+      <window_info anchor="bottom" id="Android Profiler" order="6" weight="0.32969603" />
+      <window_info anchor="bottom" id="Find" order="7" sideWeight="0.4998012" weight="0.3289166" />
+      <window_info anchor="bottom" id="Messages" order="8" weight="0.32969603" />
+      <window_info anchor="bottom" id="Run" order="9" weight="0.3289166" />
+      <window_info anchor="bottom" id="Debug" order="10" sideWeight="0.49940357" weight="0.3289166" />
       <window_info anchor="right" id="Device File Explorer" order="0" side_tool="true" />
       <window_info anchor="right" id="Capture Analysis" order="1" />
       <window_info anchor="right" id="Gradle" order="2" />
@@ -571,296 +530,401 @@
       <window_info anchor="right" id="Preview" order="5" weight="0.32962227" />
     </layout>
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
+              <option name="COLUMN_ORDER">
+                <list>
+                  <option value="0" />
+                  <option value="1" />
+                  <option value="2" />
+                  <option value="3" />
+                </list>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list />
+          </value>
+        </entry>
+        <entry key="User">
+          <value>
+            <list />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <ignored-roots>
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
     <MESSAGE value="formatting" />
     <MESSAGE value="commit from another repo" />
+    <MESSAGE value="commit" />
+    <MESSAGE value="refactory" />
     <MESSAGE value="mods" />
     <option name="LAST_COMMIT_MESSAGE" value="mods" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/firm_signin_activity.xml">
-      <provider editor-type-id="text-editor" />
-      <provider selected="true" editor-type-id="android-designer2" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/rvo/com/book/datamodel/interfaces/OnObjectRetrieved.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="41" selection-start-line="6" selection-start-column="41" selection-end-line="6" selection-end-column="41" />
+        </state>
+      </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/insert_booking_layout.xml">
-      <provider editor-type-id="text-editor" />
-      <provider selected="true" editor-type-id="android-designer2" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/rvo/com/book/datamodel/repositories/FirebaseRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="430">
+          <caret line="86" column="19" selection-start-line="86" selection-start-column="19" selection-end-line="86" selection-end-column="19" />
+          <folding>
+            <element signature="e#1193#1194#0" expanded="true" />
+            <element signature="e#1239#1240#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/pending_booking_item.xml">
-      <provider editor-type-id="text-editor" />
-      <provider selected="true" editor-type-id="android-designer2" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/rvo/com/book/datamodel/repositories/FirestoreManager.java" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/rvo/com/book/common/Eight.java" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/main_app/ActiveFirmsFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="600">
+          <caret line="94" column="48" selection-start-line="94" selection-start-column="48" selection-end-line="94" selection-end-column="48" />
+        </state>
+      </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/your_bookings_fragment.xml">
-      <provider editor-type-id="text-editor" />
-      <provider selected="true" editor-type-id="android-designer2" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/rvo/com/book/datamodel/entities/Employee.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="638">
+          <caret line="286" column="32" selection-start-line="286" selection-start-column="32" selection-end-line="286" selection-end-column="32" />
+        </state>
+      </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/spinner_item_layout.xml">
-      <provider editor-type-id="text-editor" />
-      <provider selected="true" editor-type-id="android-designer2" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/main_app/CategoriesAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="29" column="44" selection-start-line="29" selection-start-column="44" selection-end-line="29" selection-end-column="44" />
+          <folding>
+            <element signature="e#840#841#0" expanded="true" />
+            <element signature="e#908#909#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/set_schedule_for_activity.xml">
-      <provider editor-type-id="text-editor" />
-      <provider selected="true" editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/schedule_fragment.xml">
-      <provider editor-type-id="text-editor" />
-      <provider selected="true" editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/reset_password_activity.xml">
-      <provider editor-type-id="text-editor" />
-      <provider selected="true" editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/products_fragment.xml">
-      <provider editor-type-id="text-editor" />
-      <provider selected="true" editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/product_table_row_item.xml">
-      <provider editor-type-id="text-editor" />
-      <provider selected="true" editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/product_group.xml">
-      <provider editor-type-id="text-editor" />
-      <provider selected="true" editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/privacy_policy_layout.xml">
-      <provider editor-type-id="text-editor" />
-      <provider selected="true" editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/pending_bookings_activity_layout.xml">
-      <provider editor-type-id="text-editor" />
-      <provider selected="true" editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/styles.xml">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/main_app/CategoriesFragment.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="408">
-          <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/add_or_edit_employee_layout.xml">
-      <provider editor-type-id="text-editor" />
-      <provider selected="true" editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/add_or_edit_product_layout.xml">
-      <provider editor-type-id="text-editor" />
-      <provider selected="true" editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/address_search_prediction_layout.xml">
-      <provider editor-type-id="text-editor" />
-      <provider selected="true" editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/all_firms_tab_fragment_layout.xml">
-      <provider editor-type-id="text-editor" />
-      <provider selected="true" editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/billing_activity_layout.xml">
-      <provider editor-type-id="text-editor" />
-      <provider selected="true" editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/booking_card_layout.xml">
-      <provider editor-type-id="text-editor" />
-      <provider selected="true" editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/categories_and_products_fragment.xml">
-      <provider editor-type-id="text-editor" />
-      <provider selected="true" editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/categories_fragment.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="52" lean-forward="true" selection-start-line="18" selection-start-column="52" selection-end-line="18" selection-end-column="52" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/selectItem">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="11" lean-forward="true" selection-start-line="13" selection-start-column="11" selection-end-line="13" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable-v24/selectItem">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="51" selection-end-line="13" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/activate_button.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="11" lean-forward="true" selection-start-line="3" selection-start-column="11" selection-end-line="3" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/main_app_activity.xml">
-      <provider editor-type-id="text-editor" />
-      <provider selected="true" editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/firm_mode_main_activity.xml">
-      <provider editor-type-id="text-editor" />
-      <provider selected="true" editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/firm_master_details_activity.xml">
-      <provider editor-type-id="text-editor" />
-      <provider selected="true" editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/active_firms_activity.xml">
-      <provider editor-type-id="text-editor" />
-      <provider selected="true" editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/firm_item.xml">
-      <provider editor-type-id="text-editor" />
-      <provider selected="true" editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/eight_first_activity.xml">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="1139">
-          <caret line="67" column="8" selection-start-line="67" selection-start-column="8" selection-end-line="67" selection-end-column="8" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/firm_details_fragment.xml">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="26" column="44" selection-start-line="26" selection-start-column="44" selection-end-line="26" selection-end-column="44" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/active_firms_google_map.xml">
-      <provider editor-type-id="text-editor" />
-      <provider selected="true" editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/add_or_edit_category_layout.xml">
-      <provider editor-type-id="text-editor" />
-      <provider selected="true" editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/rvo/com/book/Log.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/main_app/alerts/EightAlertDialog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/main_app/alerts/AddAlertDialog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="35" column="5" lean-forward="true" selection-start-line="35" selection-start-column="5" selection-end-line="35" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/main_app/billing/IBillingResponse.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="20" selection-start-line="2" selection-start-column="20" selection-end-line="2" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/main_app/firm_login/FirmSignInActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="26" column="13" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/main_app/firm_login/FirmLoginOrSignInActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="174" column="115" lean-forward="true" selection-start-line="174" selection-start-column="115" selection-end-line="174" selection-end-column="115" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/main_app/firm_login/FirmLocationMapActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="35" column="13" selection-start-line="35" selection-start-column="13" selection-end-line="35" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/main_app/customer_login/CustomerSignInActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
+          <caret line="114" column="43" selection-start-line="114" selection-start-column="43" selection-end-line="114" selection-end-column="43" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/main_app/customer_login/CustomerLoginOrSignInActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="145" column="35" selection-start-line="145" selection-start-column="35" selection-end-line="145" selection-end-column="35" />
+        <state relative-caret-position="145">
+          <caret line="173" column="51" selection-start-line="173" selection-start-column="51" selection-end-line="173" selection-end-column="51" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/main_app/reset_password/ResetPasswordActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/main_app/EmployeesFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="419">
-          <caret line="50" column="31" selection-start-line="50" selection-start-column="31" selection-end-line="50" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/main_app/reset_password/ForgotPassword.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="578">
-          <caret line="44" column="51" lean-forward="true" selection-start-line="44" selection-start-column="51" selection-end-line="44" selection-end-column="51" />
+        <state relative-caret-position="-8">
+          <caret line="148" column="53" selection-start-line="148" selection-start-column="53" selection-end-line="148" selection-end-column="53" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/main_app/FirmsAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="598">
-          <caret line="71" column="27" lean-forward="true" selection-start-line="71" selection-start-column="27" selection-end-line="71" selection-end-column="27" />
+        <state relative-caret-position="521">
+          <caret line="102" column="31" selection-start-line="102" selection-start-column="31" selection-end-line="102" selection-end-column="31" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/main_app/ActiveFirmsFragment.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/main_app/firm_login/FirmLocationMapActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="51" column="31" lean-forward="true" selection-start-line="51" selection-start-column="31" selection-end-line="51" selection-end-column="31" />
+        <state relative-caret-position="145">
+          <caret line="106" column="32" lean-forward="true" selection-start-line="106" selection-start-column="32" selection-end-line="106" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/main_app/firm_login/FirmSignInActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-59">
+          <caret line="77" column="39" selection-start-line="77" selection-start-column="39" selection-end-line="77" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/main_app/MapViewFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="774">
+          <caret line="178" column="39" selection-start-line="178" selection-start-column="39" selection-end-line="178" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/main_app/SetScheduleActivity.java" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/rvo/com/book/common/Encrypt.java" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/categories_and_products_fragment.xml" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/firm_mode_main_activity.xml" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/spinner_item_layout.xml" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/navigation_menu.xml" />
+    <entry file="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/edc036483ef40607e8355e7cf0a3668d/play-services-tasks-17.0.0/jars/classes.jar!/com/google/android/gms/tasks/OnCompleteListener.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="10" column="9" selection-start-line="10" selection-start-column="9" selection-end-line="10" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/main_app/ScheduleFragment.java" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/main_app/ProductsFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="47" column="69" selection-start-line="47" selection-start-column="69" selection-end-line="47" selection-end-column="69" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/rvo/com/book/common/Tools.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="42" column="28" selection-start-line="42" selection-start-column="28" selection-end-line="42" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/rvo/com/book/datamodel/interfaces/IDownloadFinished.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="17" selection-start-line="3" selection-start-column="17" selection-end-line="3" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/rvo/com/book/datamodel/entities/DataModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="365">
+          <caret line="175" column="9" lean-forward="true" selection-start-line="175" selection-start-column="9" selection-end-line="175" selection-end-column="9" />
           <folding>
-            <element signature="e#4051#4052#0" expanded="true" />
-            <element signature="e#4143#4144#0" expanded="true" />
+            <element signature="e#1517#1518#0" expanded="true" />
+            <element signature="e#1548#1549#0" expanded="true" />
+            <element signature="e#1605#1606#0" expanded="true" />
+            <element signature="e#1632#1633#0" expanded="true" />
+            <element signature="e#1670#1671#0" expanded="true" />
+            <element signature="e#1702#1703#0" expanded="true" />
+            <element signature="e#1752#1753#0" expanded="true" />
+            <element signature="e#1792#1793#0" expanded="true" />
+            <element signature="e#1829#1830#0" expanded="true" />
+            <element signature="e#1860#1861#0" expanded="true" />
+            <element signature="e#1902#1903#0" expanded="true" />
+            <element signature="e#1936#1937#0" expanded="true" />
+            <element signature="e#1980#1981#0" expanded="true" />
+            <element signature="e#2012#2013#0" expanded="true" />
+            <element signature="e#4146#4147#0" expanded="true" />
+            <element signature="e#4179#4180#0" expanded="true" />
+            <element signature="e#4229#4230#0" expanded="true" />
+            <element signature="e#4269#4270#0" expanded="true" />
+            <element signature="e#7402#7403#0" expanded="true" />
+            <element signature="e#7439#7440#0" expanded="true" />
+            <element signature="e#8966#8967#0" expanded="true" />
+            <element signature="e#9005#9006#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/rvo/com/book/common/Eight.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/rvo/com/book/datamodel/repositories/ScheduleRepository.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="491">
-          <caret line="61" column="39" lean-forward="true" selection-start-line="61" selection-start-column="39" selection-end-line="61" selection-end-column="39" />
+        <state relative-caret-position="17">
+          <caret line="1" selection-start-line="1" selection-end-line="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/main_app/ProductsAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="30" column="57" selection-start-line="30" selection-start-column="57" selection-end-line="30" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/main_app/firm_login/FirmLoginOrSignInActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1581">
+          <caret line="59" column="68" lean-forward="true" selection-start-line="59" selection-start-column="68" selection-end-line="59" selection-end-column="68" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/main_app/EmployeeAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="634">
+          <caret line="188" column="16" lean-forward="true" selection-start-line="188" selection-start-column="16" selection-end-line="188" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/actionbar_menu.xml">
+      <provider selected="true" editor-type-id="android-designer2" />
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="53" selection-start-line="11" selection-start-column="53" selection-end-line="11" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/notification/FirebaseMessaging.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="33" column="46" lean-forward="true" selection-start-line="33" selection-start-column="46" selection-end-line="33" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/NotifyFirmWorker.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="557">
+          <caret line="50" column="40" selection-start-line="50" selection-start-column="40" selection-end-line="50" selection-end-column="40" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/main_app/FirmDetailsMasterActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="34" column="35" selection-start-line="34" selection-start-column="19" selection-end-line="34" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/your_bookings_fragment.xml">
+      <provider selected="true" editor-type-id="android-designer2" />
+      <provider editor-type-id="text-editor" />
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/f48f391ccb033df2567d1a52f32d7981/billing-2.1.0/jars/classes.jar!/com/android/billingclient/api/Purchase.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="649">
+          <caret line="128" column="12" selection-start-line="128" selection-start-column="12" selection-end-line="128" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/main_app/YourBookingsFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="782">
+          <caret line="67" column="145" selection-start-line="67" selection-start-column="145" selection-end-line="67" selection-end-column="145" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/main_app/BookingAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1003">
+          <caret line="92" column="28" selection-start-line="92" selection-start-column="28" selection-end-line="92" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/pending_bookings_activity_layout.xml">
+      <provider selected="true" editor-type-id="android-designer2" />
+      <provider editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/main_app/EightMainAppActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3961">
+          <caret line="274" column="44" selection-start-line="274" selection-start-column="44" selection-end-line="274" selection-end-column="44" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/first_activity/EightFirstActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-349">
-          <caret line="67" column="12" selection-start-line="67" selection-start-column="12" selection-end-line="67" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/main_app/billing/InAppBilling.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="545">
-          <caret line="133" column="13" selection-start-line="133" selection-start-column="13" selection-end-line="133" selection-end-column="13" />
+        <state relative-caret-position="348">
+          <caret line="87" selection-start-line="87" selection-end-line="87" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/main_app/billing/BillingActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="42" column="75" lean-forward="true" selection-start-line="42" selection-start-column="75" selection-end-line="42" selection-end-column="75" />
+        <state relative-caret-position="804">
+          <caret line="65" column="49" selection-start-line="65" selection-start-column="49" selection-end-line="65" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/EightSharedPreferences.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="48" column="48" selection-start-line="48" selection-start-column="48" selection-end-line="48" selection-end-column="48" />
+          <folding>
+            <element signature="e#2176#2177#0" expanded="true" />
+            <element signature="e#2222#2223#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/rvo/com/book/datamodel/entities/Booking.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="708">
+          <caret line="235" column="34" selection-start-line="235" selection-start-column="34" selection-end-line="235" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/main_app/PendingBookingsFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="38" column="54" selection-start-line="38" selection-start-column="54" selection-end-line="38" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/main_app/billing/InAppBilling.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="595">
+          <caret line="55" selection-start-line="55" selection-end-line="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/rvo/com/book/common/EightDate.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="595">
+          <caret line="125" column="73" selection-start-line="125" selection-start-column="73" selection-end-line="125" selection-end-column="73" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/rvo/com/book/datamodel/repositories/BookingRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="595">
+          <caret line="51" column="5" selection-start-line="51" selection-start-column="5" selection-end-line="51" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/rvo/com/book/android/main_app/PendingBookingAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="394">
+          <caret line="74" column="61" selection-start-line="74" selection-start-column="61" selection-end-line="74" selection-end-column="61" />
+          <folding>
+            <element signature="e#8036#8037#0" expanded="true" />
+            <element signature="e#8060#8061#0" expanded="true" />
+            <element signature="e#8107#8108#0" expanded="true" />
+            <element signature="e#8131#8132#0" expanded="true" />
+            <element signature="e#8173#8174#0" expanded="true" />
+            <element signature="e#8201#8202#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/pending_booking_item.xml">
+      <provider selected="true" editor-type-id="android-designer2" />
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="1071">
+          <caret line="63" column="8" selection-start-line="63" selection-start-column="8" selection-end-line="63" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="199">
+          <caret line="41" column="52" selection-start-line="41" selection-start-column="52" selection-end-line="41" selection-end-column="52" />
         </state>
       </provider>
     </entry>
