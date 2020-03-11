@@ -17,6 +17,7 @@ import androidx.fragment.app.FragmentActivity;
 
 import com.google.android.material.navigation.NavigationView;
 
+import rvo.com.book.Log;
 import rvo.com.book.R;
 import rvo.com.book.android.EightSharedPreferences;
 import rvo.com.book.android.first_activity.EightFirstActivity;
@@ -113,14 +114,10 @@ public class EightMainAppActivity extends FragmentActivity {
         AddAlertDialog addAlertDialog = new AddAlertDialog(R.layout.edit_firm_layout, this, getLayoutInflater(), getString(R.string.editFirm_string));
         addAlertDialog.createAlertDialog();
         View alertView = addAlertDialog.getView();
-        EditText firmNameEditText = alertView
-                .findViewById(R.id.firmNameEditTextId_edit_firm_layout);
-        EditText firmEmailEditText = alertView
-                .findViewById(R.id.firmEmailEditTextId_edit_firm_layout);
-        EditText firmPhoneNumberEditText = alertView
-                .findViewById(R.id.phoneNumberEditTextId_edit_firm_layout);
-        EditText firmAddressEditText = alertView
-                .findViewById(R.id.firmAddressEditTextId_edit_firm_layout);
+        EditText firmNameEditText = alertView.findViewById(R.id.firmNameEditTextId_edit_firm_layout);
+        EditText firmEmailEditText = alertView.findViewById(R.id.firmEmailEditTextId_edit_firm_layout);
+        EditText firmPhoneNumberEditText = alertView.findViewById(R.id.phoneNumberEditTextId_edit_firm_layout);
+        EditText firmAddressEditText = alertView.findViewById(R.id.firmAddressEditTextId_edit_firm_layout);
 
         firmAddressEditText.setOnFocusChangeListener((v, hasFocus) -> {
             if (hasFocus) {
@@ -151,9 +148,7 @@ public class EightMainAppActivity extends FragmentActivity {
             }
             firm.setName(firmName);
             firm.setPhoneNumber(phoneNumber);
-            FirmRepository.getInstance()
-                          .updateRecord(firm, Firm.NAME, firm.getName(), Firm.PHONE_NUMBER, firm
-                                  .getPhoneNumber());
+            FirmRepository.getInstance().updateRecord(firm, Firm.NAME, firm.getName(), Firm.PHONE_NUMBER, firm.getPhoneNumber());
             addAlertDialog.close();
         });
         Button closeButton = alertView.findViewById(R.id.editFirmCloseButtonId_edit_firm_layout);
@@ -244,6 +239,7 @@ public class EightMainAppActivity extends FragmentActivity {
             menu.findItem(R.id.editFirmMenuId).setVisible(false);
             menu.findItem(R.id.editScheduleFirmMenuId).setVisible(false);
             menu.findItem(R.id.activateOrDeactivateFirmMenuId).setVisible(false);
+            menu.findItem(R.id.pendingBookingsId).setVisible(false);
         } else {
             menu.findItem(R.id.activeFirmsId).setVisible(false);
             MenuItem menuItem = menu.findItem(R.id.activateOrDeactivateFirmMenuId);

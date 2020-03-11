@@ -172,6 +172,7 @@ public class FirmLoginOrSignInActivity extends FragmentActivity {
         Intent activityIntent = new Intent(getApplicationContext(), EightMainAppActivity.class);
         DataModel.getInstance().initialiseDataStore(null, () -> {
             startActivity(activityIntent);
+            progressBar.setVisibility(View.GONE);
             finish();
         });
     }
@@ -209,8 +210,6 @@ public class FirmLoginOrSignInActivity extends FragmentActivity {
                         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
                         firebaseAuth.signOut();
                         firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(activity, task -> activateEightMainAppActivity());
-
-                        progressBar.setVisibility(View.GONE);
                     } else {
                         EightAlertDialog.showAlertWithMessage("Password incorrect!", activity);
                         passwordEditText.requestFocus();

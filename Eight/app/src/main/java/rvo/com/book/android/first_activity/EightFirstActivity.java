@@ -6,14 +6,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
-
 import androidx.annotation.Nullable;
 import androidx.fragment.app.FragmentActivity;
-
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.iid.FirebaseInstanceId;
-
 import rvo.com.book.R;
 import rvo.com.book.android.EightSharedPreferences;
 import rvo.com.book.android.main_app.EightMainAppActivity;
@@ -53,7 +50,7 @@ public class EightFirstActivity extends FragmentActivity {
         }
         EightSharedPreferences.getInstance().createSharedPreferencesForActivity(this);
 
-        loginIfAutentificated();
+        loginIfAuthenticated();
 
         Button continueAsFirmButton = findViewById(R.id.continueAsFirmButtonId);
         continueAsFirmButton.setOnClickListener(view -> {
@@ -76,7 +73,7 @@ public class EightFirstActivity extends FragmentActivity {
         });
     }
 
-    private void loginIfAutentificated(){
+    private void loginIfAuthenticated(){
         if (EightSharedPreferences.getInstance().modeEnabled()) {
             if (EightSharedPreferences.getInstance().isFirmMode()) {
                 handleFirmModeEnabled();
@@ -92,7 +89,7 @@ public class EightFirstActivity extends FragmentActivity {
         if (!Tools.isConnectedToNetwork(getApplicationContext())) {
             EightAlertDialog.showAlertWithMessage(getString(R.string.no_internet_access), this);
         }
-        loginIfAutentificated();
+        loginIfAuthenticated();
     }
 
     @Override
@@ -124,10 +121,9 @@ public class EightFirstActivity extends FragmentActivity {
             if (!subscribed) {
                 activateBillingActivity();
             } else {
-                progressBar.setVisibility(View.GONE);
                 DataModel.getInstance().initialiseDataStore(null, () -> {
                     activateEightMainApp();
-                    finish();
+                    finishAndRemoveTask();
                 });
             }
         });
@@ -150,8 +146,10 @@ public class EightFirstActivity extends FragmentActivity {
     }
 
     private void activateEightMainApp() {
+        progressBar.setVisibility(View.GONE);
         Intent activityIntent = new Intent(getApplicationContext(), EightMainAppActivity.class);
         startActivity(activityIntent);
+        finishAndRemoveTask();
     }
 
     private void handleFirmModeEnabled() {
